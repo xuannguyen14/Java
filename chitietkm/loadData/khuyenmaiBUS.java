@@ -15,4 +15,13 @@ public class khuyenmaiBUS {
     public static ArrayList<khuyenmaiDTO> showAllkm(){
         return khuyenmaiDAO.showAllkm();
     }
+    public static void addkm(khuyenmaiDTO km){
+        khuyenmaiDAO.addkm(km);
+    }
+    public static void editkm(khuyenmaiDTO km){
+        khuyenmaiDAO.editkm(km);
+    }
+    public static void delkm(String makm){
+        khuyenmaiDAO.delkm(makm);
+    }
 }
