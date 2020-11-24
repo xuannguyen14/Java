@@ -11,6 +11,8 @@ import DTO.SanPhamDTO;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -559,7 +561,11 @@ public class HoadonGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        new ThemHDGUI().setVisible(true);
+        try {
+            new ThemHDGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         /*
         DefaultTableModel model = (DefaultTableModel) tblDSSV.getModel();

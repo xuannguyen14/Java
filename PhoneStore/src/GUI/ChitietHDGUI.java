@@ -7,7 +7,7 @@ package GUI;
 
 import BUS.HoadonBUS;
 import DTO.HoadonDTO;
-import BUS.SanphamBUS;
+import BUS.SanPhamBUS;
 import DTO.SanPhamDTO;
 
 /**
