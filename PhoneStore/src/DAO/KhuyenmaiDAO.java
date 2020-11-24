@@ -13,10 +13,10 @@ public class KhuyenmaiDAO {
     public static ArrayList<khuyenmaiDTO> showAllkm(){
         ArrayList<khuyenmaiDTO> arr=new ArrayList<khuyenmaiDTO>();
         String sql="select * from chitietkm inner join khuyenmai on (chitietkm.makm=khuyenmai.makm)";
-        loadData act=new loadData();
+        Connection act=JDBCConnection.getConnection();
         try{
-           act.openData();
-           ResultSet rs=act.excuteQuery(sql);
+           Statement stmt=act.createStatement();
+           ResultSet rs=stmt.excuteQuery(sql);
            while(rs.next()){
                khuyenmaiDTO km=new khuyenmaiDTO();
                km.setmakm(rs.getString("MaKM"));
@@ -29,31 +29,29 @@ public class KhuyenmaiDAO {
            }
         }
         catch(SQLException ex){
-            displayError err= new displayError();
-            err.displayError(ex);
-        }
-        finally{
-            act.closeData();
+            ex.printStackTrace();
         }
         return arr;
     }
     public static void addkm(khuyenmaiDTO km){
-         loadData act=new loadData();
-         String sql2="Insert into chitietkm values(";
-         sql2=sql2+"'"+km.getmakm()+"'";
-         sql2=sql2+",'"+km.getmasp()+"'";
-         sql2=sql2+",'"+km.gettile()+"'";
-         sql2=sql2+")";
-         String sql="Insert into khuyenmai values(";
-         sql=sql+"'"+km.getmakm()+"'";
-         sql=sql+",'"+km.gettenkm()+"'";
-         sql=sql+",'"+km.getngaybd()+"'";
-         sql=sql+",'"+km.getngaykt()+"'";
-         sql=sql+")";
-         act.openData();
-         act.executeQuery2(sql);
-         act.executeQuery2(sql2);
-         act.closeData();
+         Connection act=JDBCConnection.getConnection();
+         String sql="Insert into chitietkm (MaKM,MaSP,TiLeKM) values (?,?,?)";
+         String sql2="Insert into khuyenmai (MaKM,TenKM,NgayBD,NgayKT) values (?,?,?,?)";
+         try{
+             PrepareStatement ps1=act.preparedStatement(sql);
+             ps1.setString(1, km.getmakm());
+             ps1.setString(2, km.getmasp());
+             ps1.setString(3, km.gettilekm());
+             ps1.executeUpdate();
+             PrepareStatement ps2=act.preparedStatement(sql2);
+             ps2.setString(1, km.getmakm());
+             ps2.setString(2, km.gettenkm());
+             ps2.setString(3, km.getngaybd());
+             ps2.setString(4, km.getngaykt());
+             ps2.executeUpdate();
+         catch(SQLException ex){
+             ex.printStackTrace();
+         }
     }
     public static void editkm(khuyenmaiDTO km){
          loadData act=new loadData();
