@@ -5,11 +5,13 @@
  */
 package GUI;
 
-import BUS.SanphamBUS;
+import BUS.SanPhamBUS;
 import DTO.SanPhamDTO;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThemHDGUI extends javax.swing.JFrame {
 
-    SanphamBUS sanphamBUS;
+    SanPhamBUS sanphamBUS;
     DefaultTableModel defaultTableModel;
     
-    public ThemHDGUI() {
+    public ThemHDGUI() throws Exception {
         
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -45,19 +47,23 @@ public class ThemHDGUI extends javax.swing.JFrame {
         
         loadData();
     }
-    private void loadData(){
+    private void loadData() throws Exception{
         //lấy ngày hiện tại
         txtNgayxuat.setText(String.valueOf(java.time.LocalDate.now()));
         
-        sanphamBUS = new SanphamBUS();
-        List<SanPhamDTO> sanphams = sanphamBUS.getAllSanpham();
-        for(SanPhamDTO sanPham : sanphams){
+        sanphamBUS = new SanPhamBUS();
+        
+        if(SanPhamBUS.getDSSanPham() == null){
+        sanphamBUS.docDSSP();
+        }
+        
+        for(SanPhamDTO sanPham : SanPhamBUS.getDSSanPham()){
             comboboxMaSp.addItem(sanPham.getMaSP());
         }
         
     }
     
-    private void loadDataTable(String maSP){
+    private void loadDataTable(String maSP) throws Exception{
         DefaultTableModel model = (DefaultTableModel) tblSanpham.getModel();
         SanPhamDTO sanpham = new SanPhamDTO();
         sanpham = sanphamBUS.getSanphamByMaSP(maSP);
@@ -536,7 +542,11 @@ public class ThemHDGUI extends javax.swing.JFrame {
     private void comboboxMaSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxMaSpActionPerformed
         // TODO add your handling code here:
         SanPhamDTO sanpham = new SanPhamDTO();
-        sanpham = sanphamBUS.getSanphamByMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
+        try {
+            sanpham = sanphamBUS.getSanphamByMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
+        } catch (Exception ex) {
+            Logger.getLogger(ThemHDGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         txtDongia.setText(String.valueOf(sanpham.getDonGia())); // lấy đơn giá của sản phẩm dc chọn
         
 
@@ -604,8 +614,12 @@ public class ThemHDGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtThanhtienActionPerformed
 
     private void btnChonmuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonmuaActionPerformed
-        // TODO add your handling code here:
-        loadDataTable(String.valueOf(comboboxMaSp.getSelectedItem()));
+        try {
+            // TODO add your handling code here:
+            loadDataTable(String.valueOf(comboboxMaSp.getSelectedItem()));
+        } catch (Exception ex) {
+            Logger.getLogger(ThemHDGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnChonmuaActionPerformed
 
     /**
