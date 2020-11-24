@@ -9,6 +9,6 @@ package BUS;
  *
  * @author pc
  */
-public class ChitietkhuyenmaiGUI {
+public class ChitietkhuyenmaiBUS {
     
 }
