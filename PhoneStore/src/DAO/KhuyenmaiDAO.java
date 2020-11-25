@@ -5,15 +5,11 @@
  */
 package DAO;
 
-import com.sun.jdi.connect.spi.Connection;
-import java.beans.Statement;
-import java.util.ArrayList;
-
 /**
  *
  * @author pc
  */
-/*public class KhuyenmaiDAO {
+public class KhuyenmaiDAO {
     public static ArrayList<khuyenmaiDTO> showAllkm(){
         ArrayList<khuyenmaiDTO> arr=new ArrayList<khuyenmaiDTO>();
         String sql="select * from chitietkm inner join khuyenmai on (chitietkm.makm=khuyenmai.makm)";
@@ -58,30 +54,41 @@ import java.util.ArrayList;
          }
     }
     public static void editkm(khuyenmaiDTO km){
-         loadData act=new loadData();
-         String sql2="Update chitietkm Set";
-         sql2=sql2+" TiLeKM='"+km.gettile()+"'";
-         sql2=sql2+" Where MaKM='"+km.getmakm()+"'";
-         String sql="Update khuyenmai Set";
-         sql=sql+" TenKM='"+km.gettenkm()+"'";
-         sql=sql+",NgayBD='"+km.getngaybd()+"'";
-         sql=sql+",NgayKT='"+km.getngaykt()+"'";
-         sql=sql+" Where MaKM='"+km.getmakm()+"'";
-         act.openData();
-         act.executeQuery2(sql);
-         act.executeQuery2(sql2);
-         act.closeData();
+         Connection act=JDBCConnection.getConnection();
+         String sql2="Update chitietkm Set MaSP=?,TiLeKM=? Where MaKM=?";
+         String sql="Update khuyenmai Set TenKM=?,NgayBD=?,NgayKT=? Where MaKM=?";
+         try{
+             PreparedStatement ps1=act.preparedStatement(sql2);
+             ps1.getString(1,km.getmasp());
+             ps1.getString(2,km.gettilekm());
+             ps1.getString(3,km.getmakm());
+             ps1.executeUpdate();
+             PreparedStatement ps2=act.preparedStatement(sql);
+             ps2.setString(1,km.gettenkm());
+             ps2.setString(2,km.ngaybd());
+             ps2.setString(3,km.ngaykt());
+             ps2.setString(4,km.getmakm());
+             ps2.executeUpdate();
+         }
+         catch(SQLException ex){
+             ex.printStackTrace();
+         }
     }
     public static void delkm(String makm){
-        loadData act=new loadData();
-        String sql="Delete from khuyenmai where MaKM='"+makm+"'";
-        String sql2="Delete from chitietkm where MaKM='"+makm+"'";
-        act.openData();
-        act.executeQuery2(sql2);
-        act.executeQuery2(sql);
-        act.closeData();
+        Connection act=JDBCConnection.getConnection();
+        String sql="Delete from khuyenmai where MaKM=?";
+        String sql2="Delete from chitietkm where MaKM=?";
+        try{
+            PreparedStatement ps1=act.preparedStatement(sql2);
+            ps1.setmakm(1,km.getmakm());
+            PreparedStatement ps2=act.preparedStatement(sql);
+            ps2.setmakm(1,km.getmakm());
+            ps1.executeUpdate();
+            ps2.executeUpdate();
+        }
+        
     }
     public static void findkm(String temp){
         
     }
-}*/
+}
