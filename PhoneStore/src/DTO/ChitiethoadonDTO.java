@@ -1,12 +1,12 @@
 
 package DTO;
 
-import DTO.ChitietkhuyenmaiDTO;
+//import DTO.ChitietkhuyenmaiDTO;
 /**
  *
  * @author xuannguyen
  */
-public class ChitiethoadonDTO {
+/*public class ChitiethoadonDTO {
     private String masp, mahd;
     private int soluongmua;
     private float dongia, thanhtien, tienkm;
@@ -80,4 +80,4 @@ public class ChitiethoadonDTO {
     public float thanhTien(){
         return dongia * soluongmua;
     }
-}
+}*/

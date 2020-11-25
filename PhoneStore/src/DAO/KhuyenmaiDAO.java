@@ -5,11 +5,15 @@
  */
 package DAO;
 
+import com.sun.jdi.connect.spi.Connection;
+import java.beans.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author pc
  */
-public class KhuyenmaiDAO {
+/*public class KhuyenmaiDAO {
     public static ArrayList<khuyenmaiDTO> showAllkm(){
         ArrayList<khuyenmaiDTO> arr=new ArrayList<khuyenmaiDTO>();
         String sql="select * from chitietkm inner join khuyenmai on (chitietkm.makm=khuyenmai.makm)";
@@ -80,4 +84,4 @@ public class KhuyenmaiDAO {
     public static void findkm(String temp){
         
     }
-}
+}*/

@@ -16,7 +16,7 @@ public class KhuyenmaiDTO {
     private int tile;
     private String ngaybd;
     private String ngaykt;
-    public khuyenmaiDTO(){
+    public KhuyenmaiDTO(){
         this.makm="";
         this.masp="";
         this.tile=0;

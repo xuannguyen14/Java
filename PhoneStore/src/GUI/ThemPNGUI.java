@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static javax.xml.bind.DatatypeConverter.parseDate;
 import BUS.PhieuNhapBUS;
 import DTO.PhieuNhapDTO;
 

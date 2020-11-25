@@ -1,6 +1,6 @@
 package DAO;
 
-import DTO.ChitietkhuyenmaiDTO;
+/*import DTO.ChitietkhuyenmaiDTO;
 import DTO.SanPhamDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author pc
  */
-public class ChitietkhuyenmaiDAO {
+/*public class ChitietkhuyenmaiDAO {
     
     
     public List<ChitietkhuyenmaiDTO> getAllCTKM() {
@@ -43,4 +43,4 @@ public class ChitietkhuyenmaiDAO {
         
         return chitietKMs;
     }
-}
+}*/
