@@ -86,9 +86,20 @@ public class KhuyenmaiDAO {
             ps1.executeUpdate();
             ps2.executeUpdate();
         }
-        
+        catch(SQLException ex){
+             ex.printStackTrace();
+         }
     }
-    public static void findkm(String temp){
-        
+    public static void findkm(String attri,String temp){
+        String sql="Select * from chitietkhuyenmai inner join on (chitietkm.makm=khuyenmai.makm) where ?=?";
+        try{
+            PreparedStatement ps=act.preparedStatement(sql);
+            ps.setString(1,attri);
+            ps.setString(2,temp);
+            ps.executeUpdate();
+        }
+        catch(SQLException ex){
+             ex.printStackTrace();
+         }     
     }
 }
