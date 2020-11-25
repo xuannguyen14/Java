@@ -91,15 +91,29 @@ public class KhuyenmaiDAO {
          }
     }
     public static void findkm(String attri,String temp){
-        String sql="Select * from chitietkhuyenmai inner join on (chitietkm.makm=khuyenmai.makm) where ?=?";
+        public static ArrayList<khuyenmaiDTO> findkm(){
+        ArrayList<khuyenmaiDTO> arr=new ArrayList<khuyenmaiDTO>();
+        String sql="select * from chitietkm inner join khuyenmai on (chitietkm.makm=khuyenmai.makm) where ?=?";
+        Connection act=JDBCConnection.getConnection();
         try{
-            PreparedStatement ps=act.preparedStatement(sql);
-            ps.setString(1,attri);
-            ps.setString(2,temp);
-            ps.executeUpdate();
+           PreparedStatement stmt=act.preparedStatement(sql);
+           sql.setString(1,attri);
+           sql.setString(2,temp); 
+           ResultSet rs=stmt.excuteQuery(sql);
+           while(rs.next()){
+               khuyenmaiDTO km=new khuyenmaiDTO();
+               km.setmakm(rs.getString("MaKM"));
+               km.setmasp(rs.getString("MaSP"));
+               km.settile(rs.getInt("TiLeKM"));
+               km.settenkm(rs.getString("TenKM"));
+               km.setngaybd(rs.getString("NgayBD"));
+               km.setngaykt(rs.getString("NgayKT"));
+               arr.add(km);
+           }
         }
         catch(SQLException ex){
-             ex.printStackTrace();
-         }     
+            ex.printStackTrace();
+        }
+        return arr;
     }
 }
