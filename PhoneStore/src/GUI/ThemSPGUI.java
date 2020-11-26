@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import BUS.SanPhamBUS;
+import BUS.SanphamBUS;
 import DTO.SanPhamDTO;
 
 /**
@@ -28,7 +28,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
     public ThemSPGUI() throws Exception {
         initComponents();
         
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         
         String KeyString = bus.taoMaSP();
         
@@ -293,7 +293,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         SanPhamDTO sp = new SanPhamDTO();
         
         if("".equals(txt_TenSP.getText())){

@@ -5,7 +5,6 @@
  */
 package DTO;
 
-import java.math.BigInteger;
 import java.sql.Date;
 
 /**

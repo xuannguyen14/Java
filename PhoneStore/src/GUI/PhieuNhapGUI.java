@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import BUS.PhieuNhapBUS;
+import BUS.PhieunhapBUS;
 import DTO.PhieuNhapDTO;
 
 /**
@@ -27,9 +27,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
     public PhieuNhapGUI() throws Exception {
         initComponents();
         
-        PhieuNhapBUS bus = new PhieuNhapBUS();
+        PhieunhapBUS bus = new PhieunhapBUS();
         
-        if(PhieuNhapBUS.getDSPhieuNhap() == null)
+        if(PhieunhapBUS.getDSPhieuNhap() == null)
             try {
                 bus.docDSPN();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -45,7 +45,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(PhieuNhapDTO pn : PhieuNhapBUS.getDSPhieuNhap()){
+        for(PhieuNhapDTO pn : PhieunhapBUS.getDSPhieuNhap()){
             Vector row = new Vector();
             row.add(pn.getMaPN());
             row.add(pn.getNgayNhap());
@@ -430,7 +430,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             
         model = (DefaultTableModel) tbl_DSPN.getModel();
         
-        PhieuNhapBUS bus = new PhieuNhapBUS();
+        PhieunhapBUS bus = new PhieunhapBUS();
         
         int vitri = tbl_DSPN.getSelectedRow();
             
@@ -453,10 +453,10 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         model = (DefaultTableModel) tbl_DSPN.getModel();
         
-        PhieuNhapBUS bus = new PhieuNhapBUS();
+        PhieunhapBUS bus = new PhieunhapBUS();
         PhieuNhapDTO pn = new PhieuNhapDTO();
         
-        if(PhieuNhapBUS.getDSPhieuNhap() == null)
+        if(PhieunhapBUS.getDSPhieuNhap() == null)
 
                 try {
                     bus.docDSPN();
@@ -470,17 +470,17 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         if(vitri == -1) 
            JOptionPane.showMessageDialog(null, "Chưa chọn sản phẩm muốn sửa!");
         else{
-            pn = PhieuNhapBUS.getDSPhieuNhap().get(vitri);
+            pn = PhieunhapBUS.getDSPhieuNhap().get(vitri);
             new SuaPNGUI(pn).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        PhieuNhapBUS bus = new PhieuNhapBUS();
+        PhieunhapBUS bus = new PhieunhapBUS();
         ArrayList<PhieuNhapDTO> KetQua = new ArrayList<>();
         
-        if(PhieuNhapBUS.getDSPhieuNhap() == null)
+        if(PhieunhapBUS.getDSPhieuNhap() == null)
 
         try {
                 bus.docDSPN();
@@ -522,9 +522,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnLammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLammoiActionPerformed
-        PhieuNhapBUS bus = new PhieuNhapBUS();
+        PhieunhapBUS bus = new PhieunhapBUS();
         
-        if(PhieuNhapBUS.getDSPhieuNhap() == null)
+        if(PhieunhapBUS.getDSPhieuNhap() == null)
 
                 try {
                     bus.docDSPN();
@@ -541,7 +541,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(PhieuNhapDTO pn : PhieuNhapBUS.getDSPhieuNhap()){
+        for(PhieuNhapDTO pn : PhieunhapBUS.getDSPhieuNhap()){
             Vector row = new Vector();
             row.add(pn.getMaPN());
             row.add(pn.getNgayNhap());

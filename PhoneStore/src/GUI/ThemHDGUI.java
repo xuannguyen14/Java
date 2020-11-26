@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BUS.SanPhamBUS;
+import BUS.SanphamBUS;
 import DTO.SanPhamDTO;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThemHDGUI extends javax.swing.JFrame {
 
-    SanPhamBUS sanphamBUS;
+    SanphamBUS sanphamBUS;
     DefaultTableModel defaultTableModel;
     
     public ThemHDGUI() throws Exception {
@@ -51,13 +51,13 @@ public class ThemHDGUI extends javax.swing.JFrame {
         //lấy ngày hiện tại
         txtNgayxuat.setText(String.valueOf(java.time.LocalDate.now()));
         
-        sanphamBUS = new SanPhamBUS();
+        sanphamBUS = new SanphamBUS();
         
-        if(SanPhamBUS.getDSSanPham() == null){
+        if(SanphamBUS.getDSSanPham() == null){
         sanphamBUS.docDSSP();
         }
         
-        for(SanPhamDTO sanPham : SanPhamBUS.getDSSanPham()){
+        for(SanPhamDTO sanPham : SanphamBUS.getDSSanPham()){
             comboboxMaSp.addItem(sanPham.getMaSP());
         }
         

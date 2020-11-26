@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import BUS.SanPhamBUS;
+import BUS.SanphamBUS;
 import DTO.SanPhamDTO;
 
 /**
@@ -26,9 +26,9 @@ public class SanPhamGUI extends javax.swing.JFrame {
     public SanPhamGUI() throws Exception {
         initComponents();
         
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         
-        if(SanPhamBUS.getDSSanPham() == null)
+        if(SanphamBUS.getDSSanPham() == null)
                 bus.docDSSP();
         
         Vector header = new Vector();
@@ -39,7 +39,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(SanPhamDTO sp : SanPhamBUS.getDSSanPham()){
+        for(SanPhamDTO sp : SanphamBUS.getDSSanPham()){
             Vector row = new Vector();
             row.add(sp.getMaSP());
             row.add(sp.getTenSP());
@@ -47,7 +47,9 @@ public class SanPhamGUI extends javax.swing.JFrame {
             row.add(sp.getDonGia());
             model.addRow(row);
             }
-        tbl_DSSP.setModel(model);        
+        tbl_DSSP.setModel(model);
+
+        txt_Find.requestFocus();
     }
     
     DefaultTableModel model = new DefaultTableModel();
@@ -87,6 +89,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_Find = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
+        linkAdvancedSearch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -338,33 +341,44 @@ public class SanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        linkAdvancedSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        linkAdvancedSearch.setText("Nâng cao");
+        linkAdvancedSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.MatteBorder(null)));
+        linkAdvancedSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                linkAdvancedSearchMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(txt_Find, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160))))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(txt_Find, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(linkAdvancedSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_Find)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txt_Find)))
+                    .addComponent(linkAdvancedSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -423,7 +437,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
             
         model = (DefaultTableModel) tbl_DSSP.getModel();
         
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         
         int vitri = tbl_DSSP.getSelectedRow();
             
@@ -438,8 +452,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(SanPhamGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-        }
+            }
         }
         
         tbl_DSSP.setModel(model);
@@ -448,10 +461,9 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         model = (DefaultTableModel) tbl_DSSP.getModel();
         
-        SanPhamBUS bus = new SanPhamBUS();
-        SanPhamDTO sp = new SanPhamDTO();
+        SanphamBUS bus = new SanphamBUS();        
         
-        if(SanPhamBUS.getDSSanPham() == null)
+        if(SanphamBUS.getDSSanPham() == null)
 
                 try {
                     bus.docDSSP();
@@ -463,18 +475,18 @@ public class SanPhamGUI extends javax.swing.JFrame {
         
         if(vitri == -1) 
            JOptionPane.showMessageDialog(null, "Chưa chọn sản phẩm muốn sửa!");
-        else{
-            sp = SanPhamBUS.getDSSanPham().get(vitri);
+        else{            
+            SanPhamDTO sp = SanphamBUS.getDSSanPham().get(vitri);
             new SuaSPGUI(sp).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         ArrayList<SanPhamDTO> KetQua = new ArrayList<>();
         
-        if(SanPhamBUS.getDSSanPham() == null)
+        if(SanphamBUS.getDSSanPham() == null)
 
                 try {
                     bus.docDSSP();
@@ -512,13 +524,13 @@ public class SanPhamGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();        
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnLammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLammoiActionPerformed
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         
-        if(SanPhamBUS.getDSSanPham() == null)
+        if(SanphamBUS.getDSSanPham() == null)
 
                 try {
                     bus.docDSSP();
@@ -535,7 +547,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(SanPhamDTO sp : SanPhamBUS.getDSSanPham()){
+        for(SanPhamDTO sp : SanphamBUS.getDSSanPham()){
             Vector row = new Vector();
             row.add(sp.getMaSP());
             row.add(sp.getTenSP());
@@ -545,6 +557,11 @@ public class SanPhamGUI extends javax.swing.JFrame {
             }
         tbl_DSSP.setModel(model);
     }//GEN-LAST:event_btnLammoiActionPerformed
+
+    private void linkAdvancedSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkAdvancedSearchMouseClicked
+        new AdvancedSearchGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_linkAdvancedSearchMouseClicked
 
     /**
      * @param args the command line arguments
@@ -611,6 +628,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel linkAdvancedSearch;
     private javax.swing.JTable tbl_DSSP;
     private javax.swing.JTextField txt_Find;
     // End of variables declaration//GEN-END:variables

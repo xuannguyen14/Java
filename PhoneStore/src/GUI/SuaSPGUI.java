@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import BUS.SanPhamBUS;
+import BUS.SanphamBUS;
 import DTO.SanPhamDTO;
 
 /**
@@ -361,7 +361,7 @@ public class SuaSPGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_DonGiaActionPerformed
 
     private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
-        SanPhamBUS bus = new SanPhamBUS();
+        SanphamBUS bus = new SanphamBUS();
         SanPhamDTO spt = new SanPhamDTO();
                
         if("".equals(txt_TenSP.getText())){

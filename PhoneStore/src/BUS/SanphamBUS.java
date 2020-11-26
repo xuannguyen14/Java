@@ -14,7 +14,7 @@ import DTO.SanPhamDTO;
  *
  * @author PC
  */
-public class SanPhamBUS {
+public class SanphamBUS {
     private static ArrayList<SanPhamDTO> DSSanPham;
 
     public static ArrayList<SanPhamDTO> getDSSanPham() {
@@ -22,10 +22,10 @@ public class SanPhamBUS {
     }
 
     public static void setDSSanPham(ArrayList<SanPhamDTO> DSSanPham) {
-        SanPhamBUS.DSSanPham = DSSanPham;
+        SanphamBUS.DSSanPham = DSSanPham;
     }    
     
-    public SanPhamBUS(){ DSSanPham = null; }
+    public SanphamBUS(){ DSSanPham = null; }
     
     public void docDSSP() throws Exception{
         SanPhamDAO Data = new SanPhamDAO();
@@ -64,11 +64,138 @@ public class SanPhamBUS {
 
         DSSanPham = Data.docDSSP();
         
+        key = key.trim();
+        key = key.toLowerCase();
+        
         for(SanPhamDTO sp : DSSanPham){
-            if(sp.getMaSP().contains(key) || sp.getTenSP().contains(key))
+            if(sp.getMaSP().toLowerCase().contains(key) || sp.getTenSP().toLowerCase().contains(key))
                 Result.add(sp);                
         }
         return Result;
+    }
+    
+    public ArrayList<SanPhamDTO> timkiemTheoHangLoai(String key) throws Exception{
+        SanPhamDAO Data = new SanPhamDAO();
+        ArrayList<SanPhamDTO> Result = new ArrayList<>();
+
+        DSSanPham = Data.docDSSP();
+        
+        if("Apple".equals(key)){        
+            for(SanPhamDTO sp : DSSanPham){
+                if(sp.getMaNSX().equals("nsx01"))
+                    Result.add(sp);                
+            }
+        }
+        else 
+            if("Samsung".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaNSX().equals("nsx02"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Vsmart".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaNSX().equals("nsx03"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Xiaomi".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaNSX().equals("nsx04"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("OPPO".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaNSX().equals("nsx05"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Nokia".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaNSX().equals("nsx06"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Khác".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(!sp.getMaNSX().equals("nsx02") && !sp.getMaNSX().equals("nsx03") && !sp.getMaNSX().equals("nsx04") && !sp.getMaNSX().equals("nsx05") && !sp.getMaNSX().equals("nsx06") && !sp.getMaNSX().equals("nsx01"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Smartphone".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaLoai().equals("loai01"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Sạc".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaLoai().equals("loai02") || sp.getMaLoai().equals("loai04"))
+                        Result.add(sp);                
+                }
+            }
+                else 
+            if("Tai nghe".equals(key)){        
+                for(SanPhamDTO sp : DSSanPham){
+                    if(sp.getMaLoai().equals("loai03"))
+                        Result.add(sp);                
+                }
+            }  
+        return Result;
+    }
+    
+    public ArrayList<SanPhamDTO> timKiemTheoGiaSP(int lower, int higher, ArrayList<SanPhamDTO> Result) throws Exception{
+        if(Result.isEmpty()){
+        SanPhamDAO Data = new SanPhamDAO();
+        DSSanPham = Data.docDSSP();
+        for(SanPhamDTO sp : DSSanPham){
+            if(higher != 0){
+                if(lower < sp.getDonGia() && higher > sp.getDonGia())
+                    Result.add(sp);           
+            }
+            else if(higher == 0){
+                if(lower < sp.getDonGia())
+                    Result.add(sp);
+            }
+        }        
+        }
+        else {
+            ArrayList<SanPhamDTO> Temp = new ArrayList<>();
+            Temp.addAll(Result);
+            
+            for(SanPhamDTO sp : Temp){
+                if(higher != 0){
+                    if(lower > sp.getDonGia() || higher < sp.getDonGia())
+                        Result.remove(sp);           
+                }
+                else if(higher == 0){
+                    if(lower > sp.getDonGia())
+                        Result.remove(sp);
+                }
+            }
+        }
+        return Result;
+    }
+    
+    public SanPhamDTO timkiemSPTheoMaSP(String maSP) throws Exception{
+        SanPhamDTO KetQua = new SanPhamDTO();
+        SanPhamDAO Data = new SanPhamDAO();
+        
+        DSSanPham = Data.docDSSP();
+        
+        for(SanPhamDTO sp : DSSanPham){
+            if(maSP.equals(sp.getMaSP()))
+                KetQua = sp;                
+        }
+        return KetQua;
     }
     
     public String taoMaSP() throws Exception{

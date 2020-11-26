@@ -7,14 +7,14 @@ package BUS;
 
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
-import DAO.PhieuNhapDAO;
+import DAO.PhieunhapDAO;
 import DTO.PhieuNhapDTO;
 
 /**
  *
  * @author PC
  */
-public class PhieuNhapBUS {
+public class PhieunhapBUS {
     private static ArrayList<PhieuNhapDTO> DSPhieuNhap;
 
     public static ArrayList<PhieuNhapDTO> getDSPhieuNhap() {
@@ -22,13 +22,13 @@ public class PhieuNhapBUS {
     }
 
     public static void setDSPhieuNhap(ArrayList<PhieuNhapDTO> DSPhieuNhap) {
-        PhieuNhapBUS.DSPhieuNhap = DSPhieuNhap;
+        PhieunhapBUS.DSPhieuNhap = DSPhieuNhap;
     }    
     
-    public PhieuNhapBUS(){ DSPhieuNhap = null; }
+    public PhieunhapBUS(){ DSPhieuNhap = null; }
     
     public void docDSPN() throws Exception{
-        PhieuNhapDAO Data = new PhieuNhapDAO();
+        PhieunhapDAO Data = new PhieunhapDAO();
         if(DSPhieuNhap == null) {
             DSPhieuNhap = new ArrayList<>();
         }
@@ -37,13 +37,13 @@ public class PhieuNhapBUS {
     }
     
     public void them (PhieuNhapDTO pn) throws Exception{
-        PhieuNhapDAO Data = new PhieuNhapDAO();
+        PhieunhapDAO Data = new PhieunhapDAO();
         Data.them(pn);
         DSPhieuNhap = Data.docDSPN();
     }
     
     public void xoa (int vitri) throws Exception{
-        PhieuNhapDAO Data = new PhieuNhapDAO();
+        PhieunhapDAO Data = new PhieunhapDAO();
         DSPhieuNhap = Data.docDSPN();
         PhieuNhapDTO pn = DSPhieuNhap.get(vitri);
         
@@ -52,14 +52,14 @@ public class PhieuNhapBUS {
     }
     
     public void sua (PhieuNhapDTO pn) throws Exception{
-        PhieuNhapDAO Data = new PhieuNhapDAO();
+        PhieunhapDAO Data = new PhieunhapDAO();
         
         Data.sua(pn);
         DSPhieuNhap = Data.docDSPN();
     }
     
     public ArrayList<PhieuNhapDTO> timKiemTheoMaTenPN(String key) throws Exception{
-        PhieuNhapDAO Data = new PhieuNhapDAO();
+        PhieunhapDAO Data = new PhieunhapDAO();
         ArrayList<PhieuNhapDTO> Result = new ArrayList<>();
 
         DSPhieuNhap = Data.docDSPN();
@@ -73,7 +73,7 @@ public class PhieuNhapBUS {
     
     public String taoMaPN() throws Exception{
         
-        PhieuNhapDAO Data = new PhieuNhapDAO();
+        PhieunhapDAO Data = new PhieunhapDAO();
         DSPhieuNhap = Data.docDSPN();
         
         String MaPNCuoi = DSPhieuNhap.get(DSPhieuNhap.size()-1).getMaPN();

@@ -14,7 +14,7 @@ import DTO.PhieuNhapDTO;
  *
  * @author PC
  */
-public class PhieuNhapDAO {
+public class PhieunhapDAO {
     String host = "localhost";
     String user = "root";
     String password = "";
@@ -22,7 +22,7 @@ public class PhieuNhapDAO {
     
     MyConnection MyConn;
     
-    public PhieuNhapDAO() throws Exception{
+    public PhieunhapDAO() throws Exception{
             MyConn = new MyConnection(host,user,password,db);
     }
 

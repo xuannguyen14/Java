@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import BUS.PhieuNhapBUS;
+import BUS.PhieunhapBUS;
 import DTO.PhieuNhapDTO;
 
 /**
@@ -285,7 +285,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
-        PhieuNhapBUS bus = new PhieuNhapBUS();
+        PhieunhapBUS bus = new PhieunhapBUS();
         PhieuNhapDTO pnt = new PhieuNhapDTO();
                
                
