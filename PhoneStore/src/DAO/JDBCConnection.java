@@ -14,12 +14,12 @@ import java.sql.SQLException;
  */
 public class JDBCConnection {
     public static java.sql.Connection getConnection(){
-        final String url = "jdbc:mysql://localhost:3306/phonestore";
+        final String url = "jdbc:mysql://localhost:3306/phonestore?useUnicode=yes&characterEncoding=UTF-8";
         final String user = "root";
-        final String password = "Rvpvnvp098765";
+        final String password = "";
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
         }  

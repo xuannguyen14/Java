@@ -4,24 +4,34 @@
  * and open the template in the editor.
  */
 package DAO;
+import DTO.KhuyenmaiDTO;
+import DAO.JDBCConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 /**
  *
  * @author pc
  */
 public class KhuyenmaiDAO {
-    public static ArrayList<khuyenmaiDTO> showAllkm(){
-        ArrayList<khuyenmaiDTO> arr=new ArrayList<khuyenmaiDTO>();
-        String sql="select * from chitietkm inner join khuyenmai on (chitietkm.makm=khuyenmai.makm)";
-        Connection act=JDBCConnection.getConnection();
+    public ArrayList<KhuyenmaiDTO> showAllkm(){
+        ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
+        String sql="select * from khuyenmai";
         try{
+           Connection act=JDBCConnection.getConnection();
            Statement stmt=act.createStatement();
-           ResultSet rs=stmt.excuteQuery(sql);
+           ResultSet rs=stmt.executeQuery(sql);
            while(rs.next()){
-               khuyenmaiDTO km=new khuyenmaiDTO();
+               KhuyenmaiDTO km=new KhuyenmaiDTO();
                km.setmakm(rs.getString("MaKM"));
-               km.setmasp(rs.getString("MaSP"));
-               km.settile(rs.getInt("TiLeKM"));
                km.settenkm(rs.getString("TenKM"));
                km.setngaybd(rs.getString("NgayBD"));
                km.setngaykt(rs.getString("NgayKT"));
@@ -33,56 +43,61 @@ public class KhuyenmaiDAO {
         }
         return arr;
     }
-    public static void addkm(khuyenmaiDTO km){
+    public void addkm(KhuyenmaiDTO km){
          Connection act=JDBCConnection.getConnection();
-         String sql="Insert into chitietkm (MaKM,MaSP,TiLeKM) values (?,?,?)";
-         String sql2="Insert into khuyenmai (MaKM,TenKM,NgayBD,NgayKT) values (?,?,?,?)";
+         String sql2="INSERT INTO CHITIETKM (MAKM,MASP,TILEKM) VALUES (?,?,?)";
+         String sql="INSERT INTO KHUYENMAI (MAKM,TENKM,NGAYBD,NGAYKT) VALUES (?,?,?,?)";
          try{
-             PrepareStatement ps1=act.preparedStatement(sql);
+             PreparedStatement ps1=act.prepareStatement(sql);
              ps1.setString(1, km.getmakm());
-             ps1.setString(2, km.getmasp());
-             ps1.setString(3, km.gettilekm());
-             ps1.executeUpdate();
-             PrepareStatement ps2=act.preparedStatement(sql2);
+             ps1.setString(2, km.gettenkm());
+             ps1.setString(3, km.getngaybd());
+             ps1.setString(4, km.getngaykt());
+             int rs=ps1.executeUpdate();
+             PreparedStatement ps2=act.prepareStatement(sql2);
              ps2.setString(1, km.getmakm());
-             ps2.setString(2, km.gettenkm());
-             ps2.setString(3, km.getngaybd());
-             ps2.setString(4, km.getngaykt());
+             ps2.setString(2, km.getmasp());
+             ps2.setInt(3, km.gettile());
              ps2.executeUpdate();
+             int rs2=ps2.executeUpdate();
+             System.out.println(rs);
+             System.out.println(rs2);
+         }
          catch(SQLException ex){
              ex.printStackTrace();
          }
     }
-    public static void editkm(khuyenmaiDTO km){
+    public void editkm(KhuyenmaiDTO km){
          Connection act=JDBCConnection.getConnection();
          String sql2="Update chitietkm Set MaSP=?,TiLeKM=? Where MaKM=?";
          String sql="Update khuyenmai Set TenKM=?,NgayBD=?,NgayKT=? Where MaKM=?";
          try{
-             PreparedStatement ps1=act.preparedStatement(sql2);
-             ps1.getString(1,km.getmasp());
-             ps1.getString(2,km.gettilekm());
-             ps1.getString(3,km.getmakm());
-             ps1.executeUpdate();
-             PreparedStatement ps2=act.preparedStatement(sql);
+             PreparedStatement ps2=act.prepareStatement(sql);
              ps2.setString(1,km.gettenkm());
-             ps2.setString(2,km.ngaybd());
-             ps2.setString(3,km.ngaykt());
+             ps2.setString(2,km.getngaybd());
+             ps2.setString(3,km.getngaykt());
              ps2.setString(4,km.getmakm());
              ps2.executeUpdate();
+             PreparedStatement ps1=act.prepareStatement(sql2);
+             ps1.setString(1,km.getmasp());
+             ps1.setInt(2,km.gettile());
+             ps1.setString(3,km.getmakm());
+             ps1.executeUpdate();
+            
          }
          catch(SQLException ex){
              ex.printStackTrace();
          }
     }
-    public static void delkm(String makm){
+    public void delkm(String makm){
         Connection act=JDBCConnection.getConnection();
         String sql="Delete from khuyenmai where MaKM=?";
         String sql2="Delete from chitietkm where MaKM=?";
         try{
-            PreparedStatement ps1=act.preparedStatement(sql2);
-            ps1.setmakm(1,km.getmakm());
-            PreparedStatement ps2=act.preparedStatement(sql);
-            ps2.setmakm(1,km.getmakm());
+            PreparedStatement ps1=act.prepareStatement(sql2);
+            ps1.setString(1,makm);
+            PreparedStatement ps2=act.prepareStatement(sql);
+            ps2.setString(1,makm);
             ps1.executeUpdate();
             ps2.executeUpdate();
         }
@@ -90,21 +105,17 @@ public class KhuyenmaiDAO {
              ex.printStackTrace();
          }
     }
-    public static void findkm(String attri,String temp){
-        public static ArrayList<khuyenmaiDTO> findkm(){
-        ArrayList<khuyenmaiDTO> arr=new ArrayList<khuyenmaiDTO>();
-        String sql="select * from chitietkm inner join khuyenmai on (chitietkm.makm=khuyenmai.makm) where ?=?";
-        Connection act=JDBCConnection.getConnection();
+    
+        public ArrayList<KhuyenmaiDTO> findkm(String attri,String temp){
+        ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
+        String sql="select * from khuyenmai where "+attri+" like '%"+temp+"%'";
         try{
-           PreparedStatement stmt=act.preparedStatement(sql);
-           sql.setString(1,attri);
-           sql.setString(2,temp); 
-           ResultSet rs=stmt.excuteQuery(sql);
+           Connection act=JDBCConnection.getConnection();
+           Statement stmt=act.createStatement();
+           ResultSet rs=stmt.executeQuery(sql);
            while(rs.next()){
-               khuyenmaiDTO km=new khuyenmaiDTO();
+               KhuyenmaiDTO km=new KhuyenmaiDTO();
                km.setmakm(rs.getString("MaKM"));
-               km.setmasp(rs.getString("MaSP"));
-               km.settile(rs.getInt("TiLeKM"));
                km.settenkm(rs.getString("TenKM"));
                km.setngaybd(rs.getString("NgayBD"));
                km.setngaykt(rs.getString("NgayKT"));
