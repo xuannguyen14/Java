@@ -672,6 +672,10 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMaTK">
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMaTKKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMaTKKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPassword">
               <Events>
