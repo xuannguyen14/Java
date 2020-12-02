@@ -8,6 +8,7 @@ package DAO;
 import DTO.LoaiSanPhamDTO;
 import com.mysql.jdbc.Connection;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
@@ -15,11 +16,16 @@ import java.util.ArrayList;
  */
 public class Test {
     public static void main(String[] args) {
-        LoaiSanPhamDAO loaiSanPhamDAO = new LoaiSanPhamDAO();
-        ArrayList<LoaiSanPhamDTO> danhSachLoaiSanPham = loaiSanPhamDAO.getDataFromDatabase();
-        
-        for (LoaiSanPhamDTO loaiSanPhamDTO : danhSachLoaiSanPham) {
-            loaiSanPhamDTO.display();
-        }
+        Vector vector = new Vector();
+        vector.add("ml001");
+        vector.add("iPhone");
+        String s = vector.get(1).toString();
+        System.out.println(s);
+//        LoaiSanPhamDAO loaiSanPhamDAO = new LoaiSanPhamDAO();
+//        ArrayList<LoaiSanPhamDTO> danhSachLoaiSanPham = loaiSanPhamDAO.getDataFromDatabase();
+//        
+//        for (LoaiSanPhamDTO loaiSanPhamDTO : danhSachLoaiSanPham) {
+//            loaiSanPhamDTO.display();
+//        }
     }
 }
