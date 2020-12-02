@@ -5,14 +5,12 @@
  */
 package GUI;
 
+import BUS.ChitiethoadonBUS;
 import BUS.HoadonBUS;
 import DTO.HoadonDTO;
-import DTO.SanPhamDTO;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
+import java.lang.System.Logger;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class HoadonGUI extends javax.swing.JFrame {
 
     HoadonBUS hoadonBUS;
+    ChitiethoadonBUS chitiethoadonBUS;
     DefaultTableModel defaultTableModel;
     
     public HoadonGUI() {
@@ -44,11 +43,13 @@ public class HoadonGUI extends javax.swing.JFrame {
         defaultTableModel.addColumn("NGAYXUAT");
         defaultTableModel.addColumn("MAKHACHHANG");
         defaultTableModel.addColumn("MANHANVIEN");
-        defaultTableModel.addColumn("TONGTIEN");
-        defaultTableModel.addColumn("TONGKHUYENMAI");
-        defaultTableModel.addColumn("TIENTRA");
+        defaultTableModel.addColumn("TONGTIEN (triệu đồng)");
+        defaultTableModel.addColumn("TONGKM (triệu đồng)");
+        defaultTableModel.addColumn("TIENTRA (triệu đồng)");
         
         setTableData(hoadonBUS.getAllHoadon());
+        
+        
     }
     
     private void setTableData(List<HoadonDTO> hoadons){
@@ -84,6 +85,7 @@ public class HoadonGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtFind = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
@@ -257,6 +259,13 @@ public class HoadonGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("...");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -268,7 +277,9 @@ public class HoadonGUI extends javax.swing.JFrame {
                 .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnFind)
-                .addGap(124, 124, 124))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(80, 80, 80))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +289,8 @@ public class HoadonGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtFind)
-                        .addComponent(btnFind)))
+                        .addComponent(btnFind)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -348,24 +360,24 @@ public class HoadonGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(btnChitiet)
-                        .addGap(55, 55, 55)
+                        .addGap(85, 85, 85)
                         .addComponent(btnThem)
-                        .addGap(98, 98, 98)
+                        .addGap(68, 68, 68)
                         .addComponent(btnXoa)
                         .addGap(87, 87, 87)
-                        .addComponent(btnLammoi)))
+                        .addComponent(btnLammoi))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
@@ -466,6 +478,7 @@ public class HoadonGUI extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+        chitiethoadonBUS = new ChitiethoadonBUS();
         
         int row = tblHoaDon.getSelectedRow();
         if(row == -1){
@@ -477,8 +490,10 @@ public class HoadonGUI extends javax.swing.JFrame {
             if(confirm == JOptionPane.YES_OPTION){
                 String maHD = String.valueOf(tblHoaDon.getValueAt(row, 0));
 
+                chitiethoadonBUS.deleteCTHD(maHD);
                 hoadonBUS.deleteHoadon(maHD);
-
+                
+                
                 defaultTableModel.setRowCount(0);
                 setTableData(hoadonBUS.getAllHoadon());
             }
@@ -496,39 +511,7 @@ public class HoadonGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void tblHoadonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoadonMouseClicked
-        // TODO add your handling code here:
-        
-        
-
-//            String address = student.getAddress();
-//            if(address.equals("TP.Hồ Chí Minh")){
-//                comboBoxAddress.setSelectedIndex(0);
-//            }
-//            if(address.equals("Bà Rịa Vũng Tàu")){
-//                comboBoxAddress.setSelectedIndex(1);
-//            }
-//            if(address.equals("Đà Nẵng")){
-//                comboBoxAddress.setSelectedIndex(2);
-//            }
-//            if(address.equals("Hà Nội")){
-//                comboBoxAddress.setSelectedIndex(3);
-//            }
-//            if(address.equals("Cần Thơ")){
-//                comboBoxAddress.setSelectedIndex(4);
-//            }
-//            if(address.equals("Hải Phòng")){
-//                comboBoxAddress.setSelectedIndex(5);
-//            }
-//
-//            String sex = student.getSex();
-//            if(sex != null){
-//                if(sex.equals("Nam")){
-//                    radiobtnMale.setSelected(true);
-//                }
-//                if(sex.equals("Nữ")){
-//                    radiobtnFemale.setSelected(true);
-//                }
-//            }
+        // TODO add your handling code here:        
                 
     }//GEN-LAST:event_tblHoadonMouseClicked
 
@@ -538,78 +521,35 @@ public class HoadonGUI extends javax.swing.JFrame {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-        /*
-        DefaultTableModel model = (DefaultTableModel) tblDSSV.getModel();
+        
+        DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         String find = txtFind.getText();
-        studentService = new StudentService();
+        hoadonBUS = new HoadonBUS();
         model.setRowCount(0);
+        List<HoadonDTO> hoadons = hoadonBUS.getAllHoadon();
+        int check = 0;
 
         try {
-            Integer.parseInt(find);
-            Student student = studentService.getStudentByMSSV(Integer.parseInt(find));
-
-            model.addRow(new Object[]{student.getMSSV(), student.getFirstName(), student.getName(),
-                student.getBirthday(), student.getSClass(), student.getAddress(), student.getPhone(), student.getSex()});
-        } catch (Exception e) {
-            try {
-                setTableData(studentService.findStudentByName(find));
-            } catch (SQLException ex) {
-                Logger.getLogger(FrameDSSV.class.getName()).log(Level.SEVERE, null, ex);
+            for(HoadonDTO hoadon : hoadons){
+                if(hoadon.getMaHD().contains(find) || hoadon.getMaKH().contains(find) || hoadon.getMaNV().contains(find) || hoadon.getNgayxuat().contains(find) || (String.valueOf(hoadon.getTientra())).contains(find)) {
+                    model.addRow(new Object[]{hoadon.getMaHD(), hoadon.getNgayxuat(), hoadon.getMaKH(), 
+                    hoadon.getMaNV(),hoadon.getTongtien(), hoadon.getTongKM(), hoadon.getTientra()});
+                    check = 1;
+                }
             }
+            
+            if(check == 0){
+                JOptionPane.showMessageDialog(HoadonGUI.this, "Không tìm thấy hóa đơn!!!", "Error", JOptionPane.ERROR_MESSAGE);
+        
+            }
+        } catch (Exception e) {
         }
-        */
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            new ThemHDGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ThemHDGUI().setVisible(true);
         this.dispose();
-        /*
-        DefaultTableModel model = (DefaultTableModel) tblDSSV.getModel();
-        studentService = new StudentService();
-        Student student = new Student();
-        student.setMSSV(Integer.valueOf(txtMSSV.getText()));
-        student.setFirstName(txtFirstName.getText());
-        student.setName(txtName.getText());
-        student.setBirthday(txtBirthday.getText());
-        student.setSClass(txtClass.getText());
-
-        int choose = comboBoxAddress.getSelectedIndex();
-        if(choose == 0){
-            student.setAddress("TP.Hồ Chí Minh");
-        }
-        if(choose == 1){
-            student.setAddress("Bà Rịa Vũng Tàu");
-        }
-        if(choose == 2){
-            student.setAddress("Đà Nẵng");
-        }
-        if(choose == 3){
-            student.setAddress("Hà Nội");
-        }
-        if(choose == 4){
-            student.setAddress("Cần Thơ");
-        }
-        if(choose == 5){
-            student.setAddress("Hải Phòng");
-        }
-
-        student.setPhone(txtPhone.getText());
-        if(radiobtnMale.isSelected()){
-            student.setSex("Nam");
-        }
-        if(radiobtnFemale.isSelected()){
-            student.setSex("Nữ");
-        }
-
-        model.addRow(new Object[]{student.getMSSV(), student.getFirstName(), student.getName(),
-            student.getBirthday(), student.getSClass(), student.getAddress(), student.getPhone(), student.getSex()});
-
-    studentService.addStudent(student);
-        */
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanvienActionPerformed
@@ -622,14 +562,19 @@ public class HoadonGUI extends javax.swing.JFrame {
 
     private void btnBanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanhangActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnBanhangActionPerformed
 
     private void btnSanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanphamActionPerformed
         // TODO add your handling code here:
+        new SanphamGUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSanphamActionPerformed
 
     private void btnKhuyenmai4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai4ActionPerformed
         // TODO add your handling code here:
+        new KhuyenmaiGUI().setVisible(true);
+        
     }//GEN-LAST:event_btnKhuyenmai4ActionPerformed
 
     private void btnTrangchuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangchuActionPerformed
@@ -642,6 +587,10 @@ public class HoadonGUI extends javax.swing.JFrame {
 
     private void btnLammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLammoiActionPerformed
         // TODO add your handling code here:
+        txtFind.setText("");
+        defaultTableModel.setRowCount(0);
+
+        setTableData(hoadonBUS.getAllHoadon());
     }//GEN-LAST:event_btnLammoiActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
@@ -663,38 +612,15 @@ public class HoadonGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnChitietActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new FindNC().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HoadonGUI().setVisible(true);
-            }
-        });
+        new HoadonGUI().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -714,6 +640,7 @@ public class HoadonGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnTrangchu;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
