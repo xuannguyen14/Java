@@ -1,6 +1,7 @@
 
 package DTO;
 
+
 /**
  *
  * @author pc
@@ -85,4 +86,5 @@ public class HoadonDTO {
         this.tientra = tientra;
     }
 
+    
 }
