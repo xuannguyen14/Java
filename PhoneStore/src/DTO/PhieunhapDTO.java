@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author PC
  */
-public class PhieuNhapDTO {
+public class PhieunhapDTO {
     String MaPN;
     Date NgayNhap;
     String MaNCC;

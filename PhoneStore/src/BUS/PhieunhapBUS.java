@@ -8,20 +8,20 @@ package BUS;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import DAO.PhieunhapDAO;
-import DTO.PhieuNhapDTO;
+import DTO.PhieunhapDTO;
 
 /**
  *
  * @author PC
  */
 public class PhieunhapBUS {
-    private static ArrayList<PhieuNhapDTO> DSPhieuNhap;
+    private static ArrayList<PhieunhapDTO> DSPhieuNhap;
 
-    public static ArrayList<PhieuNhapDTO> getDSPhieuNhap() {
+    public static ArrayList<PhieunhapDTO> getDSPhieuNhap() {
         return DSPhieuNhap;
     }
 
-    public static void setDSPhieuNhap(ArrayList<PhieuNhapDTO> DSPhieuNhap) {
+    public static void setDSPhieuNhap(ArrayList<PhieunhapDTO> DSPhieuNhap) {
         PhieunhapBUS.DSPhieuNhap = DSPhieuNhap;
     }    
     
@@ -36,7 +36,7 @@ public class PhieunhapBUS {
         DSPhieuNhap = Data.docDSPN();
     }
     
-    public void them (PhieuNhapDTO pn) throws Exception{
+    public void them (PhieunhapDTO pn) throws Exception{
         PhieunhapDAO Data = new PhieunhapDAO();
         Data.them(pn);
         DSPhieuNhap = Data.docDSPN();
@@ -45,26 +45,26 @@ public class PhieunhapBUS {
     public void xoa (int vitri) throws Exception{
         PhieunhapDAO Data = new PhieunhapDAO();
         DSPhieuNhap = Data.docDSPN();
-        PhieuNhapDTO pn = DSPhieuNhap.get(vitri);
+        PhieunhapDTO pn = DSPhieuNhap.get(vitri);
         
         Data.xoa(pn.getMaPN());
         DSPhieuNhap = Data.docDSPN();
     }
     
-    public void sua (PhieuNhapDTO pn) throws Exception{
+    public void sua (PhieunhapDTO pn) throws Exception{
         PhieunhapDAO Data = new PhieunhapDAO();
         
         Data.sua(pn);
         DSPhieuNhap = Data.docDSPN();
     }
     
-    public ArrayList<PhieuNhapDTO> timKiemTheoMaTenPN(String key) throws Exception{
+    public ArrayList<PhieunhapDTO> timKiemTheoMaTenPN(String key) throws Exception{
         PhieunhapDAO Data = new PhieunhapDAO();
-        ArrayList<PhieuNhapDTO> Result = new ArrayList<>();
+        ArrayList<PhieunhapDTO> Result = new ArrayList<>();
 
         DSPhieuNhap = Data.docDSPN();
         
-        for(PhieuNhapDTO pn : DSPhieuNhap){
+        for(PhieunhapDTO pn : DSPhieuNhap){
             if(pn.getMaPN().contains(key))
                 Result.add(pn);                
         }

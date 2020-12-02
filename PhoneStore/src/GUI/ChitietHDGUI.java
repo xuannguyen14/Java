@@ -5,10 +5,15 @@
  */
 package GUI;
 
+import BUS.ChitiethoadonBUS;
 import BUS.HoadonBUS;
 import DTO.HoadonDTO;
-import BUS.SanphamBUS;
+import BUS.Sanpham1BUS;
+import DTO.ChitiethoadonDTO;
 import DTO.SanPhamDTO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,13 +22,34 @@ import DTO.SanPhamDTO;
 public class ChitietHDGUI extends javax.swing.JFrame {
 
     private HoadonDTO hoadon;
+    
     HoadonBUS hoadonBUS;
+    Sanpham1BUS sanphamBUS;
+    DefaultTableModel defaultTableModel;
     
     public ChitietHDGUI(String maHD) {
         hoadonBUS = new HoadonBUS();
         hoadon = hoadonBUS.getHoadonByMaHoadon(maHD);
         initComponents();
+        
+        defaultTableModel = new DefaultTableModel(){
+            @Override
+            // ham ben duoi duoc xay dung de khong cho user edit du lieu, day nhu la mot anonymous
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tblSanpham.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("MÃ SẢN PHẨM");
+        defaultTableModel.addColumn("TÊN SẢN PHẨM");
+        defaultTableModel.addColumn("SỐ LƯỢNG MUA");
+        defaultTableModel.addColumn("ĐƠN GIÁ (Triệu đồng)");
+        defaultTableModel.addColumn("TIỀN KHUYẾN MÃI (Triệu đồng)");
+        defaultTableModel.addColumn("THÀNH TIỀN (Triệu đồng)");
+        
         loadData(maHD);
+        loadDataTable(maHD);
     }
 
     /**
@@ -54,18 +80,6 @@ public class ChitietHDGUI extends javax.swing.JFrame {
         txtTongtien = new javax.swing.JTextField();
         txtTongKM = new javax.swing.JTextField();
         txtTientra = new javax.swing.JTextField();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        comboboxMaSp = new javax.swing.JComboBox<>();
-        txtTienKm = new javax.swing.JTextField();
-        txtDongia = new javax.swing.JTextField();
-        txtThanhtien = new javax.swing.JTextField();
-        txtSoluong = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -75,6 +89,9 @@ public class ChitietHDGUI extends javax.swing.JFrame {
         btnThoat3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
 
         jLabel28.setText("Thông tin chung");
 
@@ -233,87 +250,10 @@ public class ChitietHDGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel15.setText("Chi tiết hóa đơn");
+        jPanel12.setBackground(new java.awt.Color(204, 255, 153));
 
-        jLabel21.setText("Mã sản phẩm: ");
-
-        jLabel22.setText("Đơn giá: ");
-
-        jLabel23.setText("Số lượng: ");
-
-        jLabel24.setText("Thành tiền: ");
-
-        jLabel25.setText("Tiền khuyến mãi: ");
-
-        txtTienKm.setEditable(false);
-
-        txtDongia.setEditable(false);
-
-        txtThanhtien.setEditable(false);
-
-        txtSoluong.setEditable(false);
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboboxMaSp, 0, 145, Short.MAX_VALUE)
-                            .addComponent(txtTienKm))
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(comboboxMaSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25)
-                            .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 153, 51));
         jLabel26.setText("CHI TIẾT HÓA ĐƠN");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -321,17 +261,20 @@ public class ChitietHDGUI extends javax.swing.JFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(390, 390, 390)
+                .addGap(315, 315, 315)
                 .addComponent(jLabel26)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
 
         jLabel27.setText("Danh sách hàng hóa");
 
@@ -385,7 +328,7 @@ public class ChitietHDGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel27)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnThoat3))
         );
@@ -398,7 +341,6 @@ public class ChitietHDGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -409,9 +351,7 @@ public class ChitietHDGUI extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -430,8 +370,28 @@ public class ChitietHDGUI extends javax.swing.JFrame {
         txtTientra.setText(String.valueOf(hoadon.getTientra()));
         
         //data chitiethoadon
+
+    }
+    
+    private void loadDataTable(String maHD){
+        DefaultTableModel model = (DefaultTableModel) tblSanpham.getModel();
+        SanPhamDTO sanpham = new SanPhamDTO();
+        sanphamBUS = new Sanpham1BUS();
+        
+        
+        //ChitiethoadonDTO chitietHD = new ChitiethoadonDTO();
+        List<ChitiethoadonDTO> chitietHDs = new ArrayList<>();
+        ChitiethoadonBUS cthdBUS = new ChitiethoadonBUS();
+        chitietHDs = cthdBUS.getCTHDByMaHD(maHD);
+        
+        for(ChitiethoadonDTO chitietHD : chitietHDs ){
+            sanpham = sanphamBUS.getSanphamBYMaSP(chitietHD.getMasp());
+            model.addRow(new Object[]{chitietHD.getMasp(), sanpham.getTenSP(), chitietHD.getSoluongmua(), chitietHD.getDongia(),
+                chitietHD.getTienkm(), chitietHD.getThanhtien()});
+        }
         
     }
+    
     private void txtMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaKHActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaKHActionPerformed
@@ -453,13 +413,6 @@ public class ChitietHDGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThoat3;
-    private javax.swing.JComboBox<String> comboboxMaSp;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -471,7 +424,6 @@ public class ChitietHDGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -479,14 +431,10 @@ public class ChitietHDGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tblSanpham;
-    private javax.swing.JTextField txtDongia;
     private javax.swing.JTextField txtMaHD;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtNgayxuat;
-    private javax.swing.JTextField txtSoluong;
-    private javax.swing.JTextField txtThanhtien;
-    private javax.swing.JTextField txtTienKm;
     private javax.swing.JTextField txtTientra;
     private javax.swing.JTextField txtTongKM;
     private javax.swing.JTextField txtTongtien;

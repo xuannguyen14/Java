@@ -5,13 +5,20 @@
  */
 package GUI;
 
-import BUS.SanphamBUS;
+import BUS.ChitiethoadonBUS;
+import BUS.ChitietkhuyenmaiBUS;
+import BUS.HoadonBUS;
+import BUS.Khuyenmai1BUS;
+import BUS.Sanpham1BUS;
+import DTO.ChitiethoadonDTO;
+import DTO.ChitietkhuyenmaiDTO;
+import DTO.HoadonDTO;
+import DTO.Khuyenmai1DTO;
 import DTO.SanPhamDTO;
 import java.awt.Color;
-import java.sql.SQLException;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,10 +27,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThemHDGUI extends javax.swing.JFrame {
 
-    SanphamBUS sanphamBUS;
+    HoadonDTO hoadon;
+    ChitiethoadonDTO chitietHD;
+    HoadonBUS hoadonBUS;
+    Sanpham1BUS sanphamBUS;
+    ChitietkhuyenmaiBUS chitietkhuyenmaiBUS;
+    Khuyenmai1BUS khuyenmaiBUS;
+    ChitiethoadonBUS chitiethoadonBUS;
     DefaultTableModel defaultTableModel;
+    List<ChitiethoadonDTO> chitietHDs = new ArrayList<>();
     
-    public ThemHDGUI() throws Exception {
+    public ThemHDGUI() {
         
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -46,27 +60,56 @@ public class ThemHDGUI extends javax.swing.JFrame {
         defaultTableModel.addColumn("THÀNH TIỀN (Triệu đồng)");
         
         loadData();
+        
+        txtMaHD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    txtMaKH.requestFocus();
+                }
+            }
+        });
+        
+        txtMaKH.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    txtMaNV.requestFocus();
+                }
+            }
+        });
+        
+        txtMaNV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    comboboxMaSp.requestFocus();
+                }
+            }
+        });
+        
+        comboboxMaSp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                    txtSoluong.requestFocus();
+                }
+            }
+        });
     }
-    private void loadData() throws Exception{
+    private void loadData(){
         //lấy ngày hiện tại
         txtNgayxuat.setText(String.valueOf(java.time.LocalDate.now()));
         
-        sanphamBUS = new SanphamBUS();
-        
-        if(SanphamBUS.getDSSanPham() == null){
-        sanphamBUS.docDSSP();
-        }
-        
-        for(SanPhamDTO sanPham : SanphamBUS.getDSSanPham()){
+        sanphamBUS = new Sanpham1BUS();
+        List<SanPhamDTO> sanphams = sanphamBUS.getAllSanpham();
+        for(SanPhamDTO sanPham : sanphams){
             comboboxMaSp.addItem(sanPham.getMaSP());
         }
         
     }
     
-    private void loadDataTable(String maSP) throws Exception{
+    private void loadDataTable(String maSP){
         DefaultTableModel model = (DefaultTableModel) tblSanpham.getModel();
         SanPhamDTO sanpham = new SanPhamDTO();
-        sanpham = sanphamBUS.getSanphamByMaSP(maSP);
+        sanpham = sanphamBUS.getSanphamBYMaSP(maSP);
+        
         model.addRow(new Object[]{sanpham.getMaSP(), sanpham.getTenSP(), sanpham.getMaLoai(), sanpham.getMaNSX(),
             txtSoluong.getText(), sanpham.getDonGia(), txtThanhtien.getText()});
         
@@ -100,6 +143,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
         txtMaKH = new javax.swing.JTextField();
         txtMaNV = new javax.swing.JTextField();
         txtNgayxuat = new javax.swing.JTextField();
+        btnxemthemmaKH = new javax.swing.JButton();
+        btnxemthemmaNV = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -123,8 +168,10 @@ public class ThemHDGUI extends javax.swing.JFrame {
         btnChonmua = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Thêm hóa đơn");
+        setBackground(new java.awt.Color(153, 255, 153));
 
-        jPanel12.setBackground(new java.awt.Color(204, 255, 153));
+        jPanel12.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 102, 0));
@@ -194,20 +241,20 @@ public class ThemHDGUI extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThem)
-                .addGap(371, 371, 371))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnThoat3))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnThem)
+                .addGap(395, 395, 395))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,9 +263,9 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addComponent(jLabel27)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnThem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(btnThoat3))
         );
 
@@ -226,6 +273,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
 
         jLabel28.setText("Thông tin chung");
+
+        jPanel15.setBackground(new java.awt.Color(204, 255, 153));
 
         jLabel29.setText("Mã hóa đơn: ");
 
@@ -248,6 +297,20 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
 
+        btnxemthemmaKH.setText("...");
+        btnxemthemmaKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnxemthemmaKHActionPerformed(evt);
+            }
+        });
+
+        btnxemthemmaNV.setText("...");
+        btnxemthemmaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnxemthemmaNVActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -256,22 +319,26 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel31)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMaKH))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel32)
                             .addComponent(jLabel30))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNgayxuat)
-                            .addComponent(txtMaNV))))
-                .addGap(50, 50, 50))
+                            .addComponent(txtNgayxuat, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                            .addComponent(txtMaNV)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel29))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaHD)
+                            .addComponent(txtMaKH))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnxemthemmaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnxemthemmaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,18 +350,21 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnxemthemmaKH))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnxemthemmaNV))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(txtNgayxuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jPanel16.setBackground(new java.awt.Color(204, 255, 153));
         jPanel16.setToolTipText("");
 
         jLabel34.setText("Tổng tiền: ");
@@ -318,20 +388,22 @@ public class ThemHDGUI extends javax.swing.JFrame {
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+            .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(362, 362, 362))
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel35)
                     .addComponent(jLabel36)
                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTongtien, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(txtTongKM)
-                    .addComponent(txtTientra))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTongtien, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTientra, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTongKM, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,8 +416,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
                         .addComponent(txtTongtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(txtTongKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel36)
@@ -362,13 +434,13 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel28)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,9 +448,9 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -436,63 +508,58 @@ public class ThemHDGUI extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboboxMaSp, 0, 145, Short.MAX_VALUE)
-                    .addComponent(txtTienKm))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboboxMaSp, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnChonmua)
+                        .addGap(82, 82, 82))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSoluong, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                            .addComponent(txtThanhtien))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                        .addComponent(jLabel22)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                .addComponent(btnChonmua)
-                                .addGap(49, 49, 49)))
-                        .addGap(39, 39, 39))))
+                            .addComponent(jLabel15)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(comboboxMaSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel23)
-                            .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel25)
-                                .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnChonmua)))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(comboboxMaSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChonmua))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -518,7 +585,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -542,11 +609,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
     private void comboboxMaSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxMaSpActionPerformed
         // TODO add your handling code here:
         SanPhamDTO sanpham = new SanPhamDTO();
-        try {
-            sanpham = sanphamBUS.getSanphamByMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
-        } catch (Exception ex) {
-            Logger.getLogger(ThemHDGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sanpham = sanphamBUS.getSanphamBYMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
         txtDongia.setText(String.valueOf(sanpham.getDonGia())); // lấy đơn giá của sản phẩm dc chọn
         
 
@@ -559,54 +622,94 @@ public class ThemHDGUI extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
-        /*
-        DefaultTableModel model = (DefaultTableModel) tblDSSV.getModel();
-        studentService = new StudentService();
-        Student student = new Student();
-        student.setMSSV(Integer.valueOf(txtMSSV.getText()));
-        student.setFirstName(txtFirstName.getText());
-        student.setName(txtName.getText());
-        student.setBirthday(txtBirthday.getText());
-        student.setSClass(txtClass.getText());
-
-        int choose = comboBoxAddress.getSelectedIndex();
-        if(choose == 0){
-            student.setAddress("TP.Hồ Chí Minh");
+        hoadon = new HoadonDTO();
+        hoadonBUS = new HoadonBUS();
+        
+        hoadon.setMaHD(txtMaHD.getText());
+        hoadon.setNgayxuat(txtNgayxuat.getText());
+        hoadon.setMaKH(txtMaKH.getText());
+        hoadon.setMaNV(txtMaNV.getText());
+        hoadon.setTongtien(tongtien);
+        hoadon.setTongKM(tongkm);
+        hoadon.setTientra(tientra);
+        
+        hoadonBUS.insertHoadon(hoadon);
+        
+        for(ChitiethoadonDTO CTHD : chitietHDs){
+            chitiethoadonBUS.addChitietHoadon(CTHD); 
         }
-        if(choose == 1){
-            student.setAddress("Bà Rịa Vũng Tàu");
-        }
-        if(choose == 2){
-            student.setAddress("Đà Nẵng");
-        }
-        if(choose == 3){
-            student.setAddress("Hà Nội");
-        }
-        if(choose == 4){
-            student.setAddress("Cần Thơ");
-        }
-        if(choose == 5){
-            student.setAddress("Hải Phòng");
-        }
-
-        student.setPhone(txtPhone.getText());
-        if(radiobtnMale.isSelected()){
-            student.setSex("Nam");
-        }
-        if(radiobtnFemale.isSelected()){
-            student.setSex("Nữ");
-        }
-
-        model.addRow(new Object[]{student.getMSSV(), student.getFirstName(), student.getName(),
-            student.getBirthday(), student.getSClass(), student.getAddress(), student.getPhone(), student.getSex()});
-
-    studentService.addStudent(student);
-    */
+        
+        new HoadonGUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThemActionPerformed
 
+    private float layTileKM(String maSP){
+        ChitietkhuyenmaiDTO chitietkm = new ChitietkhuyenmaiDTO();
+        Khuyenmai1DTO khuyenmai = new Khuyenmai1DTO();
+        chitietkhuyenmaiBUS = new ChitietkhuyenmaiBUS();
+        khuyenmaiBUS = new Khuyenmai1BUS();
+        
+        String maKM = chitietkhuyenmaiBUS.getMakmByMasp(maSP);// lấy mã khuyến mãi theo mã sản phẩm
+        khuyenmai = khuyenmaiBUS.getKhuyenmaiByMaKM(maKM);//lấy khuyến mãi theo mã khuyến mãi bên trên
+        
+        chitietkm = chitietkhuyenmaiBUS.getTileKM(maKM, maSP);
+        String ngayHT = txtNgayxuat.getText(); //lấy ngày hiện tại
+        int tileKM = chitietkm.getTileKM();
+        float dongia = Float.parseFloat(txtDongia.getText());
+
+        //so sánh ngày hiện tại có trong khoảng được khuyến mãi hay không
+        if(ngayHT.compareTo(khuyenmai.getNgayBD()) >= 0 && ngayHT.compareTo(khuyenmai.getNgayKT()) <= 0){
+            return (tileKM * dongia / 100);
+        }
+        else{
+            return 0;
+        }
+    }
+
+    float tongtien = 0, tongkm = 0, tientra = 0;
+    
+    private void tinhTien(){
+        tongtien += Float.parseFloat(txtThanhtien.getText()) + Float.parseFloat(txtTienKm.getText());
+        tongkm += Float.parseFloat(txtTienKm.getText());
+        tientra += Float.parseFloat(txtThanhtien.getText());
+        
+        txtTongtien.setText(String.valueOf(tongtien));
+        txtTongKM.setText(String.valueOf(tongkm));
+        txtTientra.setText(String.valueOf(tientra));
+    }
+    
+    private void suaSoluong(String maSP){
+        SanPhamDTO sanpham = new SanPhamDTO();
+        sanpham = sanphamBUS.getSanphamBYMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
+        sanpham.setSoLuong(sanpham.getSoLuong() - Integer.parseInt(txtSoluong.getText()));
+        
+        sanphamBUS.updateSoluongSP(sanpham);
+    }
+    
+    private void themChitiet(){
+        chitietHD = new ChitiethoadonDTO();
+        chitiethoadonBUS = new ChitiethoadonBUS();
+        
+            chitietHD.setMahd(txtMaHD.getText());
+            chitietHD.setMasp(String.valueOf(comboboxMaSp.getSelectedItem()));
+            chitietHD.setSoluongmua(Integer.parseInt(txtSoluong.getText()));
+            chitietHD.setDongia(Float.parseFloat(txtDongia.getText()));
+            chitietHD.setThanhtien(Float.parseFloat(txtThanhtien.getText()));
+            chitietHD.setTienkm(Float.parseFloat(txtTienKm.getText()));
+            
+            chitietHDs.add(chitietHD);
+
+    }
+    
     private void txtSoluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongActionPerformed
         // TODO add your handling code here:
-        txtThanhtien.setText(String.valueOf(Float.parseFloat(txtDongia.getText()) * Float.parseFloat(txtSoluong.getText())));
+        float tienKM = layTileKM(String.valueOf(comboboxMaSp.getSelectedItem())) * Float.parseFloat(txtSoluong.getText());
+        
+        txtTienKm.setText(String.valueOf(tienKM));
+        
+        //thành tiền = đơn giá * số lượng - tiền khuyến mãi
+        txtThanhtien.setText(String.valueOf(Float.parseFloat(txtDongia.getText()) * Float.parseFloat(txtSoluong.getText()) - tienKM));
+        
     }//GEN-LAST:event_txtSoluongActionPerformed
 
     private void txtThanhtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhtienActionPerformed
@@ -614,23 +717,43 @@ public class ThemHDGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtThanhtienActionPerformed
 
     private void btnChonmuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonmuaActionPerformed
-        try {
-            // TODO add your handling code here:
-            loadDataTable(String.valueOf(comboboxMaSp.getSelectedItem()));
-        } catch (Exception ex) {
-            Logger.getLogger(ThemHDGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // TODO add your handling code here:
+
+        tinhTien();
+        
+        loadDataTable(String.valueOf(comboboxMaSp.getSelectedItem()));
+        
+        suaSoluong(String.valueOf(comboboxMaSp.getSelectedItem()));
+        
+        themChitiet();
+        
+        
+        
+
+
     }//GEN-LAST:event_btnChonmuaActionPerformed
+
+    private void btnxemthemmaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxemthemmaKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnxemthemmaKHActionPerformed
+
+    private void btnxemthemmaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxemthemmaNVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnxemthemmaNVActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
+    public static void main(String[] args) {
+        new ThemHDGUI().setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonmua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat3;
+    private javax.swing.JButton btnxemthemmaKH;
+    private javax.swing.JButton btnxemthemmaNV;
     private javax.swing.JComboBox<String> comboboxMaSp;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel21;

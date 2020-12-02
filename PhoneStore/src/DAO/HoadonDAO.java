@@ -7,12 +7,10 @@ package DAO;
 
 
 import DTO.HoadonDTO;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,54 +82,83 @@ public class HoadonDAO {
         
         return null;
     }
-    /*
-    public List<Student> getStudentsByName(String name) {
-        List<Student> students = new ArrayList<>();
+    
+    public List<HoadonDTO> getHoadonByMaKH(String maKH){
+        List<HoadonDTO> hoadons = new ArrayList<>();
+        Connection connection = JDBCConnection.getConnection();
         
-        Connection connection = JDBCConnection.getJDBCConnection();
-        
-        String sql = "SELECT * FROM SINHVIEN WHERE NAME = ?";
+        String sql = "SELECT * FROM HOADON WHERE MAKHACHHANG = ?";
         
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, maKH);
             ResultSet rs = preparedStatement.executeQuery();
             
             while(rs.next()){
-                Student student = new Student();
+                HoadonDTO hoadon = new HoadonDTO();
                 
-                student.setMSSV(rs.getInt("MSSV"));
-                student.setFirstName(rs.getString("FIRSTNAME"));
-                student.setName(rs.getString("NAME"));
-                student.setBirthday(rs.getString("BIRTHDAY"));              
-                student.setSClass(rs.getString("CLASS"));
-                student.setAddress(rs.getString("ADDRESS"));
-                student.setPhone(rs.getString("PHONE"));
-                student.setSex(rs.getString("SEX"));
+                hoadon.setMaHD(rs.getString("MAHOADON"));
+                hoadon.setNgayxuat(rs.getString("NGAYXUAT"));
+                hoadon.setMaKH(rs.getString("MAKHACHHANG"));
+                hoadon.setMaNV(rs.getString("MANHANVIEN"));              
+                hoadon.setTongtien(rs.getDouble("TONGTIEN"));
+                hoadon.setTongKM(rs.getDouble("TONGKM"));
+                hoadon.setTientra(rs.getDouble("TIENTRA"));
                 
-                students.add(student);
+                hoadons.add(hoadon);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return students;
+        return hoadons;
     }
-    public void addStudent(Student student){
-        Connection connection = JDBCConnection.getJDBCConnection();
+    
+    public List<HoadonDTO> getHoadonByMaNV(String maNV){
+        List<HoadonDTO> hoadons = new ArrayList<>();
+        Connection connection = JDBCConnection.getConnection();
         
-        String sql = "INSERT INTO SINHVIEN (MSSV, FIRSTNAME, NAME, BIRTHDAY, CLASS, ADDRESS, PHONE, SEX) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "SELECT * FROM HOADON WHERE MANHANVIEN = ?";
         
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, student.getMSSV());
-            preparedStatement.setString(2, student.getFirstName());
-            preparedStatement.setString(3, student.getName());
-            preparedStatement.setString(4, student.getBirthday());
-            preparedStatement.setString(5, student.getSClass());
-            preparedStatement.setString(6, student.getAddress());
-            preparedStatement.setString(7, student.getPhone());
-            preparedStatement.setString(8, student.getSex());
+            preparedStatement.setString(1, maNV);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                HoadonDTO hoadon = new HoadonDTO();
+                
+                hoadon.setMaHD(rs.getString("MAHOADON"));
+                hoadon.setNgayxuat(rs.getString("NGAYXUAT"));
+                hoadon.setMaKH(rs.getString("MAKHACHHANG"));
+                hoadon.setMaNV(rs.getString("MANHANVIEN"));              
+                hoadon.setTongtien(rs.getDouble("TONGTIEN"));
+                hoadon.setTongKM(rs.getDouble("TONGKM"));
+                hoadon.setTientra(rs.getDouble("TIENTRA"));
+                
+                hoadons.add(hoadon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return hoadons;
+    }
+
+    
+    public void insertHoadon(HoadonDTO hoadon){
+        Connection connection = JDBCConnection.getConnection();
+        String sql = "INSERT INTO HOADON (MAHOADON, NGAYXUAT, MAKHACHHANG, MANHANVIEN, TONGTIEN, TONGKM, TIENTRA) VALUES (?,?,?,?,?,?,?)";
+        
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, hoadon.getMaHD());
+            preparedStatement.setString(2, hoadon.getNgayxuat());
+            preparedStatement.setString(3, hoadon.getMaKH());
+            preparedStatement.setString(4, hoadon.getMaNV());
+            preparedStatement.setDouble(5, hoadon.getTongtien());
+            preparedStatement.setDouble(6, hoadon.getTongKM());
+            preparedStatement.setDouble(7, hoadon.getTientra());
             
             int rs = preparedStatement.executeUpdate();
             System.out.println(rs);
@@ -140,7 +167,7 @@ public class HoadonDAO {
         }
         
     }
-        */
+    
     public void deleteHoadon(String maHD){
         Connection connection = JDBCConnection.getConnection();
         
@@ -156,124 +183,7 @@ public class HoadonDAO {
             e.printStackTrace();
         }
     }
-    /*
-    public void updateStudent(Student student){
-        Connection connection = JDBCConnection.getJDBCConnection();
-        
-        String sql = "UPDATE SINHVIEN SET FIRSTNAME = ?,NAME = ?,BIRTHDAY = ?,CLASS = ?,ADDRESS = ?,PHONE = ?,SEX = ? WHERE MSSV = ?";
-        
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);       
-            preparedStatement.setString(1, student.getFirstName());
-            preparedStatement.setString(2, student.getName());
-            preparedStatement.setString(3, student.getBirthday());
-            preparedStatement.setString(4, student.getSClass());
-            preparedStatement.setString(5, student.getAddress());
-            preparedStatement.setString(6, student.getPhone());
-            preparedStatement.setString(7, student.getSex());
-            preparedStatement.setInt(8, student.getMSSV());            
-
-            int rs = preparedStatement.executeUpdate();
-            System.out.println(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }    
-    }
     
-    public Student findStudentsMSSV(int mssv) {
-        Connection connection = JDBCConnection.getJDBCConnection();
-        
-        String sql = "SELECT * FROM SINHVIEN WHERE MSSV LIKE %'?'%";
-        
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, mssv);
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            while(rs.next()){
-                Student student = new Student();
-                
-                student.setMSSV(rs.getInt("MSSV"));
-                student.setFirstName(rs.getString("FIRSTNAME"));
-                student.setName(rs.getString("NAME"));
-                student.setBirthday(rs.getString("BIRTHDAY"));              
-                student.setSClass(rs.getString("CLASS"));
-                student.setAddress(rs.getString("ADDRESS"));
-                student.setPhone(rs.getString("PHONE"));
-                student.setSex(rs.getString("SEX"));
-                
-                return student;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    
-    public List<Student> findStudentsName(String name) {
-        List<Student> students = new ArrayList<>();
-        
-        Connection connection = JDBCConnection.getJDBCConnection();
-        
-        String sql = "SELECT * FROM SINHVIEN WHERE NAME LIKE ?";
-        
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            while(rs.next()){
-                Student student = new Student();
-                
-                student.setMSSV(rs.getInt("MSSV"));
-                student.setFirstName(rs.getString("FIRSTNAME"));
-                student.setName(rs.getString("NAME"));
-                student.setBirthday(rs.getString("BIRTHDAY"));              
-                student.setSClass(rs.getString("CLASS"));
-                student.setAddress(rs.getString("ADDRESS"));
-                student.setPhone(rs.getString("PHONE"));
-                student.setSex(rs.getString("SEX"));
-                
-                students.add(student);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return students;
-    }
-    
-    public List<Student> findStudentByName(String name) throws SQLException{
-        List<Student> students = new ArrayList<>();
-        Connection connection = JDBCConnection.getJDBCConnection();
-        String query = "select * from SinhVien where name like'%" + name + "%'";
-        
-        
-        try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            
-            while(rs.next()){
-                Student student = new Student();
-                
-                student.setMSSV(rs.getInt("MSSV"));
-                student.setFirstName(rs.getString("FIRSTNAME"));
-                student.setName(rs.getString("NAME"));
-                student.setBirthday(rs.getString("BIRTHDAY"));              
-                student.setSClass(rs.getString("CLASS"));
-                student.setAddress(rs.getString("ADDRESS"));
-                student.setPhone(rs.getString("PHONE"));
-                student.setSex(rs.getString("SEX"));
-                
-                students.add(student);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return students;
-    }
-*/
 }
 
 

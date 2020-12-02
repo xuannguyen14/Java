@@ -5,10 +5,30 @@
  */
 package BUS;
 
+import DAO.ChitiethoadonDAO;
+import DTO.ChitiethoadonDTO;
+import java.util.List;
+
 /**
  *
  * @author pc
  */
 public class ChitiethoadonBUS {
+    private  ChitiethoadonDAO chitiethoadonDAO;
     
+    public ChitiethoadonBUS(){
+        chitiethoadonDAO = new ChitiethoadonDAO();
+    }
+        
+    public void addChitietHoadon(ChitiethoadonDTO chitietHD){
+        chitiethoadonDAO.addChitietHoadon(chitietHD);
+    }
+    
+    public List<ChitiethoadonDTO> getCTHDByMaHD(String maHD){
+        return chitiethoadonDAO.getCTHDByMaHD(maHD);
+    }
+    
+    public void deleteCTHD(String maHD){
+        chitiethoadonDAO.deleteCTHD(maHD);
+    }
 }

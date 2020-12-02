@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import BUS.PhieunhapBUS;
 import BUS.SanphamBUS;
 import DTO.ChitietphieunhapDTO;
-import DTO.PhieuNhapDTO;
+import DTO.PhieunhapDTO;
 import DTO.SanPhamDTO;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -376,7 +376,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         PhieunhapBUS bus = new PhieunhapBUS();
-        PhieuNhapDTO pn = new PhieuNhapDTO();
+        PhieunhapDTO pn = new PhieunhapDTO();
                        
         {            
             pn.setMaPN(txt_MaPN.getText());
