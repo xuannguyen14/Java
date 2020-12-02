@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import BUS.PhieunhapBUS;
-import DTO.PhieuNhapDTO;
+import DTO.PhieunhapDTO;
 
 /**
  *
@@ -26,18 +26,18 @@ public class SuaPNGUI extends javax.swing.JFrame {
     /**
      * Creates new form PhieuNhap_Edit
      */
-    static PhieuNhapDTO pn = new PhieuNhapDTO();
+    static PhieunhapDTO pn = new PhieunhapDTO();
     DefaultTableModel model = new DefaultTableModel();
 
-    public static PhieuNhapDTO getPn() {
+    public static PhieunhapDTO getPn() {
         return pn;
     }
 
-    public static void setPn(PhieuNhapDTO pn) {
+    public static void setPn(PhieunhapDTO pn) {
         SuaPNGUI.pn = pn;
     }
     
-    public SuaPNGUI(PhieuNhapDTO pn) {
+    public SuaPNGUI(PhieunhapDTO pn) {
         initComponents();
         SuaPNGUI.pn = pn;
         
@@ -286,7 +286,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
 
     private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
         PhieunhapBUS bus = new PhieunhapBUS();
-        PhieuNhapDTO pnt = new PhieuNhapDTO();
+        PhieunhapDTO pnt = new PhieunhapDTO();
                
                
             if("".equals(txt_Tongtien.getText())){

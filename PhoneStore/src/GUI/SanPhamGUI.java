@@ -116,7 +116,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         }
 
         btnThem.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/icon thêm.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\icon thêm.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setFocusPainted(false);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/xóa.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\xóa.png")); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setFocusPainted(false);
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +136,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         });
 
         btnSua.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/sửa.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\sửa.png")); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setFocusPainted(false);
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +155,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         });
 
         btnLammoi.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnLammoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/làm mới.png"))); // NOI18N
+        btnLammoi.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\làm mới.png")); // NOI18N
         btnLammoi.setText("Làm mới");
         btnLammoi.setFocusPainted(false);
         btnLammoi.addActionListener(new java.awt.event.ActionListener() {
@@ -206,49 +206,49 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
         btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
         btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnBanhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/bán hàng.png"))); // NOI18N
+        btnBanhang.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\bán hàng.png")); // NOI18N
         btnBanhang.setText("Bán hàng");
         btnBanhang.setFocusPainted(false);
 
         btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
         btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNhaphang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/nhập hàng.png"))); // NOI18N
+        btnNhaphang.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\nhập hàng.png")); // NOI18N
         btnNhaphang.setText("Nhập hàng");
         btnNhaphang.setFocusPainted(false);
 
         btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
         btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/sản phẩm.png"))); // NOI18N
+        btnSanpham.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\sản phẩm.png")); // NOI18N
         btnSanpham.setText("Sản phẩm");
         btnSanpham.setFocusPainted(false);
 
         btnKhuyenmai.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnKhuyenmai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/khuyến mãi1.png"))); // NOI18N
+        btnKhuyenmai.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\khuyến mãi1.png")); // NOI18N
         btnKhuyenmai.setText("Khuyến mãi");
         btnKhuyenmai.setFocusPainted(false);
 
         btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
         btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNhanvien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/nhân viên.png"))); // NOI18N
+        btnNhanvien.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\nhân viên.png")); // NOI18N
         btnNhanvien.setText("Nhân viên");
         btnNhanvien.setFocusPainted(false);
 
         btnKhachhang.setBackground(new java.awt.Color(204, 255, 153));
         btnKhachhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnKhachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/khách hàng.png"))); // NOI18N
+        btnKhachhang.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\khách hàng.png")); // NOI18N
         btnKhachhang.setText("Khách hàng");
         btnKhachhang.setFocusPainted(false);
 
         btnThongke.setBackground(new java.awt.Color(204, 255, 153));
         btnThongke.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnThongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/thống kê.png"))); // NOI18N
+        btnThongke.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\thống kê.png")); // NOI18N
         btnThongke.setText("Thống kê");
         btnThongke.setFocusPainted(false);
 
         btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
         btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnTaikhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/tài khoản.png"))); // NOI18N
+        btnTaikhoan.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\tài khoản.png")); // NOI18N
         btnTaikhoan.setText("Tài khoản");
         btnTaikhoan.setFocusPainted(false);
 

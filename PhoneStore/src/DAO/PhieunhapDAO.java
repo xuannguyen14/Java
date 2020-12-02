@@ -8,7 +8,7 @@ package DAO;
 import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import DTO.PhieuNhapDTO;
+import DTO.PhieunhapDTO;
 
 /**
  *
@@ -33,7 +33,7 @@ public ArrayList docDSPN() throws Exception{
     ResultSet rs = MyConn.excuteQuery(qry);
 
     while(rs.next()){
-        PhieuNhapDTO pn = new PhieuNhapDTO();
+        PhieunhapDTO pn = new PhieunhapDTO();
         pn.setMaPN(rs.getString(1));
         pn.setNgayNhap(rs.getDate(2));
         pn.setMaNCC(rs.getString(3));
@@ -44,7 +44,7 @@ public ArrayList docDSPN() throws Exception{
         return dspn;
 }
 
-public void them (PhieuNhapDTO pn) throws Exception{
+public void them (PhieunhapDTO pn) throws Exception{
     String qry = "Insert Into phieunhap Values('";
     qry += pn.getMaPN() + "',";
     qry += "NOW() ,'";
@@ -60,7 +60,7 @@ public void xoa (String mapn) throws Exception{
         MyConn.excuteUpdate(qry);
 }
 
-public void sua (PhieuNhapDTO pn) throws Exception{
+public void sua (PhieunhapDTO pn) throws Exception{
     String qry = "Update phieunhap SET ";
     qry += "ngaynhap = '" + pn.getNgayNhap() +"',";
     qry += "mancc = '" + pn.getMaNCC() + "',";

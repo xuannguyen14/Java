@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import BUS.PhieunhapBUS;
-import DTO.PhieuNhapDTO;
+import DTO.PhieunhapDTO;
 
 /**
  *
@@ -45,7 +45,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(PhieuNhapDTO pn : PhieunhapBUS.getDSPhieuNhap()){
+        for(PhieunhapDTO pn : PhieunhapBUS.getDSPhieuNhap()){
             Vector row = new Vector();
             row.add(pn.getMaPN());
             row.add(pn.getNgayNhap());
@@ -454,7 +454,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         model = (DefaultTableModel) tbl_DSPN.getModel();
         
         PhieunhapBUS bus = new PhieunhapBUS();
-        PhieuNhapDTO pn = new PhieuNhapDTO();
+        PhieunhapDTO pn = new PhieunhapDTO();
         
         if(PhieunhapBUS.getDSPhieuNhap() == null)
 
@@ -478,7 +478,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
         PhieunhapBUS bus = new PhieunhapBUS();
-        ArrayList<PhieuNhapDTO> KetQua = new ArrayList<>();
+        ArrayList<PhieunhapDTO> KetQua = new ArrayList<>();
         
         if(PhieunhapBUS.getDSPhieuNhap() == null)
 
@@ -505,7 +505,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(PhieuNhapDTO pn : KetQua){
+        for(PhieunhapDTO pn : KetQua){
             Vector row = new Vector();
             row.add(pn.getMaPN());
             row.add(pn.getNgayNhap());
@@ -541,7 +541,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(header,0);
         
-        for(PhieuNhapDTO pn : PhieunhapBUS.getDSPhieuNhap()){
+        for(PhieunhapDTO pn : PhieunhapBUS.getDSPhieuNhap()){
             Vector row = new Vector();
             row.add(pn.getMaPN());
             row.add(pn.getNgayNhap());
