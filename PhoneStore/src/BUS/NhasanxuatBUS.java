@@ -15,12 +15,12 @@ import java.util.Vector;
  *
  * @author pc
  */
-public class NhaSanXuatBUS {
+public class NhasanxuatBUS {
     private ArrayList<NhaSanXuatDTO> danhSachNhaSanXuat;
     private NhaSanXuatDAO nhaSanXuatDAO;
     
     
-    public NhaSanXuatBUS() {
+    public NhasanxuatBUS() {
         nhaSanXuatDAO = new NhaSanXuatDAO();
         danhSachNhaSanXuat = nhaSanXuatDAO.getDanhSachNhaSanXuat();
     }

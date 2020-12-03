@@ -16,7 +16,7 @@ import java.util.Vector;
  */
 public class Test {
     public static void main(String[] args) {
-        NhaCungCapBUS nhaCungCapBUS = new NhaCungCapBUS();
+        NhacungcapBUS nhaCungCapBUS = new NhacungcapBUS();
         //nhaCungCapBUS.getNhaCungCapBySDT("190018876").display();
         Vector data = new Vector();
         data.add("Test");

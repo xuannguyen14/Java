@@ -6,14 +6,12 @@
 package DAO;
 
 import DTO.LoaiSanPhamDTO;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.*;
 
 /**
  *

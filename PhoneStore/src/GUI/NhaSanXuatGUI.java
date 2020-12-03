@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BUS.NhaSanXuatBUS;
+import BUS.NhasanxuatBUS;
 import java.awt.Font;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -19,7 +19,7 @@ public class NhaSanXuatGUI extends javax.swing.JFrame {
     
     private ThemNhaSanXuatGUI themNhaSanXuatGUI;
     private SuaNhaSanXuatGUI suaNhaSanXuatGUI;
-    private NhaSanXuatBUS nhaSanXuatBUS;
+    private NhasanxuatBUS nhaSanXuatBUS;
     private int luaChonLoc = 0;
     private DefaultTableModel model;
 
@@ -29,7 +29,7 @@ public class NhaSanXuatGUI extends javax.swing.JFrame {
     public NhaSanXuatGUI() {
         themNhaSanXuatGUI = new ThemNhaSanXuatGUI();
         suaNhaSanXuatGUI = new SuaNhaSanXuatGUI();
-        nhaSanXuatBUS = new NhaSanXuatBUS();
+        nhaSanXuatBUS = new NhasanxuatBUS();
         initComponents();
         loadData();
     }
