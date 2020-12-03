@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BUS.NhaCungCapBUS;
+import BUS.NhacungcapBUS;
 import DTO.NhaCungCapDTO;
 import java.awt.Font;
 import java.util.Vector;
@@ -23,13 +23,13 @@ public class NhaCungCapGUI extends javax.swing.JFrame {
      */
     
     private DefaultTableModel model;
-    private NhaCungCapBUS nhaCungCapBUS;
+    private NhacungcapBUS nhaCungCapBUS;
     private ThemNhaCungCapGUI themNhaCungCapGUI;
     private SuaNhaCungCapGUI suaNhaCungCapGUI;
     private int luaChonLoc = 0;
     
     public NhaCungCapGUI() {
-        nhaCungCapBUS = new NhaCungCapBUS();
+        nhaCungCapBUS = new NhacungcapBUS();
         themNhaCungCapGUI = new ThemNhaCungCapGUI();
         suaNhaCungCapGUI = new SuaNhaCungCapGUI();
         initComponents();

@@ -3,26 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemPNGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/MyJDBCConnection.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/LoaiSanPhamGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/NhacungcapBUS.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/AdvancedSearchGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/Test.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/PhieuNhapGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/Test.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/PhieunhapDAO.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/JDBCConnection.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/PhieunhapBUS.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaLoaiSanPhamGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/LoaiSanPhamBUS.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/LoaiSanPhamDAO.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DTO/LoaiSanPhamDTO.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemLoaiSanPhamGUI.java</file>
-=======
-            <file>file:/C:/Users/PC/Java/PhoneStore/src/DAO/MyConnection.java</file>
->>>>>>> e7d1e72a6813d6e6a7f8560f44ec5992465ad0e3
+            <file>file:/C:/Users/PC/Java/PhoneStore/src/GUI/KhuyenmaiGUI.java</file>
+            <file>file:/C:/Users/PC/Java/PhoneStore/src/BUS/NhacungcapBUS.java</file>
+            <file>file:/C:/Users/PC/Java/PhoneStore/src/BUS/NhasanxuatBUS.java</file>
+            <file>file:/C:/Users/PC/Java/PhoneStore/src/GUI/NhaSanXuatGUI.java</file>
         </group>
     </open-files>
 </project-private>
