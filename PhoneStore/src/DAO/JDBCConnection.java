@@ -16,7 +16,7 @@ public class JDBCConnection {
     public static java.sql.Connection getConnection(){
         final String url = "jdbc:mysql://localhost:3306/phonestore";
         final String user = "root";
-        final String password = "";
+        final String password = "Rvpvnvp098765";
         
         try {
             Class.forName("com.mysql.jdbc.Driver");

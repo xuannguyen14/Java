@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import com.mysql.jdbc.Connection;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.DriverManager;

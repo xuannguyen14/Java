@@ -3,26 +3,54 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/NhanvienDAO.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemPNGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/MyJDBCConnection.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/MyTableModel.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/MyConnection.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/LoaiSanPhamGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/NhacungcapBUS.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/AdvancedSearchGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaNhaSanXuatGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ChiTietKhachHangGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/TestGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/ChitietkhuyenmaiBUS.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/NhaCungCapBUS.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/Test.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/PhieuNhapGUI.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/Test.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/NhaSanXuatBUS.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/KhachHangBUS.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/PhieunhapDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/HoadonBUS.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/Test.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/NhanvienBUS.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/JDBCConnection.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/PhieunhapBUS.java</file>
-            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaLoaiSanPhamGUI.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/LoaiSanPhamBUS.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/LoaiSanPhamDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DTO/KhachHangDTO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaNhaCungCapGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SanPhamGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/KhachHangGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/NhaSanXuatGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/KhachHangDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/NhaCungCapGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ChitietHDGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemNhaCungCapGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemNhaSanXuatGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/SanPhamDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/HoadonGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/MyJDBCConnection.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/AdvancedSearchGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/PhieuNhapGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/ChitiethoadonBUS.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/NhaSanXuatDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/NhaCungCapDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaLoaiSanPhamGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaPNGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemKhachHangGUI.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DTO/LoaiSanPhamDTO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/KhuyenmaiGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/SuaKhachHangGUI.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/DAO/KhuyenmaiDAO.java</file>
+            <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/BUS/VNCharacterUtils.java</file>
             <file>file:/C:/Users/ADmin/OneDrive/Desktop/Java/Java/PhoneStore/src/GUI/ThemLoaiSanPhamGUI.java</file>
-=======
-            <file>file:/C:/Users/PC/Java/PhoneStore/src/DAO/MyConnection.java</file>
->>>>>>> e7d1e72a6813d6e6a7f8560f44ec5992465ad0e3
         </group>
     </open-files>
 </project-private>
