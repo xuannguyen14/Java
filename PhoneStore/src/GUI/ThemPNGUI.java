@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BUS.ChitietphieunhapBUS;
 import static java.lang.Integer.parseInt;
 import java.util.Date;
 import java.text.DateFormat;
@@ -18,7 +19,11 @@ import BUS.SanphamBUS;
 import DTO.ChitietphieunhapDTO;
 import DTO.PhieunhapDTO;
 import DTO.SanPhamDTO;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,13 +45,13 @@ public class ThemPNGUI extends javax.swing.JFrame {
         String KeyString = bus.taoMaPN();
         
         Date date = (Date) Calendar.getInstance().getTime();  
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");  
         String strDate = dateFormat.format(date);
         
         txt_MaPN.setText(KeyString);
         txt_Ngaynhap.setText(strDate);
         txt_Tongtien.setText("0");
-        txt_SoLuong.requestFocus();
+        txt_MaNV.requestFocus();
         
         Vector header = new Vector();
         header.add("Mã Sản Phẩm");
@@ -54,10 +59,21 @@ public class ThemPNGUI extends javax.swing.JFrame {
         header.add("Số Lượng");
         header.add("Đơn Giá");
 
-        DefaultTableModel model = new DefaultTableModel(header,0);
+        model = new DefaultTableModel(header,0);
         
         tbl_DSSP.setModel(model);
     }
+
+    public static JTextField getTxt_MaSP() {
+        return txt_MaSP;
+    }
+
+    public static void setTxt_MaSP(JTextField txt_MaSP) {
+        ThemPNGUI.txt_MaSP = txt_MaSP;
+    }
+    
+    ArrayList<ChitietphieunhapDTO> dsct = new ArrayList<>();
+    DefaultTableModel model = new DefaultTableModel();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +111,8 @@ public class ThemPNGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txt_SoLuong = new javax.swing.JTextField();
+        sp_SoLuong = new javax.swing.JSpinner();
+        btnXoaCT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -113,10 +130,18 @@ public class ThemPNGUI extends javax.swing.JFrame {
         txt_Tongtien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         txt_MaNV.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txt_MaNV.setText("Chọn Mã Nhân Viên");
+        txt_MaNV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_MaNVKeyPressed(evt);
+            }
+        });
 
         txt_MaNCC.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
+        txt_MaNCC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_MaNCCKeyPressed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -124,7 +149,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/icon thêm.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\icon thêm.png")); // NOI18N
         jLabel1.setText("Thêm Phiếu Nhập");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -199,7 +224,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_MaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -226,7 +251,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
 
         btnThem.setBackground(new java.awt.Color(204, 255, 153));
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/icon thêm.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\icon thêm.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +289,11 @@ public class ThemPNGUI extends javax.swing.JFrame {
         });
 
         txt_MaSP.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txt_MaSP.setText("Chọn Mã Sản Phẩm");
+        txt_MaSP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_MaSPKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Mã Sản Phẩm:");
@@ -275,11 +304,30 @@ public class ThemPNGUI extends javax.swing.JFrame {
         jLabel6.setText("Chi tiết");
 
         jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setText("Số Lượng:");
 
-        txt_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sp_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        sp_SoLuong.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sp_SoLuongKeyPressed(evt);
+            }
+        });
+
+        btnXoaCT.setText("Xóa");
+        btnXoaCT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaCTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -292,17 +340,20 @@ public class ThemPNGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnXoaCT)
+                        .addGap(18, 18, 18)
                         .addComponent(btnConfirm))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_MaSP)
-                            .addComponent(txt_SoLuong))
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton2)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txt_MaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2))
+                            .addComponent(sp_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -317,13 +368,15 @@ public class ThemPNGUI extends javax.swing.JFrame {
                     .addComponent(txt_MaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txt_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sp_SoLuong))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConfirm)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirm)
+                    .addComponent(btnXoaCT))
                 .addContainerGap())
         );
 
@@ -340,7 +393,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnThem)
-                        .addGap(321, 321, 321)
+                        .addGap(322, 322, 322)
                         .addComponent(btnTrolai, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
@@ -351,11 +404,15 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTrolai, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 46, Short.MAX_VALUE)
+                        .addComponent(btnTrolai)
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnThem)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -368,7 +425,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         pack();
@@ -384,9 +441,9 @@ public class ThemPNGUI extends javax.swing.JFrame {
             pn.setMaNCC(txt_MaNCC.getText());
             pn.setMaNV(txt_MaNV.getText());
 
-            txt_Tongtien.setText("");
-            txt_MaNV.setText("Chọn Mã Nhân Viên");
-            txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
+            txt_Tongtien.setText("0");
+            txt_MaNV.setText("");
+            txt_MaNCC.setText("");
                    
             try {
                 bus.them(pn);
@@ -403,7 +460,17 @@ public class ThemPNGUI extends javax.swing.JFrame {
             }
 
             txt_MaPN.setText(KeyString);
-            txt_Tongtien.requestFocus();
+            txt_MaSP.setText("");
+            sp_SoLuong.setValue(0); 
+        }
+        
+        ChitietphieunhapBUS chitietBUS = new ChitietphieunhapBUS();
+        for(ChitietphieunhapDTO ctpn : dsct){
+            try {
+                chitietBUS.them(ctpn);
+            } catch (Exception ex) {
+                Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -420,45 +487,98 @@ public class ThemPNGUI extends javax.swing.JFrame {
 
         ChitietphieunhapDTO chitiet = new ChitietphieunhapDTO();
         SanphamBUS spBUS = new SanphamBUS();
-                
-                if("".equals(txt_SoLuong.getText())){
-            JOptionPane.showMessageDialog(this,"Số lượng sản phẩm không được rỗng!");
-            txt_SoLuong.requestFocus();
-        }
-                else
-                    if(!spBUS.validNumber(txt_SoLuong.getText())){
-                        JOptionPane.showMessageDialog(this,"Số lượng sản phẩm không được chứa chữ cái và phải là số dương!");
-                        txt_SoLuong.requestFocus();
-                    }
-        else{
+        
+            chitiet.setMaPN(txt_MaPN.getText());
             chitiet.setMaSP(txt_MaSP.getText());
-            chitiet.setSoLuong(parseInt(txt_SoLuong.getText()));
-                        
-            DefaultTableModel model = (DefaultTableModel) tbl_DSSP.getModel();
-            SanPhamDTO sp = new SanPhamDTO();
-            try {
-                sp = spBUS.timkiemSPTheoMaSP(chitiet.getMaSP());
-            } catch (Exception ex) {
-                Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
             
-                Vector row = new Vector();
-                row.add(sp.getMaSP());
-                row.add(sp.getTenSP());
-                row.add(chitiet.getSoLuong());
-                row.add(sp.getDonGia());
-                model.addRow(row);
+        try {
+            sp_SoLuong.commitEdit();
+        } catch (ParseException ex) {
+            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            chitiet.setSoLuong((Integer)sp_SoLuong.getValue());
+            
+                model = (DefaultTableModel) tbl_DSSP.getModel();
+                SanPhamDTO sp = new SanPhamDTO();
+                try {
+                    sp = spBUS.timkiemSPTheoMaSP(chitiet.getMaSP());
+                } catch (Exception ex) {
+                    Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                    Vector row = new Vector();
+                    row.add(sp.getMaSP());
+                    row.add(sp.getTenSP());
+                    row.add(chitiet.getSoLuong());
+                    row.add(sp.getDonGia());
+                    model.addRow(row);
+
+                tbl_DSSP.setModel(model);
+
+                chitiet.setDonGia((int) sp.getDonGia());
+                chitiet.setThanhTien(chitiet.getDonGia()*chitiet.getSoLuong());
+                dsct.add(chitiet);
                 
-            tbl_DSSP.setModel(model);
-            
-            chitiet.setDonGia((int) sp.getDonGia());
-            chitiet.setThanhTien(chitiet.getDonGia()*chitiet.getSoLuong());
-            
-            int TongTien = parseInt(txt_Tongtien.getText());
-            TongTien += chitiet.getThanhTien();
-            txt_Tongtien.setText(""+TongTien);           
-                    }
+                int TongTien = parseInt(txt_Tongtien.getText());
+                TongTien += chitiet.getThanhTien();
+                txt_Tongtien.setText(""+TongTien);                              
     }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void btnXoaCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCTActionPerformed
+        model = (DefaultTableModel) tbl_DSSP.getModel();
+        
+        int vitri = tbl_DSSP.getSelectedRow();
+
+        if(vitri == -1) 
+           JOptionPane.showMessageDialog(null, "Chưa chọn dòng cần xóa!");
+        else{
+            if(JOptionPane.showConfirmDialog(null,"Bạn muốn bỏ sản phẩm này khỏi danh sách?","Xác nhận xóa",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){       
+            model.removeRow(vitri);
+            ChitietphieunhapDTO ctpn = dsct.get(vitri);
+            int Tong = parseInt(txt_Tongtien.getText()) - ctpn.getThanhTien();
+            txt_Tongtien.setText("" + Tong);
+            dsct.remove(vitri);
+
+            tbl_DSSP.setModel(model);
+            }
+        }
+    }//GEN-LAST:event_btnXoaCTActionPerformed
+
+    private void txt_MaNVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MaNVKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txt_MaNCC.requestFocus();
+        }
+    }//GEN-LAST:event_txt_MaNVKeyPressed
+
+    private void txt_MaNCCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MaNCCKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txt_MaSP.requestFocus();
+        }
+        else 
+            if(evt.getKeyCode() == KeyEvent.VK_UP){
+                txt_MaNV.requestFocus();
+            }
+    }//GEN-LAST:event_txt_MaNCCKeyPressed
+
+    private void txt_MaSPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MaSPKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            sp_SoLuong.requestFocus();
+        }
+        else 
+            if(evt.getKeyCode() == KeyEvent.VK_UP){
+                txt_MaNCC.requestFocus();
+            }        
+    }//GEN-LAST:event_txt_MaSPKeyPressed
+
+    private void sp_SoLuongKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sp_SoLuongKeyPressed
+            if(evt.getKeyCode() == KeyEvent.VK_UP){
+                txt_MaSP.requestFocus();
+            }         
+    }//GEN-LAST:event_sp_SoLuongKeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+              //
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -506,6 +626,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnTimLoai;
     private javax.swing.JButton btnTimNSX;
     private javax.swing.JButton btnTrolai;
+    private javax.swing.JButton btnXoaCT;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -521,13 +642,13 @@ public class ThemPNGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner sp_SoLuong;
     private javax.swing.JTable tbl_DSSP;
     private javax.swing.JTextField txt_MaNCC;
     private javax.swing.JTextField txt_MaNV;
     private javax.swing.JTextField txt_MaPN;
-    private javax.swing.JTextField txt_MaSP;
+    public static javax.swing.JTextField txt_MaSP;
     private javax.swing.JTextField txt_Ngaynhap;
-    private javax.swing.JTextField txt_SoLuong;
     private javax.swing.JTextField txt_Tongtien;
     // End of variables declaration//GEN-END:variables
 }

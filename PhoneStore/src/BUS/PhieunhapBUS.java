@@ -46,7 +46,9 @@ public class PhieunhapBUS {
         PhieunhapDAO Data = new PhieunhapDAO();
         DSPhieuNhap = Data.docDSPN();
         PhieunhapDTO pn = DSPhieuNhap.get(vitri);
-        
+        ChitietphieunhapBUS chitietBUS = new ChitietphieunhapBUS();
+
+        chitietBUS.xoa(pn.getMaPN());
         Data.xoa(pn.getMaPN());
         DSPhieuNhap = Data.docDSPN();
     }
@@ -58,7 +60,7 @@ public class PhieunhapBUS {
         DSPhieuNhap = Data.docDSPN();
     }
     
-    public ArrayList<PhieunhapDTO> timKiemTheoMaTenPN(String key) throws Exception{
+    public ArrayList<PhieunhapDTO> timKiemTheoMaPN(String key) throws Exception{
         PhieunhapDAO Data = new PhieunhapDAO();
         ArrayList<PhieunhapDTO> Result = new ArrayList<>();
 

@@ -89,6 +89,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="btnThem" min="-2" max="-2" attributes="0"/>
@@ -102,29 +105,32 @@
                       <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="523" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="348" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="110" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnThem" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnXoa" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnSua" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnLammoi" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="47" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -178,6 +184,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_DSPNMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -187,7 +196,7 @@
                   <Font name="000 Blambot Casual [TeddyBear]" size="20" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/icon th&#xea;m.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\icon th&#xea;m.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -202,7 +211,7 @@
                   <Font name="000 Blambot Casual [TeddyBear]" size="20" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/x&#xf3;a.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\x&#xf3;a.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -217,7 +226,7 @@
                   <Font name="000 Blambot Casual [TeddyBear]" size="20" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/s&#x1eed;a.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\s&#x1eed;a.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -244,7 +253,7 @@
                   <Font name="000 Blambot Casual [TeddyBear]" size="20" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/l&#xe0;m m&#x1edb;i.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\l&#xe0;m m&#x1edb;i.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -253,6 +262,62 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLammoiActionPerformed"/>
               </Events>
             </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tbl_CTPN">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="000 Blambot Casual [TeddyBear]" size="30" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Chi ti&#x1ebf;t phi&#x1ebf;u nh&#x1ead;p"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -300,7 +365,7 @@
                       <Component id="btnThongke" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnTaikhoan" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -315,7 +380,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/b&#xe1;n h&#xe0;ng.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\b&#xe1;n h&#xe0;ng.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B&#xe1;n h&#xe0;ng"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -330,7 +395,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/nh&#x1ead;p h&#xe0;ng.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\nh&#x1ead;p h&#xe0;ng.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p h&#xe0;ng"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -345,7 +410,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/s&#x1ea3;n ph&#x1ea9;m.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\s&#x1ea3;n ph&#x1ea9;m.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -360,7 +425,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/khuy&#x1ebf;n m&#xe3;i1.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\khuy&#x1ebf;n m&#xe3;i1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Khuy&#x1ebf;n m&#xe3;i"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -375,7 +440,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/nh&#xe2;n vi&#xea;n.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\nh&#xe2;n vi&#xea;n.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -390,7 +455,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/kh&#xe1;ch h&#xe0;ng.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\kh&#xe1;ch h&#xe0;ng.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Kh&#xe1;ch h&#xe0;ng"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -405,7 +470,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/th&#x1ed1;ng k&#xea;.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\th&#x1ed1;ng k&#xea;.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
@@ -420,7 +485,7 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icon/t&#xe0;i kho&#x1ea3;n.png"/>
+                  <Image iconType="2" name="C:\Users\PC\Java\PhoneStore\src\img\icon\t&#xe0;i kho&#x1ea3;n.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
