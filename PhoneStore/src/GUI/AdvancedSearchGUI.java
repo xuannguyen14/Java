@@ -27,8 +27,13 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
     SuaPNGUI suaPN;
     ArrayList<SanPhamDTO> temp = new ArrayList<>();
     
-    public AdvancedSearchGUI() {
+    public AdvancedSearchGUI() throws Exception {
         initComponents();
+        
+        SanphamBUS spBUS = new SanphamBUS();
+        if(SanphamBUS.getDSSanPham() == null){
+            spBUS.docDSSP();
+        }
         
         Vector header = new Vector();
         header.add("Mã Sản Phẩm");
@@ -37,6 +42,15 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
         header.add("Đơn Giá");
 
         DefaultTableModel model = new DefaultTableModel(header,0);
+        
+        for(SanPhamDTO sp : SanphamBUS.getDSSanPham()){
+            Vector row = new Vector();
+            row.add(sp.getMaSP());
+            row.add(sp.getTenSP());
+            row.add(sp.getSoLuong());
+            row.add(sp.getDonGia());
+            model.addRow(row);
+            }        
         
         tbl_DSSP.setModel(model);        
     }
@@ -624,7 +638,11 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdvancedSearchGUI().setVisible(true);
+                try {
+                    new AdvancedSearchGUI().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(AdvancedSearchGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

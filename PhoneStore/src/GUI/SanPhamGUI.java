@@ -559,7 +559,11 @@ public class SanPhamGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLammoiActionPerformed
 
     private void linkAdvancedSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkAdvancedSearchMouseClicked
-        new AdvancedSearchGUI().setVisible(true);
+        try {
+            new AdvancedSearchGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(SanPhamGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_linkAdvancedSearchMouseClicked
 
