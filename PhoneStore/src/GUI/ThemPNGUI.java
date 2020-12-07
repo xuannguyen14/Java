@@ -63,14 +63,6 @@ public class ThemPNGUI extends javax.swing.JFrame {
         
         tbl_DSSP.setModel(model);
     }
-
-    public static JTextField getTxt_MaSP() {
-        return txt_MaSP;
-    }
-
-    public static void setTxt_MaSP(JTextField txt_MaSP) {
-        ThemPNGUI.txt_MaSP = txt_MaSP;
-    }
     
     ArrayList<ChitietphieunhapDTO> dsct = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel();
@@ -109,7 +101,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
         txt_MaSP = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnFindSP = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         sp_SoLuong = new javax.swing.JSpinner();
         btnXoaCT = new javax.swing.JButton();
@@ -130,6 +122,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
         txt_Tongtien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         txt_MaNV.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_MaNV.setText("Chọn Mã Nhân Viên");
         txt_MaNV.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNVKeyPressed(evt);
@@ -137,6 +130,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
         });
 
         txt_MaNCC.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
         txt_MaNCC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNCCKeyPressed(evt);
@@ -288,7 +282,9 @@ public class ThemPNGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_MaSP.setEditable(false);
         txt_MaSP.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_MaSP.setText("Chọn Mã Sản Phẩm");
         txt_MaSP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaSPKeyPressed(evt);
@@ -303,10 +299,10 @@ public class ThemPNGUI extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Chi tiết");
 
-        jButton2.setText("...");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnFindSP.setText("...");
+        btnFindSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnFindSPActionPerformed(evt);
             }
         });
 
@@ -352,7 +348,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(txt_MaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
+                                .addComponent(btnFindSP))
                             .addComponent(sp_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -366,7 +362,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_MaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnFindSP))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -442,8 +438,8 @@ public class ThemPNGUI extends javax.swing.JFrame {
             pn.setMaNV(txt_MaNV.getText());
 
             txt_Tongtien.setText("0");
-            txt_MaNV.setText("");
-            txt_MaNCC.setText("");
+            txt_MaNV.setText("Chọn Mã Nhân Viên");
+            txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
                    
             try {
                 bus.them(pn);
@@ -460,7 +456,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
             }
 
             txt_MaPN.setText(KeyString);
-            txt_MaSP.setText("");
+            txt_MaSP.setText("Chọn Mã Sản Phẩm");
             sp_SoLuong.setValue(0); 
         }
         
@@ -576,9 +572,9 @@ public class ThemPNGUI extends javax.swing.JFrame {
             }         
     }//GEN-LAST:event_sp_SoLuongKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-              //
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnFindSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSPActionPerformed
+            new AdvancedSearchGUI(this).setVisible(true);
+    }//GEN-LAST:event_btnFindSPActionPerformed
     
     /**
      * @param args the command line arguments
@@ -622,12 +618,12 @@ public class ThemPNGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
+    private javax.swing.JButton btnFindSP;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimLoai;
     private javax.swing.JButton btnTimNSX;
     private javax.swing.JButton btnTrolai;
     private javax.swing.JButton btnXoaCT;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -647,7 +643,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txt_MaNCC;
     private javax.swing.JTextField txt_MaNV;
     private javax.swing.JTextField txt_MaPN;
-    public static javax.swing.JTextField txt_MaSP;
+    public javax.swing.JTextField txt_MaSP;
     private javax.swing.JTextField txt_Ngaynhap;
     private javax.swing.JTextField txt_Tongtien;
     // End of variables declaration//GEN-END:variables

@@ -132,7 +132,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txt_MaSP = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btnFindSP = new javax.swing.JButton();
         sp_SoLuong = new javax.swing.JSpinner();
         btnAddCT = new javax.swing.JButton();
         btnDeleteCT = new javax.swing.JButton();
@@ -166,12 +166,14 @@ public class SuaPNGUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel7.setText("Tổng Tiền:");
 
+        txt_MaNV.setText("Chọn Mã Nhân Viên");
         txt_MaNV.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNVKeyPressed(evt);
             }
         });
 
+        txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
         txt_MaNCC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNCCKeyPressed(evt);
@@ -302,13 +304,20 @@ public class SuaPNGUI extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel10.setText("Số Lượng:");
 
+        txt_MaSP.setEditable(false);
+        txt_MaSP.setText("Chọn Mã Sản Phẩm");
         txt_MaSP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaSPKeyPressed(evt);
             }
         });
 
-        jButton4.setText("...");
+        btnFindSP.setText("...");
+        btnFindSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindSPActionPerformed(evt);
+            }
+        });
 
         sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -351,7 +360,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(txt_MaSP, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addComponent(btnFindSP))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(sp_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -370,7 +379,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_MaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(btnFindSP))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -539,7 +548,9 @@ public class SuaPNGUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            txt_MaNV.setText("Chọn Mã Nhân Viên");
+            txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
+            txt_MaSP.setText("Chọn Mã Sản Phẩm");            
             }       
     }//GEN-LAST:event_btn_EditActionPerformed
 
@@ -660,6 +671,10 @@ public class SuaPNGUI extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteCTActionPerformed
 
+    private void btnFindSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindSPActionPerformed
+        new AdvancedSearchGUI(this).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFindSPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -703,11 +718,11 @@ public class SuaPNGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCT;
     private javax.swing.JButton btnDeleteCT;
+    private javax.swing.JButton btnFindSP;
     private javax.swing.JButton btn_Edit;
     private javax.swing.JButton btn_return;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -732,7 +747,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
     private javax.swing.JTable tbl_DSPN;
     private javax.swing.JTextField txt_MaNCC;
     private javax.swing.JTextField txt_MaNV;
-    private javax.swing.JTextField txt_MaSP;
+    public javax.swing.JTextField txt_MaSP;
     private javax.swing.JTextField txt_Tongtien;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,6 +23,10 @@ import javax.swing.table.DefaultTableModel;
 public class AdvancedSearchGUI extends javax.swing.JFrame {
 
     /** Creates new form AdvancedSearchGUI */
+    ThemPNGUI themPN;
+    SuaPNGUI suaPN;
+    ArrayList<SanPhamDTO> temp = new ArrayList<>();
+    
     public AdvancedSearchGUI() {
         initComponents();
         
@@ -37,6 +41,35 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
         tbl_DSSP.setModel(model);        
     }
 
+    public AdvancedSearchGUI(ThemPNGUI thempn) {
+        initComponents();
+        themPN = thempn;
+        
+        Vector header = new Vector();
+        header.add("Mã Sản Phẩm");
+        header.add("Tên Sản Phẩm");
+        header.add("Số Lượng");
+        header.add("Đơn Giá");
+
+        DefaultTableModel model = new DefaultTableModel(header,0);
+        
+        tbl_DSSP.setModel(model);        
+    }
+    
+    public AdvancedSearchGUI(SuaPNGUI suapn) {
+        initComponents();
+        suaPN = suapn;
+        
+        Vector header = new Vector();
+        header.add("Mã Sản Phẩm");
+        header.add("Tên Sản Phẩm");
+        header.add("Số Lượng");
+        header.add("Đơn Giá");
+
+        DefaultTableModel model = new DefaultTableModel(header,0);
+        
+        tbl_DSSP.setModel(model);        
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -272,6 +305,11 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
             }
         ));
         tbl_DSSP.setRowHeight(20);
+        tbl_DSSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DSSPMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_DSSP);
 
         btnReturn.setText("Trở lại");
@@ -395,7 +433,12 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
             row.add(sp.getDonGia());
             model.addRow(row);
             }
-        tbl_DSSP.setModel(model);        
+        tbl_DSSP.setModel(model);
+
+        temp.clear();
+        temp.addAll(KetQua);
+
+        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -532,7 +575,24 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
             }
         tbl_DSSP.setModel(model);
         
+        temp.clear();
+        temp.addAll(Result);
+        
     }//GEN-LAST:event_btnAdvancedSearchActionPerformed
+
+    private void tbl_DSSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DSSPMouseClicked
+        int vitri = tbl_DSSP.getSelectedRow();
+        SanPhamDTO sp = temp.get(vitri);
+        
+        if(themPN != null){
+            themPN.txt_MaSP.setText(sp.getMaSP());
+        }
+        
+        if(suaPN != null){
+            suaPN.txt_MaSP.setText(sp.getMaSP());
+        }        
+        
+    }//GEN-LAST:event_tbl_DSSPMouseClicked
 
     /**
      * @param args the command line arguments
