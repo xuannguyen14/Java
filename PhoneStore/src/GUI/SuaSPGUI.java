@@ -63,10 +63,11 @@ public class SuaSPGUI extends javax.swing.JFrame {
         
         txt_TenSP.setText(sp.getTenSP());
         txt_SoLuong.setText("" + sp.getSoLuong());
-        txt_DonGia.setText("" + sp.getDonGia());
+        txt_DonGia.setText("" + (int)sp.getDonGia());
         txt_MaLoai.setText(sp.getMaLoai());
         txt_MaNSX.setText(sp.getMaNSX());
         
+        txt_TenSP.requestFocus();
     }    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,7 +112,7 @@ public class SuaSPGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/sửa.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\sửa.png")); // NOI18N
         jLabel1.setText("Chỉnh Sửa Sản Phẩm");
 
         jPanel4.setBackground(new java.awt.Color(204, 253, 204));
@@ -173,7 +174,7 @@ public class SuaSPGUI extends javax.swing.JFrame {
 
         btn_Edit.setBackground(new java.awt.Color(204, 255, 153));
         btn_Edit.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btn_Edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/sửa.png"))); // NOI18N
+        btn_Edit.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\sửa.png")); // NOI18N
         btn_Edit.setText("Sửa");
         btn_Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

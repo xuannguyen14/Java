@@ -98,14 +98,12 @@ public class ThemSPGUI extends javax.swing.JFrame {
             }
         });
 
-        txt_MaLoai.setText("Chọn Mã Loại");
         txt_MaLoai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaLoaiKeyPressed(evt);
             }
         });
 
-        txt_MaNSX.setText("Chọn Mã Nhà Sản Xuất");
         txt_MaNSX.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNSXKeyPressed(evt);
@@ -118,7 +116,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/icon thêm.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\icon thêm.png")); // NOI18N
         jLabel1.setText("Thêm Sản Phẩm");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -233,7 +231,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
 
         btnThem.setBackground(new java.awt.Color(204, 255, 153));
         btnThem.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/icon thêm.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\icon thêm.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,8 +325,8 @@ public class ThemSPGUI extends javax.swing.JFrame {
             txt_TenSP.setText("");
             txt_SoLuong.setText("1");
             txt_DonGia.setText("");
-            txt_MaLoai.setText("Chọn Mã Loại");
-            txt_MaNSX.setText("Chọn Mã Nhà Sản Xuất");
+            txt_MaLoai.setText("");
+            txt_MaNSX.setText("");
                    
             try {
                 bus.them(sp);

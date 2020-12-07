@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BUS.ChitietphieunhapBUS;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import BUS.PhieunhapBUS;
+import DTO.ChitietphieunhapDTO;
 import DTO.PhieunhapDTO;
 
 /**
@@ -54,7 +56,18 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             row.add(pn.getTongTien());
             model.addRow(row);
             }
-        tbl_DSPN.setModel(model);        
+        tbl_DSPN.setModel(model);
+               
+        Vector ctheader = new Vector();
+        ctheader.add("Mã Phiếu Nhập");
+        ctheader.add("Mã Sản Phẩm");
+        ctheader.add("Số Lượng");
+        ctheader.add("Đơn Giá");
+        ctheader.add("Thành Tiền");
+        
+        model = new DefaultTableModel(ctheader,0);
+        tbl_CTPN.setModel(model);
+        
     }
     
     DefaultTableModel model = new DefaultTableModel();
@@ -78,6 +91,10 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         btnLammoi = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_CTPN = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnBanhang = new javax.swing.JButton();
         btnNhaphang = new javax.swing.JButton();
@@ -114,13 +131,18 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             }
         ));
         tbl_DSPN.setRowHeight(24);
+        tbl_DSPN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_DSPNMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_DSPN);
         if (tbl_DSPN.getColumnModel().getColumnCount() > 0) {
             tbl_DSPN.getColumnModel().getColumn(1).setMinWidth(50);
         }
 
         btnThem.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/icon thêm.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\icon thêm.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setFocusPainted(false);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +152,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/xóa.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\xóa.png")); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setFocusPainted(false);
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +162,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         });
 
         btnSua.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/sửa.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\sửa.png")); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setFocusPainted(false);
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +181,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         });
 
         btnLammoi.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
-        btnLammoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/làm mới.png"))); // NOI18N
+        btnLammoi.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\làm mới.png")); // NOI18N
         btnLammoi.setText("Làm mới");
         btnLammoi.setFocusPainted(false);
         btnLammoi.addActionListener(new java.awt.event.ActionListener() {
@@ -168,10 +190,47 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             }
         });
 
+        tbl_CTPN.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tbl_CTPN);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Chi tiết phiếu nhập");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(btnThem)
@@ -184,75 +243,78 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(btnThoat)
                 .addContainerGap())
-            .addComponent(jScrollPane1)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThoat)
                         .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLammoi, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 25, Short.MAX_VALUE))))
+                        .addGap(0, 47, Short.MAX_VALUE))))
         );
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
         btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
         btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnBanhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/bán hàng.png"))); // NOI18N
+        btnBanhang.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\bán hàng.png")); // NOI18N
         btnBanhang.setText("Bán hàng");
         btnBanhang.setFocusPainted(false);
 
         btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
         btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNhaphang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/nhập hàng.png"))); // NOI18N
+        btnNhaphang.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\nhập hàng.png")); // NOI18N
         btnNhaphang.setText("Nhập hàng");
         btnNhaphang.setFocusPainted(false);
 
         btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
         btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/sản phẩm.png"))); // NOI18N
+        btnSanpham.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\sản phẩm.png")); // NOI18N
         btnSanpham.setText("Sản phẩm");
         btnSanpham.setFocusPainted(false);
 
         btnKhuyenmai.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnKhuyenmai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/khuyến mãi1.png"))); // NOI18N
+        btnKhuyenmai.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\khuyến mãi1.png")); // NOI18N
         btnKhuyenmai.setText("Khuyến mãi");
         btnKhuyenmai.setFocusPainted(false);
 
         btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
         btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNhanvien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/nhân viên.png"))); // NOI18N
+        btnNhanvien.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\nhân viên.png")); // NOI18N
         btnNhanvien.setText("Nhân viên");
         btnNhanvien.setFocusPainted(false);
 
         btnKhachhang.setBackground(new java.awt.Color(204, 255, 153));
         btnKhachhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnKhachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/khách hàng.png"))); // NOI18N
+        btnKhachhang.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\khách hàng.png")); // NOI18N
         btnKhachhang.setText("Khách hàng");
         btnKhachhang.setFocusPainted(false);
 
         btnThongke.setBackground(new java.awt.Color(204, 255, 153));
         btnThongke.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnThongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/thống kê.png"))); // NOI18N
+        btnThongke.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\thống kê.png")); // NOI18N
         btnThongke.setText("Thống kê");
         btnThongke.setFocusPainted(false);
 
         btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
         btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnTaikhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/tài khoản.png"))); // NOI18N
+        btnTaikhoan.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\tài khoản.png")); // NOI18N
         btnTaikhoan.setText("Tài khoản");
         btnTaikhoan.setFocusPainted(false);
 
@@ -292,7 +354,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
                 .addComponent(btnThongke)
                 .addGap(18, 18, 18)
                 .addComponent(btnTaikhoan)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
@@ -463,15 +525,18 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
+       
         int vitri = tbl_DSPN.getSelectedRow();
         
         if(vitri == -1) 
            JOptionPane.showMessageDialog(null, "Chưa chọn sản phẩm muốn sửa!");
         else{
             pn = PhieunhapBUS.getDSPhieuNhap().get(vitri);
-            new SuaPNGUI(pn).setVisible(true);
+            try {
+                new SuaPNGUI(pn).setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -491,7 +556,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         String key = txt_Find.getText();
 
         try {
-            KetQua = bus.timKiemTheoMaTenPN(key);
+            KetQua = bus.timKiemTheoMaPN(key);
         } catch (Exception ex) {
             Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -553,6 +618,52 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         tbl_DSPN.setModel(model);
     }//GEN-LAST:event_btnLammoiActionPerformed
 
+    private void tbl_DSPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_DSPNMouseClicked
+        PhieunhapBUS bus = new PhieunhapBUS();
+        
+        if(PhieunhapBUS.getDSPhieuNhap() == null)
+
+                try {
+                    bus.docDSPN();
+        } catch (Exception ex) {
+            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            ChitietphieunhapBUS chitietBUS = new ChitietphieunhapBUS();
+
+            if(ChitietphieunhapBUS.getDSCTPhieuNhap() == null)
+                    try {
+                        chitietBUS.docDSCTPN();
+            } catch (Exception ex) {
+                Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                            
+            int vitri = tbl_DSPN.getSelectedRow();
+            PhieunhapDTO pn = PhieunhapBUS.getDSPhieuNhap().get(vitri);
+            
+            Vector ctheader = new Vector();
+            ctheader.add("Mã Phiếu Nhập");
+            ctheader.add("Mã Sản Phẩm");
+            ctheader.add("Số Lượng");
+            ctheader.add("Đơn Giá");
+            ctheader.add("Thành Tiền");
+
+            model = new DefaultTableModel(ctheader,0);
+
+        for(ChitietphieunhapDTO ctpn : ChitietphieunhapBUS.getDSCTPhieuNhap()){
+            if(ctpn.getMaPN().equals(pn.getMaPN())){
+                Vector row = new Vector();
+                row.add(ctpn.getMaPN());
+                row.add(ctpn.getMaSP());
+                row.add(ctpn.getSoLuong());
+                row.add(ctpn.getDonGia());
+                row.add(ctpn.getThanhTien());
+                model.addRow(row);
+            }
+        }
+            tbl_CTPN.setModel(model);              
+    }//GEN-LAST:event_tbl_DSPNMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -611,13 +722,17 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnTrangchu;
     private javax.swing.JButton btnXoa;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbl_CTPN;
     private javax.swing.JTable tbl_DSPN;
     private javax.swing.JTextField txt_Find;
     // End of variables declaration//GEN-END:variables

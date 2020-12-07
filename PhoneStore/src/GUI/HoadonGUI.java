@@ -11,6 +11,7 @@ import DTO.HoadonDTO;
 import java.awt.Color;
 import java.lang.System.Logger;
 import java.util.List;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -566,8 +567,12 @@ public class HoadonGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBanhangActionPerformed
 
     private void btnSanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanphamActionPerformed
-        // TODO add your handling code here:
-        new SanphamGUI().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            new SanPhamGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnSanphamActionPerformed
 
@@ -614,7 +619,7 @@ public class HoadonGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new FindNC().setVisible(true);
+//        new FindNC().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

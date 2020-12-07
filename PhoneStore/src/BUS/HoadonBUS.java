@@ -36,5 +36,9 @@ public class HoadonBUS {
     public List<HoadonDTO> getHoadonByMaKH(String maKH){
         return hoadonDAO.getHoadonByMaKH(maKH);
     }
+    
+    public List<HoadonDTO> getHoadonByDate(String tuNgay, String denNgay){
+        return hoadonDAO.getHoadonByDate(tuNgay, denNgay);
+    }
 }
 

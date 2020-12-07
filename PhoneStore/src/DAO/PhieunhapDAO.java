@@ -35,7 +35,7 @@ public ArrayList docDSPN() throws Exception{
     while(rs.next()){
         PhieunhapDTO pn = new PhieunhapDTO();
         pn.setMaPN(rs.getString(1));
-        pn.setNgayNhap(rs.getDate(2));
+        pn.setNgayNhap(rs.getDate(2));       
         pn.setMaNCC(rs.getString(3));
         pn.setMaNV(rs.getString(4));
         pn.setTongTien(rs.getInt(5));

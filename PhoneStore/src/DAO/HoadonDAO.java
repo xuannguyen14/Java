@@ -183,7 +183,38 @@ public class HoadonDAO {
             e.printStackTrace();
         }
     }
-    
+    public List<HoadonDTO> getHoadonByDate(String tuNgay, String denNgay){
+        List<HoadonDTO> hoadons = new ArrayList<>();
+        Connection connection = JDBCConnection.getConnection();
+        
+        String sql = "SELECT * FROM HOADON WHERE NGAYXUAT BETWEEN ? AND ?";
+        
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, tuNgay);
+            preparedStatement.setString(2, denNgay);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                HoadonDTO hoadon = new HoadonDTO();
+                
+                hoadon.setMaHD(rs.getString("MAHOADON"));
+                hoadon.setNgayxuat(rs.getString("NGAYXUAT"));
+                hoadon.setMaKH(rs.getString("MAKHACHHANG"));
+                hoadon.setMaNV(rs.getString("MANHANVIEN"));              
+                hoadon.setTongtien(rs.getDouble("TONGTIEN"));
+                hoadon.setTongKM(rs.getDouble("TONGKM"));
+                hoadon.setTientra(rs.getDouble("TIENTRA"));
+                
+                hoadons.add(hoadon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return hoadons;
+    }
+
 }
 
 

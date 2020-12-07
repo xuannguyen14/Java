@@ -83,7 +83,7 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/rsz_sản_phẩm.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\rsz_sản_phẩm.png")); // NOI18N
         jLabel2.setText("Hãng");
 
         rbtnApple.setBackground(new java.awt.Color(255, 255, 255));
@@ -113,7 +113,7 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/muney.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\muney.png")); // NOI18N
         jLabel3.setText("Giá Tiền");
 
         jLabel4.setText("Từ");
@@ -122,7 +122,7 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/tech.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\tech.png")); // NOI18N
         jLabel6.setText("Loại");
 
         rbtnSmartphone.setBackground(new java.awt.Color(255, 255, 255));
@@ -214,7 +214,7 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/rsz_1search--v2.png"))); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\rsz_1search--v2.png")); // NOI18N
         btnSearch.setText("Tìm Kiếm");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +225,7 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/rsz_search--v2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Java\\PhoneStore\\src\\img\\icon\\rsz_search--v2.png")); // NOI18N
         jLabel1.setText("Tìm Kiếm Sản Phẩm");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -410,17 +410,17 @@ public class AdvancedSearchGUI extends javax.swing.JFrame {
     private void btnAdvancedSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdvancedSearchActionPerformed
         ArrayList<SanPhamDTO> Result = new ArrayList<>();
         SanphamBUS spBUS = new SanphamBUS();
-/*        
+        
         if(!"".equals(txtLowerPrice.getText()) && !spBUS.validNumber(txtLowerPrice.getText())){
             JOptionPane.showMessageDialog(this,"Giá tiền không được chứa chữ cái và phải là số dương!");
             txtLowerPrice.requestFocus();
         }
         
-        if(!"".equals(txtLowerPrice.getText()) && !spBUS.validNumber(txtHigherPrice.getText())){
+        if(!"".equals(txtHigherPrice.getText()) && !spBUS.validNumber(txtHigherPrice.getText())){
             JOptionPane.showMessageDialog(this,"Giá tiền không được chứa chữ cái và phải là số dương!");
             txtHigherPrice.requestFocus();
         }        
-*/        
+        
         if(rbtnApple.isSelected()){
             try {
                 Result.addAll(spBUS.timkiemTheoHangLoai(rbtnApple.getText()));

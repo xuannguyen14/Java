@@ -32,4 +32,16 @@ public class KhuyenmaiBUS {
     public ArrayList<KhuyenmaiDTO> findkm(String attri,String temp){
         return km.findkm(attri,temp);
     }
+    public ArrayList<KhuyenmaiDTO> findnc(String ym){
+        return km.findnc(ym);
+    }
+    public ArrayList<KhuyenmaiDTO> showAllct(){
+        return km.showAllct();
+    }
+    public ArrayList<KhuyenmaiDTO> findctnc(String num){
+        return km.findctnc(num);
+    }
+    public ArrayList<KhuyenmaiDTO> findct(String value){
+        return km.findct(value);
+    }
 }

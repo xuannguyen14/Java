@@ -93,7 +93,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
     }
-    private void loadData(){
+    private void loadData() throws Exception{
         //lấy ngày hiện tại
         txtNgayxuat.setText(String.valueOf(java.time.LocalDate.now()));
         

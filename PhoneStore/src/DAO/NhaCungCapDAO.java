@@ -6,8 +6,12 @@
 package DAO;
 
 import DTO.NhaCungCapDTO;
+<<<<<<< HEAD
 import DTO.NhaSanXuatDTO;
 //import com.mysql.jdbc.Connection;
+=======
+import java.sql.Connection;
+>>>>>>> fd0bf36403908fdf50a862b71273b38eac15c0be
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

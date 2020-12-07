@@ -24,7 +24,7 @@ public class KhuyenmaiDTO {
         this.ngaybd="";
         this.ngaykt="";
     }
-    public void khuyenmaiDTO(String makm,String masp,String tenkm,int tile,String ngaybd,String ngaykt){
+    public void KhuyenmaiDTO(String makm,String masp,String tenkm,int tile,String ngaybd,String ngaykt){
         this.makm=makm;
         this.masp=masp;
         this.tile=tile;

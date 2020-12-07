@@ -18,6 +18,7 @@ import java.util.Vector;
 public class Test {
     
     public static void main(String[] args) {
+<<<<<<< HEAD
         KhachHangBUS khachHangBUS = new KhachHangBUS();
         khachHangBUS.showKetQuaTimKiem(khachHangBUS.getDanhSachKhachHangByDiaChi("Đà Nẵng"));
 //        
@@ -41,6 +42,20 @@ public class Test {
 //        khachHangBUS.suaKhachHang(khachHangCu, KhachHangMoi);
 //        khachHangBUS.showDanhSachKhachHang();
 
+=======
+        NhacungcapBUS nhaCungCapBUS = new NhacungcapBUS();
+        //nhaCungCapBUS.getNhaCungCapBySDT("190018876").display();
+        Vector data = new Vector();
+        data.add("Test");
+        data.add("Test");
+        data.add("Test");
+        data.add("Test");
+        nhaCungCapBUS.update(data, 3);
+        ArrayList<NhaCungCapDTO> ds = nhaCungCapBUS.getDanhSachNhaCungCap();
+        for (NhaCungCapDTO d : ds) {
+            d.display();
+        }
+>>>>>>> fd0bf36403908fdf50a862b71273b38eac15c0be
     }
     
 }
