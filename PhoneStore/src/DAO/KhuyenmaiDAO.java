@@ -6,7 +6,6 @@
 package DAO;
 import DTO.KhuyenmaiDTO;
 import DAO.JDBCConnection;
-import DTO.Khuyenmai1DTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -71,7 +69,7 @@ public class KhuyenmaiDAO {
     }
     public void editkm(KhuyenmaiDTO km){
          Connection act=JDBCConnection.getConnection();
-         String sql2="Update chitietkm Set MaSP=?,TiLeKM=? Where MaKM=?";
+         String sql2="Update chitietkm Set TiLeKM=? Where MaKM=?";
          String sql="Update khuyenmai Set TenKM=?,NgayBD=?,NgayKT=? Where MaKM=?";
          try{
              PreparedStatement ps2=act.prepareStatement(sql);
@@ -81,9 +79,8 @@ public class KhuyenmaiDAO {
              ps2.setString(4,km.getmakm());
              ps2.executeUpdate();
              PreparedStatement ps1=act.prepareStatement(sql2);
-             ps1.setString(1,km.getmasp());
-             ps1.setInt(2,km.gettile());
-             ps1.setString(3,km.getmakm());
+             ps1.setInt(1,km.gettile());
+             ps1.setString(2,km.getmakm());
              ps1.executeUpdate();
             
          }
@@ -108,7 +105,7 @@ public class KhuyenmaiDAO {
          }
     }
     
-        public ArrayList<KhuyenmaiDTO> findkm(String attri,String temp){
+    public ArrayList<KhuyenmaiDTO> findkm(String attri,String temp){
         ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
         String sql="select * from khuyenmai where "+attri+" like '%"+temp+"%'";
         try{
@@ -129,61 +126,85 @@ public class KhuyenmaiDAO {
         }
         return arr;
     }
-        
-    public List<Khuyenmai1DTO> getAllKhuyenmai() {
-        List<Khuyenmai1DTO> khuyenmais = new ArrayList<>();
-        
-        Connection connection = JDBCConnection.getConnection();
-        
-        String sql = "SELECT * FROM KHUYENMAI";
-        
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            while(rs.next()){
-                Khuyenmai1DTO khuyenmai = new Khuyenmai1DTO();
-                
-                khuyenmai.setMaKM(rs.getString("MAKM"));
-                khuyenmai.setTenKM(rs.getString("TENKM"));
-                khuyenmai.setNgayBD(rs.getString("NGAYBD"));
-                khuyenmai.setNgayKT(rs.getString("NGAYKT"));
-                
-                khuyenmais.add(khuyenmai);
-            }
-        } catch (SQLException e) {
+    public ArrayList<KhuyenmaiDTO> findnc(String ym){
+        ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
+        String sql="select * from khuyenmai where NgayBD like '%"+ym+"%'";
+        try{
+           Connection act=JDBCConnection.getConnection();
+           Statement stmt=act.createStatement();
+           ResultSet rs=stmt.executeQuery(sql);
+           while(rs.next()){
+               KhuyenmaiDTO km=new KhuyenmaiDTO();
+               km.setmakm(rs.getString("MaKM"));
+               km.settenkm(rs.getString("TenKM"));
+               km.setngaybd(rs.getString("NgayBD"));
+               km.setngaykt(rs.getString("NgayKT"));
+               arr.add(km);
+           }
         }
-        
-        return khuyenmais;
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return arr;
+        }
+    public ArrayList<KhuyenmaiDTO> showAllct(){
+        ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
+        String sql="select * from chitietkm";
+        try{
+           Connection act=JDBCConnection.getConnection();
+           Statement stmt=act.createStatement();
+           ResultSet rs=stmt.executeQuery(sql);
+           while(rs.next()){
+               KhuyenmaiDTO km=new KhuyenmaiDTO();
+               km.setmakm(rs.getString("MaKM"));
+               km.setmasp(rs.getString("MaSP"));
+               km.settile(rs.getInt("TiLeKM"));
+               arr.add(km);
+           }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return arr;
     }
-    
-    public Khuyenmai1DTO getKhuyenmaiByMaKM(String maKM) {
-        
-        Connection connection = JDBCConnection.getConnection();
-        
-        String sql = "SELECT * FROM KHUYENMAI WHERE MAKM = ?";
-        
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, maKM);
-            ResultSet rs = preparedStatement.executeQuery();
-            
-            while(rs.next()){
-                Khuyenmai1DTO khuyenmai = new Khuyenmai1DTO();
-                
-                khuyenmai.setMaKM(rs.getString("MAKM"));
-                khuyenmai.setTenKM(rs.getString("TENKM"));
-                khuyenmai.setNgayBD(rs.getString("NGAYBD"));
-                khuyenmai.setNgayKT(rs.getString("NGAYKT"));              
-                
-                
-                return khuyenmai;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public ArrayList<KhuyenmaiDTO> findctnc(String num){
+        ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
+        String sql="select * from chitietkm where TiLeKM"+num;
+        try{
+           Connection act=JDBCConnection.getConnection();
+           Statement stmt=act.createStatement();
+           ResultSet rs=stmt.executeQuery(sql);
+           while(rs.next()){
+               KhuyenmaiDTO km=new KhuyenmaiDTO();
+               km.setmakm(rs.getString("MaKM"));
+               km.setmasp(rs.getString("MaSP"));
+               km.settile(rs.getInt("TiLeKM"));
+               arr.add(km);
+           }
         }
-        
-        return null;
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return arr;
+    }
+    public ArrayList<KhuyenmaiDTO> findct(String value){
+        ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
+        String sql="select * from chitietkm where MaKM like '%"+value+"%'";
+        try{
+           Connection act=JDBCConnection.getConnection();
+           Statement stmt=act.createStatement();
+           ResultSet rs=stmt.executeQuery(sql);
+           while(rs.next()){
+               KhuyenmaiDTO km=new KhuyenmaiDTO();
+               km.setmakm(rs.getString("MaKM"));
+               km.setmasp(rs.getString("MaSP"));
+               km.settile(rs.getInt("TiLeKM"));
+               arr.add(km);
+           }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return arr;
     }
 }
