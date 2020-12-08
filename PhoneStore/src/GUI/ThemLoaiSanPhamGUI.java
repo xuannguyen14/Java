@@ -166,7 +166,14 @@ public class ThemLoaiSanPhamGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_hoanTatButtonActionPerformed
 
+    public void run() {
+        clearData();
+        setVisible(true);
+    }
     
+    private void clearData() {
+        tenLoaiTextField.setText("");
+    }
     
     /**
      * @param args the command line arguments

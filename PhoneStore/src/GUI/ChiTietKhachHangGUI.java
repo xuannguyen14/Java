@@ -143,16 +143,24 @@ public class ChiTietKhachHangGUI extends javax.swing.JFrame {
 
     private void hoanTatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoanTatButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        root.run();
+        hoanTat();
     }//GEN-LAST:event_hoanTatButtonActionPerformed
 
     private void suaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        suaKhachHangGUI.run(this, khachHangBUS, khachHang);
+        chinhSua();
     }//GEN-LAST:event_suaButtonActionPerformed
 
+    private void hoanTat() {
+        dispose();
+        root.run();
+    }
+    
+    private void chinhSua() {
+        dispose();
+        suaKhachHangGUI.run(this, khachHangBUS, khachHang);
+    }
+    
     private void loadData() {
         Vector khachHangMoi = khachHangBUS.getKhachHangByMaKhachHang(khachHang.get(0).toString()).get(0);
         chiTietKHTextArea.append("Mã khách hàng: ");

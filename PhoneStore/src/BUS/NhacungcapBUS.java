@@ -106,7 +106,7 @@ public class NhacungcapBUS {
         }
         NhaCungCapDTO result = null;
         for (NhaCungCapDTO nhaCungCap : danhSachNhaCungCap) {
-            if (nhaCungCap.getMaNCC().equals(maNhaCungCap)) {
+            if (nhaCungCap.getMaNCC().equals(maNhaCungCap.trim())) {
                 result = nhaCungCap;
             }
         }
@@ -123,7 +123,7 @@ public class NhacungcapBUS {
     public NhaCungCapDTO getNhaCCBySDT(String SDT) {
         NhaCungCapDTO result = null;
         for (NhaCungCapDTO nhaCungCap : danhSachNhaCungCap) {
-            if (nhaCungCap.getSDT().equals(SDT)) {
+            if (nhaCungCap.getSDT().contains(SDT.trim())) {
                 result = nhaCungCap;
             }
         }
@@ -139,7 +139,7 @@ public class NhacungcapBUS {
     
     private boolean isCorrect(String tenNhaCungCap, NhaCungCapDTO nhaCungCap) {
         String tenNCC = nhaCungCap.getTenNCC().toLowerCase();
-        tenNhaCungCap = tenNhaCungCap.toLowerCase();
+        tenNhaCungCap = tenNhaCungCap.toLowerCase().trim();
         for (int i = 0; i < tenNhaCungCap.length(); ++i) {
             if (tenNCC.indexOf(Character.toString(tenNhaCungCap.charAt(i))) < 0) {
                 return false;

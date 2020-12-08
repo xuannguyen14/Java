@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class ThemKhachHangGUI extends javax.swing.JFrame {
 
     private KhachHangBUS khachHangBUS;
-    private KhachHangGUI root;
+    private KhachHangGUI root1;
     
     
     /**
@@ -205,28 +205,47 @@ public class ThemKhachHangGUI extends javax.swing.JFrame {
 
     private void huyBoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyBoButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        root.run();
+        huyBo();
     }//GEN-LAST:event_huyBoButtonActionPerformed
 
     private void hoanTatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoanTatButtonActionPerformed
         // TODO add your handling code here:
+        hoanTat();
+    }//GEN-LAST:event_hoanTatButtonActionPerformed
+
+    private void huyBo() {
+        dispose();
+        if (root1 != null) {
+            root1.run();
+        }
+    }
+    
+    private void hoanTat() {
         if (checkNull() == true) {
             showMessage("Vui lòng nhập đầy đủ thông tin!");
             return;
         }
-        khachHangBUS.addKhachHang(getData());
-        dispose();
-        root.run();
-    }//GEN-LAST:event_hoanTatButtonActionPerformed
+        boolean check = kiemTraThongTin();
+        if (check == false) {
+            return;
+        }
+        if (root1 != null) {
+            dispose();
+            Vector khachHangMoi = getData();
+            khachHangBUS.addKhachHang(khachHangMoi);
+            root1.run();
+        }
 
+    }
+    
     private Vector getData() {
+
         Vector khacHangMoi = new Vector();
         khacHangMoi.add(null);
-        khacHangMoi.add(tenKHTextField.getText());
-        khacHangMoi.add(diaChiKHTextField.getText());
-        khacHangMoi.add(emailKHTextField.getText());
-        khacHangMoi.add(SDTKHTextField.getText());
+        khacHangMoi.add(tenKHTextField.getText().trim());
+        khacHangMoi.add(diaChiKHTextField.getText().trim());
+        khacHangMoi.add(emailKHTextField.getText().trim());
+        khacHangMoi.add(SDTKHTextField.getText().trim());
         return khacHangMoi;
     }
     
@@ -237,9 +256,9 @@ public class ThemKhachHangGUI extends javax.swing.JFrame {
         SDTKHTextField.setText("");
     }
     
-    public void run(KhachHangGUI root, KhachHangBUS khachHangBUS) {
+    public void run(KhachHangGUI root1, KhachHangBUS khachHangBUS) {
         this.khachHangBUS = khachHangBUS;
-        this.root = root;
+        this.root1 = root1;
         setVisible(true);
         clearData();
     }
@@ -263,6 +282,61 @@ public class ThemKhachHangGUI extends javax.swing.JFrame {
         }
         return false;
     }
+    
+    private boolean kiemTraThongTin() {
+        if (kiemTraTen() == false) {
+            showMessage("Tên không được quá 30 ký tự!");
+            return false;
+        }
+        if (kiemTraDiaChi() == false) {
+            showMessage("Địa chỉ không được quá 50 ký tự!");
+            return false;
+        }
+        if (kiemTraEmail() == false) {
+            showMessage("Email không được quá 30 ký tự!");
+            return false;
+        }
+        if (kiemTraSDT() == false) {
+            showMessage("Số điện thoại không hợp lệ!");
+            return false;
+        }        
+        return true;
+    }
+    
+    private boolean kiemTraTen() {
+        if (tenKHTextField.getText().trim().length() > 30) {
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean kiemTraDiaChi() {
+        if (diaChiKHTextField.getText().trim().length() > 50) {
+            return false;
+            
+        }
+        return true;
+        
+    }
+    
+    private boolean kiemTraEmail() {
+        if (emailKHTextField.getText().trim().length() > 30) {
+            return false;
+            
+        }
+        return true;
+    }
+        
+    private boolean kiemTraSDT() {
+        if (SDTKHTextField.getText().trim().length() > 11) {
+            return false;
+            
+        }
+        return true;
+    }
+
+
+
     
     /**
      * @param args the command line arguments
