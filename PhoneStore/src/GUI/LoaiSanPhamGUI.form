@@ -218,11 +218,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="titleLabel" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="searchButton" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="boLocComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="searchTextfield" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="lamMoiButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchButton" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="tableContainer" pref="432" max="32767" attributes="0"/>
