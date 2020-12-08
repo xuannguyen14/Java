@@ -41,7 +41,7 @@ public class KhuyenmaiBUS {
     public ArrayList<KhuyenmaiDTO> findctnc(String num){
         return km.findctnc(num);
     }
-    public ArrayList<KhuyenmaiDTO> findct(String value){
-        return km.findct(value);
+    public ArrayList<KhuyenmaiDTO> findct(String attr,String value){
+        return km.findct(attr,value);
     }
 }
