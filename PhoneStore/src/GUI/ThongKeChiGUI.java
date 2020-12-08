@@ -5,6 +5,15 @@
  */
 package GUI;
 
+import BUS.ThongKeChiBUS;
+import DTO.PhieunhapDTO;
+import DTO.SanPhamDTO;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PC
@@ -18,6 +27,7 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    DefaultTableModel model = new DefaultTableModel();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,10 +46,8 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        rbtnSP = new javax.swing.JRadioButton();
+        rbtnQuy = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -116,25 +124,25 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jRadioButton1.setBackground(new java.awt.Color(204, 253, 204));
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jRadioButton1.setText("Sản phẩm");
+        rbtnSP.setBackground(new java.awt.Color(204, 253, 204));
+        buttonGroup1.add(rbtnSP);
+        rbtnSP.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        rbtnSP.setText("Sản phẩm");
+        rbtnSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnSPActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setBackground(new java.awt.Color(204, 253, 204));
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jRadioButton2.setText("Nhà cung cấp");
-
-        jRadioButton3.setBackground(new java.awt.Color(204, 253, 204));
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jRadioButton3.setText("Nhân viên");
-
-        jRadioButton4.setBackground(new java.awt.Color(204, 253, 204));
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jRadioButton4.setText("Quý");
+        rbtnQuy.setBackground(new java.awt.Color(204, 253, 204));
+        buttonGroup1.add(rbtnQuy);
+        rbtnQuy.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        rbtnQuy.setText("Quý");
+        rbtnQuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnQuyActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("Thống kê theo:");
@@ -146,14 +154,10 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnSP)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton4)
+                .addComponent(rbtnQuy)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -161,10 +165,8 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4)
+                    .addComponent(rbtnSP)
+                    .addComponent(rbtnQuy)
                     .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -195,6 +197,11 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
         dateTo.setDate(new java.util.Date(946724400000L));
 
         btnThongKe.setText("Thống Kê");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -204,7 +211,7 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 55, Short.MAX_VALUE)
+                        .addGap(0, 45, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(dateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,7 +265,7 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txt_Tong, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Tong, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -276,9 +283,7 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -311,6 +316,112 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        ThongKeChiBUS tkcBUS = new ThongKeChiBUS();
+        ArrayList<PhieunhapDTO> DSThongKe = new ArrayList<>();
+        try {
+            DSThongKe = tkcBUS.thongkeDateFromTo(dateFrom.getDate(), dateTo.getDate());
+        } catch (Exception ex) {
+            Logger.getLogger(ThongKeChiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int TongTien = 0;
+        
+        Vector header = new Vector();
+        header.add("Mã Phiếu Nhập");
+        header.add("Ngày Nhập");
+        header.add("Mã Nhà Cung Cấp");
+        header.add("Mã Nhân Viên");
+        header.add("Tổng Tiền");
+        model = new DefaultTableModel(header,0);
+        Vector row = new Vector();
+        
+        if(!DSThongKe.isEmpty()){
+            for(PhieunhapDTO pn : DSThongKe){
+                row = new Vector();
+                row.add(pn.getMaPN());
+                row.add(pn.getNgayNhap());
+                row.add(pn.getMaNCC());
+                row.add(pn.getMaNV());
+                row.add(pn.getTongTien());
+                model.addRow(row);
+                TongTien += pn.getTongTien();
+            }
+        }
+        txt_Tong.setText(""+TongTien);
+        
+        tbl_TKChi.setModel(model);
+    }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void rbtnQuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnQuyActionPerformed
+        if(rbtnQuy.isSelected()){
+            Vector header = new Vector();
+            header.add("Quý");
+            header.add("Tổng Tiền");
+            model = new DefaultTableModel(header,0);
+            
+            int[][]DSThongKe = null;
+            int Tong = 0;
+            
+            ThongKeChiBUS tkcBUS = new ThongKeChiBUS();
+            try {
+                DSThongKe = tkcBUS.thongkeQuy();
+            } catch (Exception ex) {
+                Logger.getLogger(ThongKeChiGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if(DSThongKe != null){
+                for(int i=1;i<=4;i++){    
+                Vector row = new Vector();
+                row.add(i);
+                row.add(DSThongKe[i-1][1]);
+                model.addRow(row);
+                Tong += DSThongKe[i-1][1];
+                }
+            }
+            tbl_TKChi.setModel(model);
+            txt_Tong.setText(""+Tong);
+        }    
+    }//GEN-LAST:event_rbtnQuyActionPerformed
+
+    private void rbtnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnSPActionPerformed
+        if(rbtnSP.isSelected()){
+            Vector header = new Vector();
+            header.add("Mã Sản Phẩm");
+            header.add("Tên Sản Phẩm");
+            header.add("Đơn Giá");
+            header.add("Số Lượng Nhập");
+            header.add("Tiền Chi");
+            model = new DefaultTableModel(header,0);
+            
+            ArrayList<SanPhamDTO> DSThongKe = new ArrayList<>();
+            int Tong = 0;
+            
+            ThongKeChiBUS tkcBUS = new ThongKeChiBUS();
+            try {
+                DSThongKe = tkcBUS.thongkeSP();
+            } catch (Exception ex) {
+                Logger.getLogger(ThongKeChiGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if(!DSThongKe.isEmpty()){
+                for(SanPhamDTO sp : DSThongKe){
+                    Vector row = new Vector();
+                    row.add(sp.getMaSP());
+                    row.add(sp.getTenSP());
+                    row.add(sp.getDonGia());
+                    row.add(sp.getSoLuong());
+                    int SPChi = (int) (sp.getDonGia() * sp.getSoLuong());
+                    row.add(SPChi);
+                    Tong += SPChi;
+                    model.addRow(row);
+                }
+            }
+            
+            tbl_TKChi.setModel(model);
+            txt_Tong.setText(""+Tong);
+        }        
+    }//GEN-LAST:event_rbtnSPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,11 +477,9 @@ public class ThongKeChiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rbtnQuy;
+    private javax.swing.JRadioButton rbtnSP;
     private javax.swing.JTable tbl_TKChi;
     private javax.swing.JTextField txt_Tong;
     // End of variables declaration//GEN-END:variables
