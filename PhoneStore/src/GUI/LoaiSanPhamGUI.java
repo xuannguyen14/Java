@@ -55,9 +55,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         btnSanpham = new javax.swing.JButton();
         btnNhanvien = new javax.swing.JButton();
-        btnKhuyenmai1 = new javax.swing.JButton();
-        btnKhuyenmai2 = new javax.swing.JButton();
-        btnKhuyenmai3 = new javax.swing.JButton();
+        btnKhachhang = new javax.swing.JButton();
+        btnThongke = new javax.swing.JButton();
+        btnTaikhoan = new javax.swing.JButton();
         btnKhuyenmai4 = new javax.swing.JButton();
         btnBanhang = new javax.swing.JButton();
         btnNhaphang = new javax.swing.JButton();
@@ -90,7 +90,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
         leftPanel.setBackground(new java.awt.Color(204, 255, 204));
         leftPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0)));
 
+        ImageIcon sanPhamIcon = new ImageIcon("src\\img\\icon\\sản phẩm.png", "sanpham");
         btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
+        btnSanpham.setIcon(sanPhamIcon);
         btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnSanpham.setText("Sản phẩm");
         btnSanpham.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +101,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        ImageIcon nhanVienIcon = new ImageIcon("src\\img\\icon\\nhân viên.png", "nhanvien");
         btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
+        btnNhanvien.setIcon(nhanVienIcon);
         btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnNhanvien.setText("Nhân viên");
         btnNhanvien.addActionListener(new java.awt.event.ActionListener() {
@@ -108,24 +112,32 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
-        btnKhuyenmai1.setBackground(new java.awt.Color(204, 255, 153));
-        btnKhuyenmai1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai1.setText("Khách hàng");
-        btnKhuyenmai1.addActionListener(new java.awt.event.ActionListener() {
+        ImageIcon khachHangIcon = new ImageIcon("src\\img\\icon\\khách hàng.png", "khachhang");
+        btnKhachhang.setBackground(new java.awt.Color(204, 255, 153));
+        btnKhachhang.setIcon(khachHangIcon);
+        btnKhachhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnKhachhang.setText("Khách hàng");
+        btnKhachhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKhuyenmai1ActionPerformed(evt);
+                btnKhachhangActionPerformed(evt);
             }
         });
 
-        btnKhuyenmai2.setBackground(new java.awt.Color(204, 255, 153));
-        btnKhuyenmai2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai2.setText("Thống kê");
+        ImageIcon thongKeIcon = new ImageIcon("src\\img\\icon\\thống kê.png", "thongke");
+        btnThongke.setBackground(new java.awt.Color(204, 255, 153));
+        btnThongke.setIcon(thongKeIcon);
+        btnThongke.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnThongke.setText("Thống kê");
 
-        btnKhuyenmai3.setBackground(new java.awt.Color(204, 255, 153));
-        btnKhuyenmai3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai3.setText("Tài khoản");
+        ImageIcon taiKhoanIcon = new ImageIcon("src\\img\\icon\\tài khoản.png", "taikhoan");
+        btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
+        btnTaikhoan.setIcon(taiKhoanIcon);
+        btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnTaikhoan.setText("Tài khoản");
 
+        ImageIcon khuyenMaiIcon = new ImageIcon("src\\img\\icon\\khuyến mãi1.png", "khuyenmai");
         btnKhuyenmai4.setBackground(new java.awt.Color(204, 255, 153));
+        btnKhuyenmai4.setIcon(khuyenMaiIcon);
         btnKhuyenmai4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnKhuyenmai4.setText("Khuyến mãi");
         btnKhuyenmai4.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +146,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        ImageIcon banHangIcon = new ImageIcon("src\\img\\icon\\bán hàng.png", "banhang");
         btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
+        btnBanhang.setIcon(banHangIcon);
         btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnBanhang.setText("Bán hàng");
         btnBanhang.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +157,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        ImageIcon nhapHangIcon = new ImageIcon("src\\img\\icon\\nhập hàng.png", "nhaphang");
         btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
+        btnNhaphang.setIcon(nhapHangIcon);
         btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnNhaphang.setText("Nhập hàng");
 
@@ -158,9 +174,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
                     .addComponent(btnBanhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSanpham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKhuyenmai1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKhuyenmai2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKhuyenmai3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKhachhang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThongke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTaikhoan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnKhuyenmai4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -178,11 +194,11 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKhuyenmai1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKhuyenmai2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThongke, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnKhuyenmai3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -289,7 +305,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
+        ImageIcon suaIcon = new ImageIcon("src\\img\\icon\\sửa.png", "sua");
         suaButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        suaButton5.setIcon(suaIcon);
         suaButton5.setText("Sửa");
         suaButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,7 +315,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        ImageIcon xoaIcon = new ImageIcon("src\\img\\icon\\xóa.png", "xoa");
         xoaButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        xoaButton5.setIcon(xoaIcon);
         xoaButton5.setText("Xóa");
         xoaButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +325,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        ImageIcon themIcon1 = new ImageIcon("src\\img\\icon\\icon thêm.png","them");
         themButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        themButton5.setIcon(themIcon1);
         themButton5.setText("Thêm");
         themButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,7 +335,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             }
         });
 
+        ImageIcon themIcon = new ImageIcon("src\\img\\icon\\làm mới.png","lammoi");
         lamMoiButton5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lamMoiButton5.setIcon(themIcon);
         lamMoiButton5.setText("Làm mới");
         lamMoiButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,13 +351,13 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(lamMoiButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134)
-                .addComponent(themButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
-                .addComponent(xoaButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lamMoiButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addComponent(themButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(xoaButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(suaButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(suaButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         jPanel12Layout.setVerticalGroup(
@@ -446,9 +470,9 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNhanvienActionPerformed
 
-    private void btnKhuyenmai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai1ActionPerformed
+    private void btnKhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachhangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnKhuyenmai1ActionPerformed
+    }//GEN-LAST:event_btnKhachhangActionPerformed
 
     private void btnKhuyenmai4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai4ActionPerformed
         // TODO add your handling code here:
@@ -731,116 +755,31 @@ public class LoaiSanPhamGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBanhang;
     private javax.swing.JButton btnDangxuat;
-    private javax.swing.JButton btnKhuyenmai1;
-    private javax.swing.JButton btnKhuyenmai2;
-    private javax.swing.JButton btnKhuyenmai3;
+    private javax.swing.JButton btnKhachhang;
     private javax.swing.JButton btnKhuyenmai4;
     private javax.swing.JButton btnNhanvien;
     private javax.swing.JButton btnNhaphang;
     private javax.swing.JButton btnSanpham;
+    private javax.swing.JButton btnTaikhoan;
+    private javax.swing.JButton btnThongke;
     private javax.swing.JButton btnTrangchu;
-    private javax.swing.JButton chiTietButton;
-    private javax.swing.JButton chiTietButton1;
-    private javax.swing.JButton chiTietButton2;
-    private javax.swing.JButton chiTietButton3;
-    private javax.swing.JButton chiTietButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable khachHangTable;
-    private javax.swing.JTable khachHangTable1;
-    private javax.swing.JTable khachHangTable2;
-    private javax.swing.JTable khachHangTable3;
-    private javax.swing.JTable khachHangTable4;
-    private javax.swing.JButton lamMoiButton;
-    private javax.swing.JButton lamMoiButton1;
-    private javax.swing.JButton lamMoiButton2;
-    private javax.swing.JButton lamMoiButton3;
-    private javax.swing.JButton lamMoiButton4;
     private javax.swing.JButton lamMoiButton5;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JTable loaiSanPhamTable;
-    private javax.swing.JPanel midPanel;
-    private javax.swing.JPanel midPanel1;
-    private javax.swing.JPanel midPanel2;
-    private javax.swing.JPanel midPanel3;
-    private javax.swing.JPanel midPanel4;
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchTextfield;
-    private javax.swing.JButton suaButton;
-    private javax.swing.JButton suaButton1;
-    private javax.swing.JButton suaButton2;
-    private javax.swing.JButton suaButton3;
-    private javax.swing.JButton suaButton4;
     private javax.swing.JButton suaButton5;
-    private javax.swing.JButton themButton;
-    private javax.swing.JButton themButton1;
-    private javax.swing.JButton themButton2;
-    private javax.swing.JButton themButton3;
-    private javax.swing.JButton themButton4;
     private javax.swing.JButton themButton5;
     private javax.swing.JButton thoatButton;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel titleLabel1;
-    private javax.swing.JLabel titleLabel10;
-    private javax.swing.JLabel titleLabel11;
-    private javax.swing.JLabel titleLabel12;
-    private javax.swing.JLabel titleLabel13;
-    private javax.swing.JLabel titleLabel14;
-    private javax.swing.JLabel titleLabel15;
     private javax.swing.JLabel titleLabel16;
-    private javax.swing.JLabel titleLabel2;
-    private javax.swing.JLabel titleLabel3;
-    private javax.swing.JLabel titleLabel4;
-    private javax.swing.JLabel titleLabel5;
-    private javax.swing.JLabel titleLabel6;
-    private javax.swing.JLabel titleLabel7;
-    private javax.swing.JLabel titleLabel8;
-    private javax.swing.JLabel titleLabel9;
-    private javax.swing.JPanel topPanel;
-    private javax.swing.JPanel topPanel1;
-    private javax.swing.JPanel topPanel10;
-    private javax.swing.JPanel topPanel11;
-    private javax.swing.JPanel topPanel12;
-    private javax.swing.JPanel topPanel13;
-    private javax.swing.JPanel topPanel14;
-    private javax.swing.JPanel topPanel15;
     private javax.swing.JPanel topPanel16;
-    private javax.swing.JPanel topPanel2;
-    private javax.swing.JPanel topPanel3;
-    private javax.swing.JPanel topPanel4;
-    private javax.swing.JPanel topPanel5;
-    private javax.swing.JPanel topPanel6;
-    private javax.swing.JPanel topPanel7;
-    private javax.swing.JPanel topPanel8;
-    private javax.swing.JPanel topPanel9;
-    private javax.swing.JButton xoaButton;
-    private javax.swing.JButton xoaButton1;
-    private javax.swing.JButton xoaButton2;
-    private javax.swing.JButton xoaButton3;
-    private javax.swing.JButton xoaButton4;
     private javax.swing.JButton xoaButton5;
     // End of variables declaration//GEN-END:variables
 }
