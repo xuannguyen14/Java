@@ -19,7 +19,6 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
     private KhachHangGUI root1 = null;
     private ChiTietKhachHangGUI root2 = null;
     private Vector khachHangCu;
-    private int choice;
     
     /**
      * Creates new form SuaKhachHangGUI
@@ -243,34 +242,12 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
 
     private void hoanTatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoanTatButtonActionPerformed
         // TODO add your handling code here:
-        if (checkNull() == true) {
-            showMessage("Vui lòng nhập đầy đủ thông tin!");
-            return;
-        }
-        int choiceCf = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn lưu thay đổi?");
-        if (choiceCf == JOptionPane.YES_OPTION) {
-            khachHangBUS.updateKhachHang(khachHangCu, getData());
-            dispose();
-            if (root1 != null) {
-                root1.run();
-            }
-            else {
-                root2.run();
-            }
-            return;
-        }
-
+        hoanTat();
     }//GEN-LAST:event_hoanTatButtonActionPerformed
 
     private void huyBoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyBoButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        if (root1 != null) {
-            root1.run();
-        }
-        else {
-            root2.run();
-        }
+        huyBo();
     }//GEN-LAST:event_huyBoButtonActionPerformed
 
     private void emailKHTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailKHTextFieldActionPerformed
@@ -297,7 +274,41 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
         SDTKHTextField.setText(khachHangCu.get(4).toString());
     }//GEN-LAST:event_reloadSDTButtonActionPerformed
 
+    private void hoanTat() {
+        if (checkNull() == true) {
+            showMessage("Vui lòng nhập đầy đủ thông tin!");
+            return;
+        }
+        boolean check = kiemTraThongTin();
+        if (check == false) {
+            return;
+        }
+        int choiceCf = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn lưu thay đổi?");
+        if (choiceCf == JOptionPane.YES_OPTION) {
+            khachHangBUS.updateKhachHang(khachHangCu, getData());
+            dispose();
+            if (root1 != null) {
+                root1.run();
+            }
+            else {
+                root2.run();
+            }
+            return;
+        }
+    }
+    
+    private void huyBo() {
+        dispose();
+        if (root1 != null) {
+            root1.run();
+        }
+        else {
+            root2.run();
+        }
+    }
+    
     private Vector getData() {
+        
         Vector khacHangMoi = new Vector();
         khacHangMoi.add(khachHangCu.get(0).toString());
         khacHangMoi.add(tenKHTextField.getText());
@@ -325,7 +336,6 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
         this.khachHangBUS = khachHangBUS;
         this.root1 = root1;
         this.khachHangCu = khachHangCu;
-        this.choice = choice;
         loadData();
         setVisible(true);
     }
@@ -334,7 +344,6 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
         this.khachHangBUS = khachHangBUS;
         this.root2 = root2;
         this.khachHangCu = khachHangCu;
-        this.choice = choice;
         loadData();
         setVisible(true);
     }
@@ -358,6 +367,58 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
             return true;
         }
         return false;
+    }
+    
+    private boolean kiemTraThongTin() {
+        if (kiemTraTen() == false) {
+            showMessage("Tên không được quá 30 ký tự!");
+            return false;
+        }
+        if (kiemTraDiaChi() == false) {
+            showMessage("Địa chỉ không được quá 50 ký tự!");
+            return false;
+        }
+        if (kiemTraEmail() == false) {
+            showMessage("Email không được quá 30 ký tự!");
+            return false;
+        }
+        if (kiemTraSDT() == false) {
+            showMessage("Số điện thoại không hợp lệ!");
+            return false;
+        }        
+        return true;
+    }
+    
+    private boolean kiemTraTen() {
+        if (tenKHTextField.getText().trim().length() > 30) {
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean kiemTraDiaChi() {
+        if (diaChiKHTextField.getText().trim().length() > 50) {
+            return false;
+            
+        }
+        return true;
+        
+    }
+    
+    private boolean kiemTraEmail() {
+        if (emailKHTextField.getText().trim().length() > 30) {
+            return false;
+            
+        }
+        return true;
+    }
+        
+    private boolean kiemTraSDT() {
+        if (SDTKHTextField.getText().trim().length() > 11) {
+            return false;
+            
+        }
+        return true;
     }
     
     /**

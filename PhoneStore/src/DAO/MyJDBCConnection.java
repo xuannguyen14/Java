@@ -5,11 +5,8 @@
  */
 package DAO;
 
-<<<<<<< HEAD
 import java.sql.*;
-=======
 import java.sql.Connection;
->>>>>>> fd0bf36403908fdf50a862b71273b38eac15c0be
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.DriverManager;

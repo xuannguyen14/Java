@@ -124,7 +124,7 @@ public class NhasanxuatBUS {
     public NhaSanXuatDTO getNhaSXBySDT(String SDT) {
         NhaSanXuatDTO result = null;
         for (NhaSanXuatDTO nhaSanXuat : danhSachNhaSanXuat) {
-            if (nhaSanXuat.getSDT().equals(SDT)) {
+            if (nhaSanXuat.getSDT().contains(SDT.trim())) {
                 result = nhaSanXuat;
             }
         }
