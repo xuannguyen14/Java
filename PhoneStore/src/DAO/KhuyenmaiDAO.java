@@ -128,7 +128,7 @@ public class KhuyenmaiDAO {
     }
     public ArrayList<KhuyenmaiDTO> findnc(String ym){
         ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
-        String sql="select * from khuyenmai where NgayBD like '%"+ym+"%'";
+        String sql="select * from khuyenmai where NGAYBD like '%"+ym+"%'";
         try{
            Connection act=JDBCConnection.getConnection();
            Statement stmt=act.createStatement();
@@ -187,9 +187,9 @@ public class KhuyenmaiDAO {
         }
         return arr;
     }
-    public ArrayList<KhuyenmaiDTO> findct(String value){
+    public ArrayList<KhuyenmaiDTO> findct(String attr,String value){
         ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
-        String sql="select * from chitietkm where MaKM like '%"+value+"%'";
+        String sql="select * from chitietkm where "+attr+" like '%"+value+"%'";
         try{
            Connection act=JDBCConnection.getConnection();
            Statement stmt=act.createStatement();
@@ -203,7 +203,7 @@ public class KhuyenmaiDAO {
            }
         }
         catch(SQLException ex){
-            ex.printStackTrace();
+            System.out.println(ex);
         }
         return arr;
     }
