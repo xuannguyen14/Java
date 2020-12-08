@@ -27,4 +27,7 @@ public class NhanvienBUS {
     public ArrayList<NhanvienDTO> findnv(String attri,String manv){
         return NhanvienDAO.findnv(attri,manv);
     }
+    public ArrayList<NhanvienDTO> findluong(String luong){
+        return NhanvienDAO.findluong(luong);
+    }
 }
