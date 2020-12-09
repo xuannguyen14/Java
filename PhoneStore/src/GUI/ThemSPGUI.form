@@ -138,7 +138,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txt_MaSP" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" max="32767" attributes="0"/>
@@ -160,19 +160,18 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_MaLoai" alignment="3" max="32767" attributes="0"/>
-                              <Component id="btnTimLoai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jLabel8" pref="33" max="32767" attributes="0"/>
+                          <Component id="txt_MaLoai" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnTimLoai" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_MaNSX" alignment="3" max="32767" attributes="0"/>
-                              <Component id="btnTimNSX" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" pref="33" max="32767" attributes="0"/>
+                          <Component id="txt_MaNSX" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="btnTimNSX" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -204,14 +203,28 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_MaLoai">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n Lo&#x1ea1;i S&#x1ea3;n Ph&#x1ea9;m"/>
+              </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_MaLoaiKeyPressed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_MaNSX">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n Nh&#xe0; S&#x1ea3;n Xu&#x1ea5;t"/>
+              </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_MaNSXKeyPressed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel2">
               <Properties>
@@ -313,12 +326,18 @@
                 <Property name="text" type="java.lang.String" value="..."/>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimLoaiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnTimNSX">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimNSXActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

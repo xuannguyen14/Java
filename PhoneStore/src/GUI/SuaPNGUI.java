@@ -21,6 +21,7 @@ import static java.lang.Integer.parseInt;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 /**
  *
@@ -125,8 +126,8 @@ public class SuaPNGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txt_MaNV = new javax.swing.JTextField();
         txt_MaNCC = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSearchNV = new javax.swing.JButton();
+        btnSearchNCC = new javax.swing.JButton();
         txt_Tongtien = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_DSPN = new javax.swing.JTable();
@@ -150,7 +151,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 253, 204));
 
@@ -171,6 +172,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel7.setText("Tổng Tiền:");
 
+        txt_MaNV.setEditable(false);
         txt_MaNV.setText("Chọn Mã Nhân Viên");
         txt_MaNV.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -178,6 +180,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_MaNCC.setEditable(false);
         txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
         txt_MaNCC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -185,9 +188,19 @@ public class SuaPNGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("...");
+        btnSearchNV.setText("...");
+        btnSearchNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchNVActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("...");
+        btnSearchNCC.setText("...");
+        btnSearchNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchNCCActionPerformed(evt);
+            }
+        });
 
         txt_Tongtien.setEditable(false);
         txt_Tongtien.setText("0");
@@ -216,8 +229,8 @@ public class SuaPNGUI extends javax.swing.JFrame {
                             .addComponent(txt_MaNV))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
+                            .addComponent(btnSearchNV)
+                            .addComponent(btnSearchNCC)))
                     .addComponent(txt_Tongtien))
                 .addGap(54, 54, 54))
         );
@@ -230,10 +243,10 @@ public class SuaPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_MaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnSearchNCC))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnSearchNV)
                     .addComponent(txt_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -687,6 +700,26 @@ public class SuaPNGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFindSPActionPerformed
 
+    private void btnSearchNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNVActionPerformed
+        new SearchNVNCGUI(this).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchNVActionPerformed
+
+    private void btnSearchNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNCCActionPerformed
+        try {
+            new SearchNCC(this).setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchNCCActionPerformed
+
+    public void setTxt_MaNCC(String mancc) {
+        txt_MaNCC.setText(mancc);
+    }
+
+    public void setTxt_MaNV(String manv) {
+        txt_MaNV.setText(manv);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -731,10 +764,10 @@ public class SuaPNGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAddCT;
     private javax.swing.JButton btnDeleteCT;
     private javax.swing.JButton btnFindSP;
+    private javax.swing.JButton btnSearchNCC;
+    private javax.swing.JButton btnSearchNV;
     private javax.swing.JButton btn_Edit;
     private javax.swing.JButton btn_return;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -757,8 +790,8 @@ public class SuaPNGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner sp_SoLuong;
     private javax.swing.JTable tbl_CTPN;
     private javax.swing.JTable tbl_DSPN;
-    private javax.swing.JTextField txt_MaNCC;
-    private javax.swing.JTextField txt_MaNV;
+    public javax.swing.JTextField txt_MaNCC;
+    public javax.swing.JTextField txt_MaNV;
     public javax.swing.JTextField txt_MaSP;
     private javax.swing.JTextField txt_Tongtien;
     // End of variables declaration//GEN-END:variables

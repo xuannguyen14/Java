@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,6 +69,16 @@ public class ThemPNGUI extends javax.swing.JFrame {
     public void setTxt_MaSP(String txt) {
         txt_MaSP.setText(txt);
     }
+
+    public void setTxt_MaNCC(String txt) {
+        txt_MaNCC.setText(txt);
+    }
+
+    public void setTxt_MaNV(String txt) {
+        txt_MaNV.setText(txt);
+    }
+    
+    
        
     ArrayList<ChitietphieunhapDTO> dsct = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel();
@@ -95,8 +106,8 @@ public class ThemPNGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnTimLoai = new javax.swing.JButton();
-        btnTimNSX = new javax.swing.JButton();
+        btnSearchNV = new javax.swing.JButton();
+        btnSearchNCC = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnTrolai = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -111,7 +122,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
         sp_SoLuong = new javax.swing.JSpinner();
         btnXoaCT = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -126,6 +137,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
         txt_Tongtien.setEditable(false);
         txt_Tongtien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
+        txt_MaNV.setEditable(false);
         txt_MaNV.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txt_MaNV.setText("Chọn Mã Nhân Viên");
         txt_MaNV.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -134,6 +146,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_MaNCC.setEditable(false);
         txt_MaNCC.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
         txt_MaNCC.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -185,11 +198,21 @@ public class ThemPNGUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel8.setText("Nhân Viên :");
 
-        btnTimLoai.setText("...");
-        btnTimLoai.setFocusPainted(false);
+        btnSearchNV.setText("...");
+        btnSearchNV.setFocusPainted(false);
+        btnSearchNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchNVActionPerformed(evt);
+            }
+        });
 
-        btnTimNSX.setText("...");
-        btnTimNSX.setFocusPainted(false);
+        btnSearchNCC.setText("...");
+        btnSearchNCC.setFocusPainted(false);
+        btnSearchNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchNCCActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -213,11 +236,11 @@ public class ThemPNGUI extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txt_MaNV)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTimLoai))
+                                .addComponent(btnSearchNV))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txt_MaNCC, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTimNSX))
+                                .addComponent(btnSearchNCC))
                             .addComponent(txt_Tongtien))))
                 .addContainerGap())
         );
@@ -238,12 +261,12 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_MaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimLoai))
+                    .addComponent(btnSearchNV))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_MaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimNSX))
+                    .addComponent(btnSearchNCC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -582,6 +605,18 @@ public class ThemPNGUI extends javax.swing.JFrame {
             Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnFindSPActionPerformed
+
+    private void btnSearchNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNVActionPerformed
+        new SearchNVNCGUI(this).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchNVActionPerformed
+
+    private void btnSearchNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNCCActionPerformed
+        try {
+            new SearchNCC(this).setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchNCCActionPerformed
     
     /**
      * @param args the command line arguments
@@ -626,9 +661,9 @@ public class ThemPNGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnFindSP;
+    private javax.swing.JButton btnSearchNCC;
+    private javax.swing.JButton btnSearchNV;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnTimLoai;
-    private javax.swing.JButton btnTimNSX;
     private javax.swing.JButton btnTrolai;
     private javax.swing.JButton btnXoaCT;
     private javax.swing.JLabel jLabel1;
@@ -647,8 +682,8 @@ public class ThemPNGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner sp_SoLuong;
     private javax.swing.JTable tbl_DSSP;
-    private javax.swing.JTextField txt_MaNCC;
-    private javax.swing.JTextField txt_MaNV;
+    public javax.swing.JTextField txt_MaNCC;
+    public javax.swing.JTextField txt_MaNV;
     private javax.swing.JTextField txt_MaPN;
     public javax.swing.JTextField txt_MaSP;
     private javax.swing.JTextField txt_Ngaynhap;

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import BUS.SanphamBUS;
 import DTO.SanPhamDTO;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 /**
  *
@@ -36,6 +37,14 @@ public class ThemSPGUI extends javax.swing.JFrame {
         txt_MaSP.setText(KeyString);
         txt_SoLuong.setText("1");
         txt_TenSP.requestFocus();
+    }
+
+    public void setTxt_MaLoai(String txt) {
+        txt_MaLoai.setText(txt);
+    }
+
+    public void setTxt_MaNSX(String txt) {
+        txt_MaNSX.setText(txt);
     }
 
     /**
@@ -99,12 +108,16 @@ public class ThemSPGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_MaLoai.setEditable(false);
+        txt_MaLoai.setText("Chọn Loại Sản Phẩm");
         txt_MaLoai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaLoaiKeyPressed(evt);
             }
         });
 
+        txt_MaNSX.setEditable(false);
+        txt_MaNSX.setText("Chọn Nhà Sản Xuất");
         txt_MaNSX.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNSXKeyPressed(evt);
@@ -159,9 +172,19 @@ public class ThemSPGUI extends javax.swing.JFrame {
 
         btnTimLoai.setText("...");
         btnTimLoai.setFocusPainted(false);
+        btnTimLoai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimLoaiActionPerformed(evt);
+            }
+        });
 
         btnTimNSX.setText("...");
         btnTimNSX.setFocusPainted(false);
+        btnTimNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimNSXActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -202,7 +225,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_MaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -220,16 +243,16 @@ public class ThemSPGUI extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_MaLoai)
-                        .addComponent(btnTimLoai))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(txt_MaLoai)
+                    .addComponent(btnTimLoai, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_MaNSX)
-                        .addComponent(btnTimNSX))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(txt_MaNSX)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnTimNSX)))
                 .addContainerGap())
         );
 
@@ -330,8 +353,8 @@ public class ThemSPGUI extends javax.swing.JFrame {
             txt_TenSP.setText("");
             txt_SoLuong.setText("1");
             txt_DonGia.setText("");
-            txt_MaLoai.setText("");
-            txt_MaNSX.setText("");
+            txt_MaLoai.setText("Chọn Loại Sản Phẩm");
+            txt_MaNSX.setText("Chọn Nhà Sản Xuất");
                    
             try {
                 bus.them(sp);
@@ -402,6 +425,22 @@ public class ThemSPGUI extends javax.swing.JFrame {
         }
         this.dispose();                
     }//GEN-LAST:event_btnTrolaiActionPerformed
+
+    private void btnTimNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimNSXActionPerformed
+        try {
+            new SearchNSX(this).setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTimNSXActionPerformed
+
+    private void btnTimLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimLoaiActionPerformed
+        try {
+            new SearchLoaiSP(this).setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTimLoaiActionPerformed
     
     /**
      * @param args the command line arguments
@@ -459,8 +498,8 @@ public class ThemSPGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txt_DonGia;
-    private javax.swing.JTextField txt_MaLoai;
-    private javax.swing.JTextField txt_MaNSX;
+    public javax.swing.JTextField txt_MaLoai;
+    public javax.swing.JTextField txt_MaNSX;
     private javax.swing.JTextField txt_MaSP;
     private javax.swing.JTextField txt_SoLuong;
     private javax.swing.JTextField txt_TenSP;

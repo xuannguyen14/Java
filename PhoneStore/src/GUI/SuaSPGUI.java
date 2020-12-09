@@ -70,6 +70,14 @@ public class SuaSPGUI extends javax.swing.JFrame {
         
         txt_TenSP.requestFocus();
     }    
+    
+    public void setTxt_MaLoai(String txt) {
+        txt_MaLoai.setText(txt);
+    }
+
+    public void setTxt_MaNSX(String txt) {
+        txt_MaNSX.setText(txt);
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,8 +105,8 @@ public class SuaSPGUI extends javax.swing.JFrame {
         txt_MaNSX = new javax.swing.JTextField();
         btn_Edit = new javax.swing.JButton();
         btn_return = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSearchLoaiSP = new javax.swing.JButton();
+        btnSearchNSX = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_DSSP = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
@@ -160,12 +168,14 @@ public class SuaSPGUI extends javax.swing.JFrame {
             }
         });
 
+        txt_MaLoai.setEditable(false);
         txt_MaLoai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaLoaiKeyPressed(evt);
             }
         });
 
+        txt_MaNSX.setEditable(false);
         txt_MaNSX.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNSXKeyPressed(evt);
@@ -188,9 +198,19 @@ public class SuaSPGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("...");
+        btnSearchLoaiSP.setText("...");
+        btnSearchLoaiSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchLoaiSPActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("...");
+        btnSearchNSX.setText("...");
+        btnSearchNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchNSXActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -232,8 +252,8 @@ public class SuaSPGUI extends javax.swing.JFrame {
                                     .addComponent(txt_MaLoai))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addComponent(btnSearchLoaiSP, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnSearchNSX, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addGap(54, 54, 54))
         );
         jPanel4Layout.setVerticalGroup(
@@ -262,12 +282,12 @@ public class SuaSPGUI extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_MaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(btnSearchLoaiSP))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_MaNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
+                            .addComponent(btnSearchNSX))
                         .addGap(35, 35, 35)
                         .addComponent(btn_Edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -462,6 +482,22 @@ public class SuaSPGUI extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btn_returnActionPerformed
 
+    private void btnSearchNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNSXActionPerformed
+        try {
+            new SearchNSX(this).setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(SuaSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchNSXActionPerformed
+
+    private void btnSearchLoaiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchLoaiSPActionPerformed
+        try {
+            new SearchLoaiSP(this).setVisible(true);        // TODO add your handling code here:
+        } catch (Exception ex) {
+            Logger.getLogger(SuaSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchLoaiSPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -499,10 +535,10 @@ public class SuaSPGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSearchLoaiSP;
+    private javax.swing.JButton btnSearchNSX;
     private javax.swing.JButton btn_Edit;
     private javax.swing.JButton btn_return;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -518,8 +554,8 @@ public class SuaSPGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbl_DSSP;
     private javax.swing.JTextField txt_DonGia;
-    private javax.swing.JTextField txt_MaLoai;
-    private javax.swing.JTextField txt_MaNSX;
+    public javax.swing.JTextField txt_MaLoai;
+    public javax.swing.JTextField txt_MaNSX;
     private javax.swing.JTextField txt_SoLuong;
     private javax.swing.JTextField txt_TenSP;
     // End of variables declaration//GEN-END:variables
