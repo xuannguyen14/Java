@@ -23,7 +23,8 @@ public class MyJDBCConnection {
     
     private final String url = "jdbc:mysql://localhost:3306/phonestore";
     private final String user = "root";
-    private final String password = "Rvpvnvp098765";
+    //private final String password = "Rvpvnvp098765";
+    private final String password = "";
     
     private MyJDBCConnection() {
         String className = "com.mysql.jdbc.Driver";

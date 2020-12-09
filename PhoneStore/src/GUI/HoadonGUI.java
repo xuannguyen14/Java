@@ -120,7 +120,6 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
         btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnSanpham.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\sản phẩm.png")); // NOI18N
         btnSanpham.setText("Sản phẩm");
         btnSanpham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +129,6 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
         btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnNhanvien.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\nhân viên.png")); // NOI18N
         btnNhanvien.setText("Nhân viên");
         btnNhanvien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +138,6 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         btnKhuyenmai1.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai1.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\khách hàng.png")); // NOI18N
         btnKhuyenmai1.setText("Khách hàng");
         btnKhuyenmai1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,17 +147,24 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         btnKhuyenmai2.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai2.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\thống kê.png")); // NOI18N
         btnKhuyenmai2.setText("Thống kê");
+        btnKhuyenmai2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhuyenmai2ActionPerformed(evt);
+            }
+        });
 
         btnKhuyenmai3.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai3.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\tài khoản.png")); // NOI18N
         btnKhuyenmai3.setText("Tài khoản");
+        btnKhuyenmai3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhuyenmai3ActionPerformed(evt);
+            }
+        });
 
         btnKhuyenmai4.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai4.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\khuyến mãi1.png")); // NOI18N
         btnKhuyenmai4.setText("Khuyến mãi");
         btnKhuyenmai4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +174,6 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
         btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnBanhang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\bán hàng.png")); // NOI18N
         btnBanhang.setText("Bán hàng");
         btnBanhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,8 +183,12 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
         btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnNhaphang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\nhập hàng.png")); // NOI18N
         btnNhaphang.setText("Nhập hàng");
+        btnNhaphang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhaphangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelChuyenLayout = new javax.swing.GroupLayout(panelChuyen);
         panelChuyen.setLayout(panelChuyenLayout);
@@ -240,12 +247,10 @@ public class HoadonGUI extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\File\\iconFind.png")); // NOI18N
 
         txtFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,7 +324,6 @@ public class HoadonGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblHoaDon);
 
         btnLammoi.setBackground(new java.awt.Color(255, 255, 255));
-        btnLammoi.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\làm mới.png")); // NOI18N
         btnLammoi.setText("Làm mới");
         btnLammoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +332,6 @@ public class HoadonGUI extends javax.swing.JFrame {
         });
 
         btnXoa.setBackground(new java.awt.Color(255, 255, 255));
-        btnXoa.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\xóa.png")); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -337,7 +340,6 @@ public class HoadonGUI extends javax.swing.JFrame {
         });
 
         btnThem.setBackground(new java.awt.Color(255, 255, 255));
-        btnThem.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\icon thêm.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,7 +348,6 @@ public class HoadonGUI extends javax.swing.JFrame {
         });
 
         btnChitiet.setBackground(new java.awt.Color(255, 255, 255));
-        btnChitiet.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\xemchitiet.png")); // NOI18N
         btnChitiet.setText("Xem chi tiết");
         btnChitiet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -554,31 +555,49 @@ public class HoadonGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanvienActionPerformed
-        // TODO add your handling code here:
+        try {
+            new NhanvienGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnNhanvienActionPerformed
 
     private void btnKhuyenmai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            new KhachHangGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnKhuyenmai1ActionPerformed
 
     private void btnBanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanhangActionPerformed
-        // TODO add your handling code here:
+        try {
+            new HoadonGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
         
     }//GEN-LAST:event_btnBanhangActionPerformed
 
     private void btnSanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanphamActionPerformed
         try {
-            // TODO add your handling code here:
             new SanPhamGUI().setVisible(true);
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
+        this.dispose(); 
     }//GEN-LAST:event_btnSanphamActionPerformed
 
     private void btnKhuyenmai4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai4ActionPerformed
-        // TODO add your handling code here:
-        new KhuyenmaiGUI().setVisible(true);
+        try {
+            new KhuyenmaiGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose(); 
         
     }//GEN-LAST:event_btnKhuyenmai4ActionPerformed
 
@@ -622,6 +641,33 @@ public class HoadonGUI extends javax.swing.JFrame {
 //        new FindNC().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnNhaphangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhaphangActionPerformed
+        try {
+            new PhieuNhapGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_btnNhaphangActionPerformed
+
+    private void btnKhuyenmai2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai2ActionPerformed
+        try {
+            new ThongKeChiGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_btnKhuyenmai2ActionPerformed
+
+    private void btnKhuyenmai3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai3ActionPerformed
+        try {
+            new DSTaikhoanGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(HoadonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_btnKhuyenmai3ActionPerformed
 
 
     public static void main(String args[]) {

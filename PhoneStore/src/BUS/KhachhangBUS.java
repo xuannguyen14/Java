@@ -5,8 +5,8 @@
  */
 package BUS;
 
-import DAO.KhachHangDAO;
-import DTO.KhachHangDTO;
+import DAO.KhachhangDAO;
+import DTO.KhachhangDTO;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Vector;
@@ -15,16 +15,16 @@ import java.util.Vector;
  *
  * @author pc
  */
-public class KhachHangBUS {
+public class KhachhangBUS {
     
     //Sử dụng kết nối CSDL
-    private KhachHangDAO khachHangDAO;
+    private KhachhangDAO khachHangDAO;
     
     //Lưu trữ để tránh lấy lại nhiều lần tăng tốc độ xử lý
-    private ArrayList<KhachHangDTO> danhSachKhachHang;
+    private ArrayList<KhachhangDTO> danhSachKhachHang;
     
-    public KhachHangBUS() {
-        khachHangDAO = new KhachHangDAO();
+    public KhachhangBUS() {
+        khachHangDAO = new KhachhangDAO();
         danhSachKhachHang = khachHangDAO.getDanhSachKhachHang();
     }
     
@@ -58,8 +58,8 @@ public class KhachHangBUS {
     public void updateKhachHang(Vector khachHangCu, Vector khachHangMoi) {
         
         //Ép kiểu sang DTO
-        KhachHangDTO khachHangMoiDTO = toKhachHangDTO(khachHangMoi);
-        KhachHangDTO khachHangCuDTO = toKhachHangDTO(khachHangCu);
+        KhachhangDTO khachHangMoiDTO = toKhachHangDTO(khachHangMoi);
+        KhachhangDTO khachHangCuDTO = toKhachHangDTO(khachHangCu);
         
         //Update trong CSDL
         khachHangDAO.upadateKhachHang(khachHangMoiDTO);
@@ -86,7 +86,7 @@ public class KhachHangBUS {
         }
         
         //Tìm kiếm trong danh sách khách hàng hiện tại
-        for (KhachHangDTO khachHangDTO : this.danhSachKhachHang) {
+        for (KhachhangDTO khachHangDTO : this.danhSachKhachHang) {
             
             //Khách hàng có mã trùng với mã cần tìm thì đưa vào danh sách kết quả
             if (khachHangDTO.getMaKhachHang().equals(maKhachHang)) {
@@ -100,7 +100,7 @@ public class KhachHangBUS {
     //Lấy danh sách khách hàng hiện tại trả về kiểu Vector
     public Vector<Vector> getDanhSachKhachHang() {
         Vector<Vector> danhSachKhachHangKQ = new Vector<>();
-        for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+        for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
             Vector row = toVectorData(khachHangDTO);
             danhSachKhachHangKQ.add(row);
         }
@@ -108,7 +108,7 @@ public class KhachHangBUS {
     }
     
     //Ép kiểu từ DTO -> Vector
-    public Vector toVectorData(KhachHangDTO khachHang) {
+    public Vector toVectorData(KhachhangDTO khachHang) {
         Vector result = new Vector();
         result.add(khachHang.getMaKhachHang());
         result.add(khachHang.getTenKhachHang());
@@ -119,8 +119,8 @@ public class KhachHangBUS {
     }
     
     //Ép kiểu từ Vector -> DTO
-    public KhachHangDTO toKhachHangDTO(Vector khachHang) {
-        KhachHangDTO result = new KhachHangDTO();
+    public KhachhangDTO toKhachHangDTO(Vector khachHang) {
+        KhachhangDTO result = new KhachhangDTO();
         result.setMaKhachHang(khachHang.get(0).toString());
         result.setTenKhachHang(khachHang.get(1).toString());
         result.setDiaChi(khachHang.get(2).toString());
@@ -243,7 +243,7 @@ public class KhachHangBUS {
         tenKhachHang = deleteSpace(tenKhachHang).toLowerCase();
         
         //Duyệt danh sách khách hàng hiện tại
-        for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+        for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
             
             //Lấy tên từng khách hàng và bỏ dấu tiếng Việt
             String tenKH = VNCharacterUtils.removeAccent(khachHangDTO.getTenKhachHang());
@@ -276,7 +276,7 @@ public class KhachHangBUS {
         if (emailKhachHang.contains("@")) {
             
             //Duyệt danh sách khách hàng hiện tại
-            for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+            for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
                 
                 //Lấy email từng khách hàng chuyển thành chữ thường nếu chứa email nhập vào thì thêm vào kết quả
                 if (khachHangDTO.getEmail().toLowerCase().contains(emailKhachHang.toLowerCase())) {
@@ -292,7 +292,7 @@ public class KhachHangBUS {
             emailKhachHang = emailKhachHang.toLowerCase();
             
             //Duyệt danh sách khách hàng hiện tại
-            for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+            for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
                 
                 //Lấy phần tên email từng khách hàng chuyển thành chữ thường nếu chứa tên nhập vào thì thêm vào kết quả
                 if (khachHangDTO.getEmail().split("@")[0].toLowerCase().contains(emailKhachHang)) {
@@ -325,7 +325,7 @@ public class KhachHangBUS {
         diaChiKhachHang = deleteSpace(diaChiKhachHang).toLowerCase();
         
         //Duyệt danh sách khách hàng hiện tại
-        for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+        for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
             
             //Lấy địa chỉ từng khách hàng xóa dấu tiếng Việt
             String diaChi = VNCharacterUtils.removeAccent(khachHangDTO.getDiaChi());
@@ -362,7 +362,7 @@ public class KhachHangBUS {
         SDTKhachHang = deleteSpace(SDTKhachHang);
         
         //Duyệt hết danh sách khách hàng
-        for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+        for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
             
             //Khách hàng có SĐT chứa chuỗi đã đưa vào thì thêm vào danh sách kết quả
             if (khachHangDTO.getSDT().contains(SDTKhachHang)) {
@@ -376,7 +376,7 @@ public class KhachHangBUS {
     
     //Dùng để kiểm tra danh sách khách hàng hiện có
     public void showDanhSachKhachHang() {
-        for (KhachHangDTO khachHangDTO : danhSachKhachHang) {
+        for (KhachhangDTO khachHangDTO : danhSachKhachHang) {
             khachHangDTO.display();
         }
     }

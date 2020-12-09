@@ -8,6 +8,7 @@ package GUI;
 import BUS.NhanvienBUS;
 import DTO.NhanvienDTO;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -293,36 +294,71 @@ public class NhanvienGUI extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setIcon(icon1);
         jButton4.setText("Bán hàng");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon2=new ImageIcon("src\\img\\icon\\nhập hàng.png","nhaphang");
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton5.setIcon(icon2);
         jButton5.setText("Nhập hàng");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon3=new ImageIcon("src\\img\\icon\\sản phẩm.png","product");
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setIcon(icon3);
         jButton6.setText("Sản phẩm");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon4=new ImageIcon("src\\img\\icon\\khuyến mãi1.png","khuyenmai");
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton7.setIcon(icon4);
         jButton7.setText("Khuyến mãi");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon5=new ImageIcon("src\\img\\icon\\khách hàng.png","customer");
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton8.setIcon(icon5);
         jButton8.setText("Khách hàng");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon6=new ImageIcon("src\\img\\icon\\thống kê.png","report");
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setIcon(icon6);
         jButton9.setText("Thống kê");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon7=new ImageIcon("src\\img\\icon\\tài khoản.png","account");
         jButton10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton10.setIcon(icon7);
         jButton10.setText("Tài khoản");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -469,6 +505,70 @@ public class NhanvienGUI extends javax.swing.JFrame {
         TimNVNCGUI temp=new TimNVNCGUI();
         temp.setVisible(true);
     }//GEN-LAST:event_advanceActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            new HoadonGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            new PhieuNhapGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            new SanPhamGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            new KhuyenmaiGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+            new KhachHangGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+            new ThongKeChiGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        try {
+            new DSTaikhoanGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(NhanvienGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     public void showAll(){
         String[] col={"Mã nhân viên","Tên nhân viên","Địa chỉ","Email","SĐT","Mã tài khoản","Lương"};
         DefaultTableModel dtm=new DefaultTableModel(col,0);

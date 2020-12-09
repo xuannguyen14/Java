@@ -6,9 +6,11 @@
 
 package GUI;
 
-import BUS.KhachHangBUS;
+import BUS.KhachhangBUS;
 import BUS.VNCharacterUtils;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
@@ -21,7 +23,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
     
     final String[] listColumn = {"Mã khách hàng", "Tên khách hàng", "Địa chỉ", "Email", "Số điện thoại"};
     
-    private KhachHangBUS khachHangBUS;
+    private KhachhangBUS khachHangBUS;
     private ThemKhachHangGUI themKhachHangGUI;
     private SuaKhachHangGUI suaKhachHangGUI;
     private ChiTietKhachHangGUI chiTietKhachHangGUI;
@@ -29,7 +31,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
 
     /** Creates new form KhachHangGUI */
     public KhachHangGUI() {
-        khachHangBUS = new KhachHangBUS();
+        khachHangBUS = new KhachhangBUS();
         themKhachHangGUI = new ThemKhachHangGUI();
         suaKhachHangGUI = new SuaKhachHangGUI();
         chiTietKhachHangGUI = new ChiTietKhachHangGUI();
@@ -119,12 +121,22 @@ public class KhachHangGUI extends javax.swing.JFrame {
         btnThongke.setIcon(thongKeIcon);
         btnThongke.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnThongke.setText("Thống kê");
+        btnThongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongkeActionPerformed(evt);
+            }
+        });
 
         ImageIcon taiKhoanIcon = new ImageIcon("src\\img\\icon\\tài khoản.png", "taikhoan");
         btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
         btnTaikhoan.setIcon(taiKhoanIcon);
         btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnTaikhoan.setText("Tài khoản");
+        btnTaikhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaikhoanActionPerformed(evt);
+            }
+        });
 
         ImageIcon khuyenMaiIcon = new ImageIcon("src\\img\\icon\\khuyến mãi1.png", "banhang");
         btnKhuyenmai4.setBackground(new java.awt.Color(204, 255, 153));
@@ -153,6 +165,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
         btnNhaphang.setIcon(nhapHangIcon);
         btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnNhaphang.setText("Nhập hàng");
+        btnNhaphang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhaphangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -251,7 +268,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
         searchPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -464,23 +481,48 @@ public class KhachHangGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanphamActionPerformed
-        // TODO add your handling code here:
+        try {
+            new SanPhamGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnSanphamActionPerformed
 
     private void btnNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanvienActionPerformed
-        // TODO add your handling code here:
+        try {
+            new NhanvienGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnNhanvienActionPerformed
 
     private void btnKhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachhangActionPerformed
-        // TODO add your handling code here:
+        try {
+            new KhachHangGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnKhachhangActionPerformed
 
     private void btnKhuyenmai4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmai4ActionPerformed
-        // TODO add your handling code here:
+        try {
+            new KhuyenmaiGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnKhuyenmai4ActionPerformed
 
     private void btnBanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanhangActionPerformed
-        // TODO add your handling code here:
+        try {
+            new HoadonGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnBanhangActionPerformed
 
     private void btnTrangchuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangchuActionPerformed
@@ -529,6 +571,33 @@ public class KhachHangGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadData();
     }//GEN-LAST:event_lamMoiButtonActionPerformed
+
+    private void btnThongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongkeActionPerformed
+        try {
+            new ThongKeChiGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_btnThongkeActionPerformed
+
+    private void btnTaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaikhoanActionPerformed
+        try {
+            new DSTaikhoanGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_btnTaikhoanActionPerformed
+
+    private void btnNhaphangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhaphangActionPerformed
+        try {
+            new PhieuNhapGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhachHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNhaphangActionPerformed
 
     public void run() {
         loadData();

@@ -93,7 +93,7 @@
                   <Component id="jScrollPane1" min="-2" pref="297" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -489,6 +489,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nhaphangActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="sanpham">
           <Properties>
@@ -497,6 +500,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sanphamActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon9=new ImageIcon(&quot;src\\img\\icon\\s&#x1ea3;n ph&#x1ea9;m.png&quot;);"/>
           </AuxValues>
@@ -508,6 +514,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NhanvienActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon11=new ImageIcon(&quot;src\\img\\icon\\nh&#xe2;n vi&#xea;n.png&quot;);"/>
           </AuxValues>
@@ -519,6 +528,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Kh&#xe1;ch h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="khachhangActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon12=new ImageIcon(&quot;src\\img\\icon\\kh&#xe1;ch h&#xe0;ng.png&quot;,&quot;customer&quot;);"/>
           </AuxValues>
@@ -530,6 +542,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="thongkeActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon13=new ImageIcon(&quot;src\\img\\icon\\th&#x1ed1;ng k&#xea;.png&quot;,&quot;report&quot;);"/>
           </AuxValues>
@@ -541,6 +556,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="taikhoanActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon15=new ImageIcon(&quot;src\\img\\icon\\t&#xe0;i kho&#x1ea3;n.png&quot;,&quot;account&quot;);"/>
           </AuxValues>

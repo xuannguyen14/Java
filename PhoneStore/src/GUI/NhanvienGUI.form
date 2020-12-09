@@ -481,6 +481,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="B&#xe1;n h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon1=new ImageIcon(&quot;src\\img\\icon\\b&#xe1;n h&#xe0;ng.png&quot;,&quot;banhang&quot;);"/>
           </AuxValues>
@@ -492,6 +495,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon2=new ImageIcon(&quot;src\\img\\icon\\nh&#x1ead;p h&#xe0;ng.png&quot;,&quot;nhaphang&quot;);"/>
           </AuxValues>
@@ -503,6 +509,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon3=new ImageIcon(&quot;src\\img\\icon\\s&#x1ea3;n ph&#x1ea9;m.png&quot;,&quot;product&quot;);"/>
           </AuxValues>
@@ -514,6 +523,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Khuy&#x1ebf;n m&#xe3;i"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon4=new ImageIcon(&quot;src\\img\\icon\\khuy&#x1ebf;n m&#xe3;i1.png&quot;,&quot;khuyenmai&quot;);"/>
           </AuxValues>
@@ -525,6 +537,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Kh&#xe1;ch h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon5=new ImageIcon(&quot;src\\img\\icon\\kh&#xe1;ch h&#xe0;ng.png&quot;,&quot;customer&quot;);"/>
           </AuxValues>
@@ -536,6 +551,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon6=new ImageIcon(&quot;src\\img\\icon\\th&#x1ed1;ng k&#xea;.png&quot;,&quot;report&quot;);"/>
           </AuxValues>
@@ -547,6 +565,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon icon7=new ImageIcon(&quot;src\\img\\icon\\t&#xe0;i kho&#x1ea3;n.png&quot;,&quot;account&quot;);"/>
           </AuxValues>

@@ -302,7 +302,7 @@ public class ChitietKMGUI extends javax.swing.JFrame {
         ArrayList<KhuyenmaiDTO> arr=new ArrayList<KhuyenmaiDTO>();
         String temp=value.getText();
         KhuyenmaiBUS a=new KhuyenmaiBUS();
-        arr=a.findct(temp);
+        arr = a.findctnc(temp);
         KhuyenmaiDTO km= new KhuyenmaiDTO();
         for(int i=0;i<arr.size();i++){
             km=arr.get(i);

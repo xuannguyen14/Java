@@ -9,6 +9,8 @@ import DTO.KhuyenmaiDTO;
 import DAO.JDBCConnection;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -207,7 +209,7 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -315,31 +317,61 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
         ImageIcon icon8=new ImageIcon("src\\img\\icon\\nhập hàng.png","switchnhaphang");
         nhaphang.setIcon(icon8);
         nhaphang.setText("Nhập hàng");
+        nhaphang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhaphangActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon9=new ImageIcon("src\\img\\icon\\sản phẩm.png");
         sanpham.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sanpham.setIcon(icon9);
         sanpham.setText("Sản phẩm");
+        sanpham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sanphamActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon11=new ImageIcon("src\\img\\icon\\nhân viên.png");
         Nhanvien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Nhanvien.setIcon(icon11);
         Nhanvien.setText("Nhân viên");
+        Nhanvien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NhanvienActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon12=new ImageIcon("src\\img\\icon\\khách hàng.png","customer");
         khachhang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         khachhang.setIcon(icon12);
         khachhang.setText("Khách hàng");
+        khachhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                khachhangActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon13=new ImageIcon("src\\img\\icon\\thống kê.png","report");
         thongke.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         thongke.setIcon(icon13);
         thongke.setText("Thống kê");
+        thongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thongkeActionPerformed(evt);
+            }
+        });
 
         ImageIcon icon15=new ImageIcon("src\\img\\icon\\tài khoản.png","account");
         taikhoan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         taikhoan.setIcon(icon15);
         taikhoan.setText("Tài khoản");
+        taikhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taikhoanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -496,13 +528,72 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void banhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banhangActionPerformed
-        // TODO add your handling code here:
+        try {
+            new HoadonGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_banhangActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         KhuyenmaiNCGUI temp=new KhuyenmaiNCGUI();
         temp.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void nhaphangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhaphangActionPerformed
+        try {
+            new PhieuNhapGUI().setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_nhaphangActionPerformed
+
+    private void sanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sanphamActionPerformed
+        try {
+            new SanPhamGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_sanphamActionPerformed
+
+    private void NhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NhanvienActionPerformed
+        try {
+            new NhanvienGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();          // TODO add your handling code here:
+    }//GEN-LAST:event_NhanvienActionPerformed
+
+    private void khachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_khachhangActionPerformed
+        try {
+            new KhachHangGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_khachhangActionPerformed
+
+    private void thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thongkeActionPerformed
+        try {
+            new ThongKeChiGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_thongkeActionPerformed
+
+    private void taikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taikhoanActionPerformed
+        try {
+            new DSTaikhoanGUI().setVisible(true);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(KhuyenmaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_taikhoanActionPerformed
 
     public void showAll(){
         String[] col={"Mã khuyến mãi","Tên khuyến mãi","Ngày bắt đầu","Ngày kết thúc"};

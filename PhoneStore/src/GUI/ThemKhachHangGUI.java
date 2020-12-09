@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BUS.KhachHangBUS;
+import BUS.KhachhangBUS;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class ThemKhachHangGUI extends javax.swing.JFrame {
 
-    private KhachHangBUS khachHangBUS;
+    private KhachhangBUS khachHangBUS;
     private KhachHangGUI root1;
     
     
@@ -256,7 +256,7 @@ public class ThemKhachHangGUI extends javax.swing.JFrame {
         SDTKHTextField.setText("");
     }
     
-    public void run(KhachHangGUI root1, KhachHangBUS khachHangBUS) {
+    public void run(KhachHangGUI root1, KhachhangBUS khachHangBUS) {
         this.khachHangBUS = khachHangBUS;
         this.root1 = root1;
         setVisible(true);

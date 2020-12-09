@@ -14,7 +14,7 @@ import java.util.Vector;
 public class Test {
     
     public static void main(String[] args) {
-        KhachHangBUS BUS = new KhachHangBUS();
+        KhachhangBUS BUS = new KhachhangBUS();
         Vector<Vector> result = BUS.getKhachHangByMaKhachHang("KH009");
         for (Vector vector : result) {
             BUS.toKhachHangDTO(vector).display();

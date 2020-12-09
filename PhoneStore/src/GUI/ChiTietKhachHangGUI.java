@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BUS.KhachHangBUS;
+import BUS.KhachhangBUS;
 import java.util.Vector;
 
 /**
@@ -18,7 +18,7 @@ public class ChiTietKhachHangGUI extends javax.swing.JFrame {
      * Creates new form ChiTietKhachHangGUI
      */
     
-    private KhachHangBUS khachHangBUS;
+    private KhachhangBUS khachHangBUS;
     private KhachHangGUI root;
     private Vector khachHang;
     private SuaKhachHangGUI suaKhachHangGUI;
@@ -183,7 +183,7 @@ public class ChiTietKhachHangGUI extends javax.swing.JFrame {
         chiTietKHTextArea.setText("");
     }
     
-    public void run(KhachHangGUI root, KhachHangBUS khachHangBUS, Vector khachHang) {
+    public void run(KhachHangGUI root, KhachhangBUS khachHangBUS, Vector khachHang) {
         this.root = root;
         this.khachHangBUS = khachHangBUS;
         this.khachHang = khachHang;

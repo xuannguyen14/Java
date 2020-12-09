@@ -9,7 +9,7 @@ package DTO;
  *
  * @author pc
  */
-public class KhachHangDTO {
+public class KhachhangDTO {
     
     private String maKhachHang;
     private String tenKhachHang;
@@ -17,10 +17,10 @@ public class KhachHangDTO {
     private String email;
     private String SDT;
 
-    public KhachHangDTO() {
+    public KhachhangDTO() {
     }
 
-    public KhachHangDTO(String maKhachHang, String tenKhachHang, String diaChi, String email, String SDT) {
+    public KhachhangDTO(String maKhachHang, String tenKhachHang, String diaChi, String email, String SDT) {
         this.maKhachHang = maKhachHang;
         this.tenKhachHang = tenKhachHang;
         this.diaChi = diaChi;
@@ -76,8 +76,8 @@ public class KhachHangDTO {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof KhachHangDTO)) return false;
-        KhachHangDTO o = (KhachHangDTO) obj;
+        if (!(obj instanceof KhachhangDTO)) return false;
+        KhachhangDTO o = (KhachhangDTO) obj;
         if (!o.getMaKhachHang().equals(maKhachHang)) return false;
         if (!o.getTenKhachHang().equals(tenKhachHang)) return false;
         if (!o.getDiaChi().equals(diaChi)) return false;

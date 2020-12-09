@@ -177,6 +177,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThongkeActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon thongKeIcon = new ImageIcon(&quot;src\\img\\icon\\th&#x1ed1;ng k&#xea;.png&quot;, &quot;thongke&quot;);"/>
           </AuxValues>
@@ -191,6 +194,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaikhoanActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon taiKhoanIcon = new ImageIcon(&quot;src\\img\\icon\\t&#xe0;i kho&#x1ea3;n.png&quot;, &quot;taikhoan&quot;);"/>
           </AuxValues>
@@ -239,6 +245,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p h&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNhaphangActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ImageIcon nhapHangIcon = new ImageIcon(&quot;src\\img\\icon\\nh&#x1ead;p h&#xe0;ng.png&quot;, &quot;nhaphang&quot;);"/>
           </AuxValues>

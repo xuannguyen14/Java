@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BUS.KhachHangBUS;
+import BUS.KhachhangBUS;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class SuaKhachHangGUI extends javax.swing.JFrame {
 
-    private KhachHangBUS khachHangBUS;
+    private KhachhangBUS khachHangBUS;
     private KhachHangGUI root1 = null;
     private ChiTietKhachHangGUI root2 = null;
     private Vector khachHangCu;
@@ -332,7 +332,7 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
         SDTKHTextField.setText(khachHangCu.get(4).toString());
     }
     
-    public void run(KhachHangGUI root1, KhachHangBUS khachHangBUS, Vector khachHangCu) {
+    public void run(KhachHangGUI root1, KhachhangBUS khachHangBUS, Vector khachHangCu) {
         this.khachHangBUS = khachHangBUS;
         this.root1 = root1;
         this.khachHangCu = khachHangCu;
@@ -340,7 +340,7 @@ public class SuaKhachHangGUI extends javax.swing.JFrame {
         setVisible(true);
     }
     
-    public void run(ChiTietKhachHangGUI root2, KhachHangBUS khachHangBUS, Vector khachHangCu) {
+    public void run(ChiTietKhachHangGUI root2, KhachhangBUS khachHangBUS, Vector khachHangCu) {
         this.khachHangBUS = khachHangBUS;
         this.root2 = root2;
         this.khachHangCu = khachHangCu;
