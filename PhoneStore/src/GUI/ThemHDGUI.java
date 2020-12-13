@@ -8,13 +8,19 @@ package GUI;
 import BUS.ChitiethoadonBUS;
 import BUS.ChitietkhuyenmaiBUS;
 import BUS.HoadonBUS;
+import BUS.KhachhangBUS;
 import BUS.Khuyenmai1BUS;
+import BUS.NhanvienBUS;
 import BUS.Sanpham1BUS;
+import BUS.TaikhoanBUS;
 import DTO.ChitiethoadonDTO;
 import DTO.ChitietkhuyenmaiDTO;
 import DTO.HoadonDTO;
+import DTO.KhachhangDTO;
 import DTO.Khuyenmai1DTO;
+import DTO.NhanvienDTO;
 import DTO.SanPhamDTO;
+import DTO.TaikhoanDTO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -34,13 +40,21 @@ public class ThemHDGUI extends javax.swing.JFrame {
     ChitietkhuyenmaiBUS chitietkhuyenmaiBUS;
     Khuyenmai1BUS khuyenmaiBUS;
     ChitiethoadonBUS chitiethoadonBUS;
+    KhachhangBUS khachHangBUS;
+    NhanvienBUS nhanvienBUS;
     DefaultTableModel defaultTableModel;
+    TaikhoanDTO taikhoan;
+    TaikhoanBUS taikhoanBUS;
     List<ChitiethoadonDTO> chitietHDs = new ArrayList<>();
     
-    public ThemHDGUI() {
+    public ThemHDGUI(String username) throws Exception {
         
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        
+        taikhoanBUS = new TaikhoanBUS();
+        taikhoan = taikhoanBUS.getTaiKhoanByMaTK(username);
+        
         defaultTableModel = new DefaultTableModel(){
             @Override
             // ham ben duoi duoc xay dung de khong cho user edit du lieu, day nhu la mot anonymous
@@ -60,6 +74,9 @@ public class ThemHDGUI extends javax.swing.JFrame {
         defaultTableModel.addColumn("THÀNH TIỀN (Triệu đồng)");
         
         loadData();
+        
+        //Them Popup cho usertable
+        tblSanpham.setComponentPopupMenu(jPopupMenuDSHH);
         
         txtMaHD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -103,6 +120,17 @@ public class ThemHDGUI extends javax.swing.JFrame {
             comboboxMaSp.addItem(sanPham.getMaSP());
         }
         
+        khachHangBUS = new KhachhangBUS();
+        List<KhachhangDTO> khachhangs = khachHangBUS.getAllKhachHang();
+        for(KhachhangDTO khachhang : khachhangs){
+            comboMaKH.addItem(khachhang.getMaKhachHang());
+        }
+        
+        nhanvienBUS = new NhanvienBUS();
+        List<NhanvienDTO> nhanviens = nhanvienBUS.showAll();
+        for(NhanvienDTO nhanvien : nhanviens){
+            comboMaNV.addItem(nhanvien.getmanv());
+        }
     }
     
     private void loadDataTable(String maSP){
@@ -124,6 +152,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenuDSHH = new javax.swing.JPopupMenu();
+        jMenuItemXoa = new javax.swing.JMenuItem();
         jPanel12 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -143,8 +173,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
         txtMaKH = new javax.swing.JTextField();
         txtMaNV = new javax.swing.JTextField();
         txtNgayxuat = new javax.swing.JTextField();
-        btnxemthemmaKH = new javax.swing.JButton();
-        btnxemthemmaNV = new javax.swing.JButton();
+        comboMaNV = new javax.swing.JComboBox<>();
+        comboMaKH = new javax.swing.JComboBox<>();
         jPanel16 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -167,11 +197,19 @@ public class ThemHDGUI extends javax.swing.JFrame {
         txtSoluong = new javax.swing.JTextField();
         btnChonmua = new javax.swing.JButton();
 
+        jMenuItemXoa.setText("Xóa");
+        jMenuItemXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemXoaActionPerformed(evt);
+            }
+        });
+        jPopupMenuDSHH.add(jMenuItemXoa);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Thêm hóa đơn");
         setBackground(new java.awt.Color(153, 255, 153));
 
-        jPanel12.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel12.setBackground(new java.awt.Color(204, 255, 204));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 102, 0));
@@ -218,6 +256,11 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblSanpham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanphamMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblSanpham);
 
         btnThem.setBackground(new java.awt.Color(255, 255, 255));
@@ -229,6 +272,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
 
+        btnThoat3.setBackground(new java.awt.Color(204, 255, 153));
         btnThoat3.setText("Trở lại");
         btnThoat3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,17 +341,17 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
 
-        btnxemthemmaKH.setText("...");
-        btnxemthemmaKH.addActionListener(new java.awt.event.ActionListener() {
+        comboMaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
+        comboMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxemthemmaKHActionPerformed(evt);
+                comboMaNVActionPerformed(evt);
             }
         });
 
-        btnxemthemmaNV.setText("...");
-        btnxemthemmaNV.addActionListener(new java.awt.event.ActionListener() {
+        comboMaKH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
+        comboMaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxemthemmaNVActionPerformed(evt);
+                comboMaKHActionPerformed(evt);
             }
         });
 
@@ -317,28 +361,28 @@ public class ThemHDGUI extends javax.swing.JFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel32)
                             .addComponent(jLabel30))
                         .addGap(23, 23, 23)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNgayxuat, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-                            .addComponent(txtMaNV)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(txtNgayxuat)))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31)
                             .addComponent(jLabel29))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaHD)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMaHD, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txtMaKH))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnxemthemmaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnxemthemmaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboMaKH, 0, 75, Short.MAX_VALUE)
+                    .addComponent(comboMaNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,12 +395,12 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnxemthemmaKH))
+                    .addComponent(comboMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
                     .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnxemthemmaNV))
+                    .addComponent(comboMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
@@ -479,6 +523,11 @@ public class ThemHDGUI extends javax.swing.JFrame {
         });
 
         txtTienKm.setEditable(false);
+        txtTienKm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTienKmActionPerformed(evt);
+            }
+        });
 
         txtDongia.setEditable(false);
 
@@ -495,6 +544,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
 
+        btnChonmua.setBackground(new java.awt.Color(204, 255, 153));
         btnChonmua.setText("Chọn mua");
         btnChonmua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -537,7 +587,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel22)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 39, Short.MAX_VALUE))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -593,7 +643,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
 
     private void btnThoat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoat3ActionPerformed
         // TODO add your handling code here:
-        new HoadonGUI().setVisible(true);
+        new HoadonGUI(taikhoan.getMaTK()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnThoat3ActionPerformed
 
@@ -624,6 +674,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
 
         hoadon = new HoadonDTO();
         hoadonBUS = new HoadonBUS();
+        chitiethoadonBUS = new ChitiethoadonBUS();
         
         hoadon.setMaHD(txtMaHD.getText());
         hoadon.setNgayxuat(txtNgayxuat.getText());
@@ -639,7 +690,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
             chitiethoadonBUS.addChitietHoadon(CTHD); 
         }
         
-        new HoadonGUI().setVisible(true);
+        new HoadonGUI(taikhoan.getMaTK()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -678,26 +729,31 @@ public class ThemHDGUI extends javax.swing.JFrame {
         txtTientra.setText(String.valueOf(tientra));
     }
     
-    private void suaSoluong(String maSP){
+    private void suaSoluong(String maSP, int check){
         SanPhamDTO sanpham = new SanPhamDTO();
         sanpham = sanphamBUS.getSanphamBYMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
-        sanpham.setSoLuong(sanpham.getSoLuong() - Integer.parseInt(txtSoluong.getText()));
+        if(check == 1){
+            sanpham.setSoLuong(sanpham.getSoLuong() - Integer.parseInt(txtSoluong.getText()));
+            sanphamBUS.updateSoluongSP(sanpham);
+        }
+        else{
+            sanpham.setSoLuong(sanpham.getSoLuong() + Integer.parseInt(txtSoluong.getText()));
+            sanphamBUS.updateSoluongSP(sanpham);
+        }
         
-        sanphamBUS.updateSoluongSP(sanpham);
     }
     
     private void themChitiet(){
         chitietHD = new ChitiethoadonDTO();
-        chitiethoadonBUS = new ChitiethoadonBUS();
         
-            chitietHD.setMahd(txtMaHD.getText());
-            chitietHD.setMasp(String.valueOf(comboboxMaSp.getSelectedItem()));
-            chitietHD.setSoluongmua(Integer.parseInt(txtSoluong.getText()));
-            chitietHD.setDongia(Float.parseFloat(txtDongia.getText()));
-            chitietHD.setThanhtien(Float.parseFloat(txtThanhtien.getText()));
-            chitietHD.setTienkm(Float.parseFloat(txtTienKm.getText()));
-            
-            chitietHDs.add(chitietHD);
+        chitietHD.setMahd(txtMaHD.getText());
+        chitietHD.setMasp(String.valueOf(comboboxMaSp.getSelectedItem()));
+        chitietHD.setSoluongmua(Integer.parseInt(txtSoluong.getText()));
+        chitietHD.setDongia(Float.parseFloat(txtDongia.getText()));
+        chitietHD.setThanhtien(Float.parseFloat(txtThanhtien.getText()));
+        chitietHD.setTienkm(Float.parseFloat(txtTienKm.getText()));
+
+        chitietHDs.add(chitietHD);
 
     }
     
@@ -723,37 +779,65 @@ public class ThemHDGUI extends javax.swing.JFrame {
         
         loadDataTable(String.valueOf(comboboxMaSp.getSelectedItem()));
         
-        suaSoluong(String.valueOf(comboboxMaSp.getSelectedItem()));
+        suaSoluong(String.valueOf(comboboxMaSp.getSelectedItem()), 1);
         
         themChitiet();
-        
-        
-        
-
 
     }//GEN-LAST:event_btnChonmuaActionPerformed
 
-    private void btnxemthemmaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxemthemmaKHActionPerformed
+    private void jMenuItemXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemXoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnxemthemmaKHActionPerformed
+        int i = tblSanpham.getSelectedRow();
+        chitietHDs.remove(i);
+        defaultTableModel.removeRow(i);
+        suaSoluong(String.valueOf(comboboxMaSp.getSelectedItem()), 0);
+    }//GEN-LAST:event_jMenuItemXoaActionPerformed
 
-    private void btnxemthemmaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxemthemmaNVActionPerformed
+    private void tblSanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanphamMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnxemthemmaNVActionPerformed
+        int i = tblSanpham.getSelectedRow();
+        if(i >= 0){
+            ChitiethoadonDTO chitietHD = new ChitiethoadonDTO();
+            chitietHD = chitietHDs.get(i);
+            //comboboxMaSp.setSelectedIndex(WIDTH);
+            txtDongia.setText(String.valueOf(chitietHD.getDongia()));
+            txtSoluong.setText(String.valueOf(chitietHD.getSoluongmua()));
+            txtTienKm.setText(String.valueOf(chitietHD.getTienkm()));
+            txtThanhtien.setText(String.valueOf(chitietHD.getThanhtien()));
+        }
+    }//GEN-LAST:event_tblSanphamMouseClicked
+
+    private void comboMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMaNVActionPerformed
+        // TODO add your handling code here:
+        txtMaNV.setText(String.valueOf(comboMaNV.getSelectedItem()));
+    }//GEN-LAST:event_comboMaNVActionPerformed
+
+    private void comboMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMaKHActionPerformed
+        // TODO add your handling code here:
+        txtMaKH.setText(String.valueOf(comboMaKH.getSelectedItem()));
+    }//GEN-LAST:event_comboMaKHActionPerformed
+
+    private void txtTienKmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienKmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTienKmActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        new ThemHDGUI().setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ThemHDGUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonmua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat3;
-    private javax.swing.JButton btnxemthemmaKH;
-    private javax.swing.JButton btnxemthemmaNV;
+    private javax.swing.JComboBox<String> comboMaKH;
+    private javax.swing.JComboBox<String> comboMaNV;
     private javax.swing.JComboBox<String> comboboxMaSp;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel21;
@@ -772,12 +856,14 @@ public class ThemHDGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JMenuItem jMenuItemXoa;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPopupMenu jPopupMenuDSHH;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable tblSanpham;
     private javax.swing.JTextField txtDongia;
