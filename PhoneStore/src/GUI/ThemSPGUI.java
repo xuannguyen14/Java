@@ -13,10 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import BUS.SanphamBUS;
 import BUS.TaikhoanBUS;
+import BUS.initDefaultBUS;
 import DTO.SanPhamDTO;
 import DTO.TaikhoanDTO;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 
 /**
  *
@@ -117,7 +117,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
         });
 
         txt_MaLoai.setEditable(false);
-        txt_MaLoai.setText("Chọn Loại Sản Phẩm");
+        txt_MaLoai.setText("Chọn Mã Loại Sản Phẩm");
         txt_MaLoai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaLoaiKeyPressed(evt);
@@ -125,7 +125,7 @@ public class ThemSPGUI extends javax.swing.JFrame {
         });
 
         txt_MaNSX.setEditable(false);
-        txt_MaNSX.setText("Chọn Nhà Sản Xuất");
+        txt_MaNSX.setText("Chọn Mã Nhà Sản Xuất");
         txt_MaNSX.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_MaNSXKeyPressed(evt);
@@ -329,57 +329,90 @@ public class ThemSPGUI extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         SanphamBUS bus = new SanphamBUS();
         SanPhamDTO sp = new SanPhamDTO();
+        initDefaultBUS initChooseID = new initDefaultBUS();
         
-        if("".equals(txt_TenSP.getText())){
+        txt_TenSP.setText(txt_TenSP.getText().trim());
+        
+        if("".equals(txt_TenSP.getText().trim())){
             JOptionPane.showMessageDialog(this,"Tên sản phẩm không được rỗng!");
             txt_TenSP.requestFocus();
         }
-        else                
-            if("".equals(txt_DonGia.getText())){
-            JOptionPane.showMessageDialog(this,"Đơn giá không được rỗng!");
-            txt_DonGia.requestFocus();
-        }
-            else
-                if(!bus.validNumber(txt_SoLuong.getText())){
-                    JOptionPane.showMessageDialog(this,"Số lượng sản phẩm không được chứa chữ cái và phải là số dương!");
-                    txt_SoLuong.requestFocus();
+        else
+            try {
+                if(!bus.validName(txt_TenSP.getText())){
+                    JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại!");
+                    txt_TenSP.requestFocus();
                 }
                 else
-                    if(!bus.validNumber(txt_DonGia.getText())){
-                        JOptionPane.showMessageDialog(this,"Đơn giá sản phẩm không được chứa chữ cái và phải là số dương!");
+                    if("".equals(txt_DonGia.getText().trim())){
+                        JOptionPane.showMessageDialog(this,"Đơn giá không được rỗng!");
                         txt_DonGia.requestFocus();
                     }
-        else
-        {
-            sp.setTenSP(txt_TenSP.getText());
-            sp.setMaSP(txt_MaSP.getText());
-            sp.setDonGia(parseFloat(txt_DonGia.getText()));
-            sp.setSoLuong(parseInt(txt_SoLuong.getText()));
-            sp.setMaNSX(txt_MaNSX.getText());
-            sp.setMaLoai(txt_MaLoai.getText());
-
-            txt_TenSP.setText("");
-            txt_SoLuong.setText("1");
-            txt_DonGia.setText("");
-            txt_MaLoai.setText("Chọn Loại Sản Phẩm");
-            txt_MaNSX.setText("Chọn Nhà Sản Xuất");
-                   
-            try {
-                bus.them(sp);
-            } catch (Exception ex) {
-                Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            String KeyString = "";
-
-            try {
-                KeyString = bus.taoMaSP();
-            } catch (Exception ex) {
-                Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            txt_MaSP.setText(KeyString);
-            txt_TenSP.requestFocus();
+                    else
+                        if(txt_SoLuong.getText().trim().equals("")){
+                            JOptionPane.showMessageDialog(this, "Số lượng không được rỗng!");
+                            txt_SoLuong.requestFocus();
+                        }
+                        else
+                        if(!bus.validNumber(txt_SoLuong.getText())){
+                            JOptionPane.showMessageDialog(this,"Số lượng sản phẩm không được chứa chữ cái và phải là số dương!");
+                            txt_SoLuong.requestFocus();
+                        }
+                        else
+                            if(!bus.validNumber(txt_DonGia.getText())){
+                                JOptionPane.showMessageDialog(this,"Đơn giá sản phẩm không được chứa chữ cái và phải là số dương!");
+                                txt_DonGia.requestFocus();
+                            }
+                            else
+                                try {
+                                    if(txt_MaNSX.getText().equals(initChooseID.getTxtMaNSX())){
+                                        JOptionPane.showMessageDialog(this, "Vui lòng chọn Mã Nhà Sản Xuất!");
+                                    }
+                                    else
+                                        if(txt_MaLoai.getText().equals(initChooseID.getTxtMaLoaiSP())){
+                                            JOptionPane.showMessageDialog(this, "Vui lòng chọn Mã Loại Sản Phẩm!");
+                                        }
+                                        else
+                                        {
+                                            sp.setTenSP(txt_TenSP.getText());
+                                            sp.setMaSP(txt_MaSP.getText());
+                                            sp.setDonGia(parseFloat(txt_DonGia.getText()));
+                                            sp.setSoLuong(parseInt(txt_SoLuong.getText()));
+                                            sp.setMaNSX(txt_MaNSX.getText());
+                                            sp.setMaLoai(txt_MaLoai.getText());
+                                            
+                                            txt_TenSP.setText("");
+                                            txt_SoLuong.setText("1");
+                                            txt_DonGia.setText("");
+                                            try {
+                                                txt_MaNSX.setText(initChooseID.getTxtMaNSX());
+                                                txt_MaLoai.setText(initChooseID.getTxtMaLoaiSP());
+                                            } catch (Exception ex) {
+                                                Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+                                            try {
+                                                bus.them(sp);
+                                            } catch (Exception ex) {
+                                                Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+                                            String KeyString = "";
+                                            
+                                            try {
+                                                KeyString = bus.taoMaSP();
+                                            } catch (Exception ex) {
+                                                Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+                                            txt_MaSP.setText(KeyString);
+                                            txt_TenSP.requestFocus();
+                                        }
+                                } catch (Exception ex) {
+                                    Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+        } catch (Exception ex) {
+            Logger.getLogger(ThemSPGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

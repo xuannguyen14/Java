@@ -73,10 +73,9 @@ public void xoa (String mapn) throws Exception{
 
 public void sua (ChitietphieunhapDTO ctpn) throws Exception{
     String qry = "Update chitietphieunhap SET ";
-    qry += "masanpham = '" + ctpn.getMaSP() +"',";
     qry += "soluongnhap = '" + ctpn.getSoLuong() + "',";
-    qry += "dongianhap = '" + ctpn.getDonGia() + "',";
-    qry += "thanhtien = '" + ctpn.getThanhTien()+ "' where maphieunhap ='" + ctpn.getMaPN() + "'";
+    qry += "thanhtien = '" + ctpn.getThanhTien()+ "'";
+    qry += " where maphieunhap ='" + ctpn.getMaPN() + "' AND masanpham = '" + ctpn.getMaSP() +"'";
     
     MyConn.excuteUpdate(qry);
 }

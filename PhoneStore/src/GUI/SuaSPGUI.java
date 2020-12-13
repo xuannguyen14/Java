@@ -396,15 +396,21 @@ public class SuaSPGUI extends javax.swing.JFrame {
     private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
         SanphamBUS bus = new SanphamBUS();
         SanPhamDTO spt = new SanPhamDTO();
+        
+        txt_TenSP.setText(txt_TenSP.getText().trim());
                
         if("".equals(txt_TenSP.getText())){
             JOptionPane.showMessageDialog(this,"Tên sản phẩm không được rỗng!");
             txt_TenSP.requestFocus();
         }
         else                
-            if("".equals(txt_DonGia.getText())){
+            if("".equals(txt_DonGia.getText().trim())){
             JOptionPane.showMessageDialog(this,"Đơn giá không được rỗng!");
             txt_DonGia.requestFocus();
+            }
+            if("".equals(txt_SoLuong.getText().trim())){
+                JOptionPane.showMessageDialog(this, "Số lượng không được rỗng!");
+                txt_SoLuong.requestFocus();
             }
             else
                 if(!bus.validNumber(txt_SoLuong.getText())){
