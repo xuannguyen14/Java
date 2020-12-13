@@ -16,8 +16,8 @@ public class TaikhoanBUS {
         taikhoanDAO = new TaikhoanDAO();
     }
     
-    public List<TaikhoanDTO> getAllTaikhoan(){
-        return taikhoanDAO.getAllTaikhoan();
+    public List<TaikhoanDTO> getAllTaikhoans(){
+        return taikhoanDAO.getAllTaikhoans();
     }
     
     public void addTaikhoan(TaikhoanDTO taikhoan){
@@ -32,8 +32,8 @@ public class TaikhoanBUS {
         taikhoanDAO.updateTaikhoan(taikhoan);
     } 
       
-    public TaikhoanDTO getTaikhoanByMaTK(String maTK){
-        return taikhoanDAO.getTaikhoanByMaTK(maTK);
+    public TaikhoanDTO getTaiKhoanByMaTK(String maTK){
+        return taikhoanDAO.getTaiKhoanByMaTK(maTK);
     }
 
 }

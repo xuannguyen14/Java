@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -119,7 +120,35 @@ public class KhachhangDAO {
         return khachHangDTO;
     }
 
-    
+    public List<KhachhangDTO> getAllKhachHang() {
+        List<KhachhangDTO> khachhangs = new ArrayList<>();
+        
+        Connection connection = JDBCConnection.getConnection();
+        
+        String sql = "SELECT * FROM KHACHHANG";
+        
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                KhachhangDTO khachhang = new KhachhangDTO();
+                
+                khachhang.setMaKhachHang(rs.getString("MAKHACHHANG"));
+                khachhang.setTenKhachHang(rs.getString("TENKHACHHANG"));
+                khachhang.setDiaChi(rs.getString("DIACHI"));
+                khachhang.setSDT(rs.getString("EMAIL"));              
+                khachhang.setEmail(rs.getString("SDT"));
+                
+                khachhangs.add(khachhang);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return khachhangs;
+    }
 
     
 }

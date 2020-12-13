@@ -15,7 +15,7 @@ import java.util.List;
  * @author xuannguyen
  */
 public class TaikhoanDAO {
-    public List<TaikhoanDTO> getAllTaikhoan() {
+    public List<TaikhoanDTO> getAllTaikhoans() {
         List<TaikhoanDTO> taikhoans = new ArrayList<>();
         
         Connection connection = JDBCConnection.getConnection();
@@ -32,6 +32,7 @@ public class TaikhoanDAO {
                 
                 taikhoan.setMaTK(rs.getString("MATAIKHOAN"));
                 taikhoan.setPassword(rs.getString("PASSWORD"));
+                taikhoan.setRole(rs.getString("ROLE"));
                 taikhoans.add(taikhoan);
             }
         } catch (SQLException e) {
@@ -41,7 +42,7 @@ public class TaikhoanDAO {
         return taikhoans;
     }
     
-    public TaikhoanDTO getTaikhoanByMaTK(String maTK) {
+    public TaikhoanDTO getTaiKhoanByMaTK(String maTK) {
         
         Connection connection = JDBCConnection.getConnection();
         
@@ -57,6 +58,7 @@ public class TaikhoanDAO {
                 
                 taikhoan.setMaTK(rs.getString("MATAIKHOAN"));
                 taikhoan.setPassword(rs.getString("PASSWORD"));
+                taikhoan.setRole(rs.getString("ROLE"));
                 
                 return taikhoan;
             }
@@ -70,12 +72,13 @@ public class TaikhoanDAO {
     public void addTaikhoan(TaikhoanDTO taikhoan){
         Connection connection = JDBCConnection.getConnection();
         
-        String sql = "INSERT INTO TAIKHOAN (MATAIKHOAN, PASSWORD) VALUES (?,?)";
+        String sql = "INSERT INTO TAIKHOAN (MATAIKHOAN, PASSWORD, ROLE) VALUES (?,?,?)";
         
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, taikhoan.getMaTK());
             preparedStatement.setString(2, taikhoan.getPassword());
+            preparedStatement.setString(3, taikhoan.getRole());
             
             int rs = preparedStatement.executeUpdate();
             System.out.println(rs);
@@ -104,12 +107,13 @@ public class TaikhoanDAO {
     public void updateTaikhoan(TaikhoanDTO taikhoan){
         Connection connection = JDBCConnection.getConnection();
         
-        String sql = "UPDATE TAIKHOAN SET PASSWORD = ? WHERE MATAIKHOAN = ?";
+        String sql = "UPDATE TAIKHOAN SET PASSWORD = ?, ROLE = ? WHERE MATAIKHOAN = ?";
         
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);       
-            preparedStatement.setString(1, taikhoan.getPassword());  
-            preparedStatement.setString(2, taikhoan.getMaTK());        
+            preparedStatement.setString(1, taikhoan.getPassword()); 
+            preparedStatement.setString(2, taikhoan.getRole());  
+            preparedStatement.setString(3, taikhoan.getMaTK());        
 
             int rs = preparedStatement.executeUpdate();
             System.out.println(rs);

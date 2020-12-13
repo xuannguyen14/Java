@@ -14,8 +14,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import BUS.PhieunhapBUS;
+import BUS.TaikhoanBUS;
 import DTO.ChitietphieunhapDTO;
 import DTO.PhieunhapDTO;
+import DTO.TaikhoanDTO;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,12 +26,18 @@ import javax.swing.ImageIcon;
  */
 public class PhieuNhapGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PhieuNhap_Form
-     */
+    TaikhoanDTO taikhoan;
+    TaikhoanBUS taikhoanBUS;
+    
     ImageIcon icon;
-    public PhieuNhapGUI() throws Exception {
+    public PhieuNhapGUI(String username) throws Exception {
         initComponents();
+        lbDay.setText(java.time.LocalDate.now() + " " + java.time.LocalTime.now());
+        taikhoan = new TaikhoanDTO();
+        taikhoanBUS = new TaikhoanBUS();
+        taikhoan = taikhoanBUS.getTaiKhoanByMaTK(username);
+        lbUsername.setText(username);
+        lbRole.setText(taikhoan.getRole());
         
         PhieunhapBUS bus = new PhieunhapBUS();
         
@@ -69,7 +77,19 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         
         model = new DefaultTableModel(ctheader,0);
         tbl_CTPN.setModel(model);
-        
+       
+        show(taikhoan.getRole());
+    }
+
+    private void show(String role){
+        if(role.equals("user")){
+            btnKhuyenmai.setEnabled(false);
+            btnNhanvien.setEnabled(false);
+            btnNhaphang.setEnabled(false);
+            btnTaikhoan.setEnabled(false);
+            btnThongke.setEnabled(false);
+            btnSanpham.setEnabled(false);
+        }
     }
     
     DefaultTableModel model = new DefaultTableModel();
@@ -91,28 +111,30 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        btnThoat = new javax.swing.JButton();
         btnLammoi = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_CTPN = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        btnBanhang = new javax.swing.JButton();
-        btnNhaphang = new javax.swing.JButton();
-        btnSanpham = new javax.swing.JButton();
-        btnKhuyenmai = new javax.swing.JButton();
-        btnNhanvien = new javax.swing.JButton();
-        btnKhachhang = new javax.swing.JButton();
-        btnThongke = new javax.swing.JButton();
-        btnTaikhoan = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btnTrangchu = new javax.swing.JButton();
-        btnDangxuat = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_Find = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        btnTrangchu1 = new javax.swing.JButton();
+        btnDangxuat1 = new javax.swing.JButton();
+        lbUsername = new javax.swing.JLabel();
+        lbRole = new javax.swing.JLabel();
+        lbDay = new javax.swing.JLabel();
+        panelChuyen = new javax.swing.JPanel();
+        btnSanpham = new javax.swing.JButton();
+        btnNhanvien = new javax.swing.JButton();
+        btnKhachhang = new javax.swing.JButton();
+        btnThongke = new javax.swing.JButton();
+        btnTaikhoan = new javax.swing.JButton();
+        btnKhuyenmai = new javax.swing.JButton();
+        btnBanhang = new javax.swing.JButton();
+        btnNhaphang = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +142,6 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        tbl_DSPN.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tbl_DSPN.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -143,7 +164,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             tbl_DSPN.getColumnModel().getColumn(1).setMinWidth(50);
         }
 
-        btnThem.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
+        btnThem.setBackground(new java.awt.Color(255, 255, 255));
+        btnThem.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 14)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\icon thêm.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setFocusPainted(false);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +175,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
+        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
+        btnXoa.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 14)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\xóa.png")); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setFocusPainted(false);
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +186,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             }
         });
 
-        btnSua.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
+        btnSua.setBackground(new java.awt.Color(255, 255, 255));
+        btnSua.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 14)); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\sửa.png")); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setFocusPainted(false);
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -170,16 +197,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             }
         });
 
-        btnThoat.setBackground(new java.awt.Color(204, 255, 153));
-        btnThoat.setText("Thoát");
-        btnThoat.setFocusPainted(false);
-        btnThoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThoatActionPerformed(evt);
-            }
-        });
-
-        btnLammoi.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 20)); // NOI18N
+        btnLammoi.setBackground(new java.awt.Color(255, 255, 255));
+        btnLammoi.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 14)); // NOI18N
+        btnLammoi.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\làm mới.png")); // NOI18N
         btnLammoi.setText("Làm mới");
         btnLammoi.setFocusPainted(false);
         btnLammoi.addActionListener(new java.awt.event.ActionListener() {
@@ -201,44 +221,43 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_CTPN);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel1.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Chi tiết phiếu nhập");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        btnThoat.setBackground(new java.awt.Color(204, 255, 153));
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(btnThem)
-                .addGap(18, 18, 18)
-                .addComponent(btnXoa)
-                .addGap(18, 18, 18)
-                .addComponent(btnSua)
-                .addGap(18, 18, 18)
-                .addComponent(btnLammoi)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(305, 305, 305)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addGap(250, 250, 250))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(btnThem)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnXoa)
+                        .addGap(83, 83, 83)
+                        .addComponent(btnSua)
+                        .addGap(83, 83, 83)
+                        .addComponent(btnLammoi)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnThoat)
@@ -248,15 +267,15 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLammoi, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,195 +283,19 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
-
-        btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
-        btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnBanhang.setText("Bán hàng");
-        btnBanhang.setFocusPainted(false);
-        btnBanhang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBanhangActionPerformed(evt);
-            }
-        });
-
-        btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
-        btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNhaphang.setText("Nhập hàng");
-        btnNhaphang.setFocusPainted(false);
-        btnNhaphang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNhaphangActionPerformed(evt);
-            }
-        });
-
-        btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
-        btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnSanpham.setText("Sản phẩm");
-        btnSanpham.setFocusPainted(false);
-        btnSanpham.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSanphamActionPerformed(evt);
-            }
-        });
-
-        btnKhuyenmai.setBackground(new java.awt.Color(204, 255, 153));
-        btnKhuyenmai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnKhuyenmai.setText("Khuyến mãi");
-        btnKhuyenmai.setFocusPainted(false);
-        btnKhuyenmai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKhuyenmaiActionPerformed(evt);
-            }
-        });
-
-        btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
-        btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnNhanvien.setText("Nhân viên");
-        btnNhanvien.setFocusPainted(false);
-        btnNhanvien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNhanvienActionPerformed(evt);
-            }
-        });
-
-        btnKhachhang.setBackground(new java.awt.Color(204, 255, 153));
-        btnKhachhang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnKhachhang.setText("Khách hàng");
-        btnKhachhang.setFocusPainted(false);
-        btnKhachhang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKhachhangActionPerformed(evt);
-            }
-        });
-
-        btnThongke.setBackground(new java.awt.Color(204, 255, 153));
-        btnThongke.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnThongke.setText("Thống kê");
-        btnThongke.setFocusPainted(false);
-        btnThongke.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongkeActionPerformed(evt);
-            }
-        });
-
-        btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
-        btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnTaikhoan.setText("Tài khoản");
-        btnTaikhoan.setFocusPainted(false);
-        btnTaikhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaikhoanActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBanhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNhaphang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSanpham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKhuyenmai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKhachhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThongke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTaikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBanhang, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnNhaphang, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnKhuyenmai)
-                .addGap(18, 18, 18)
-                .addComponent(btnNhanvien)
-                .addGap(18, 18, 18)
-                .addComponent(btnKhachhang)
-                .addGap(18, 18, 18)
-                .addComponent(btnThongke)
-                .addGap(18, 18, 18)
-                .addComponent(btnTaikhoan)
-                .addContainerGap(227, Short.MAX_VALUE))
-        );
-
-        icon = new ImageIcon("src\\img\\icon\\bán hàng.png");
-        btnBanhang.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\sản phẩm.png");
-        btnSanpham.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\khuyến mãi1.png");
-        btnKhuyenmai.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\nhập hàng.png");
-        btnNhaphang.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\nhân viên.png");
-        btnNhanvien.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\khách hàng.png");
-        btnKhachhang.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\thống kê.png");
-        btnThongke.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\tài khoản.png");
-        btnTaikhoan.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\icon thêm.png");
-        btnThem.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\xóa.png");
-        btnXoa.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\sửa.png");
-        btnSua.setIcon(icon);
-        icon = new ImageIcon("src\\img\\icon\\làm mới.png");
-        btnLammoi.setIcon(icon);
-
-        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 2));
-
-        btnTrangchu.setText("Trang chủ");
-        btnTrangchu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 2, true));
-        btnTrangchu.setFocusPainted(false);
-
-        btnDangxuat.setText("Đăng xuất");
-        btnDangxuat.setFocusPainted(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnTrangchu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDangxuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTrangchu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 1, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SVN-Segoe Print", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Quản Lý Phiếu Nhập");
+        jLabel2.setText("QUẢN LÝ PHIẾU NHẬP");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         txt_Find.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        btnTimkiem.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 18)); // NOI18N
+        btnTimkiem.setBackground(new java.awt.Color(204, 255, 153));
+        btnTimkiem.setFont(new java.awt.Font("000 Blambot Casual [TeddyBear]", 0, 14)); // NOI18N
         btnTimkiem.setText("Tìm kiếm");
         btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -465,11 +308,11 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txt_Find, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGap(77, 77, 77))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -478,14 +321,197 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_Find, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0)));
+
+        btnTrangchu1.setBackground(new java.awt.Color(204, 255, 153));
+        btnTrangchu1.setText("Trang chủ");
+        btnTrangchu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrangchu1ActionPerformed(evt);
+            }
+        });
+
+        btnDangxuat1.setBackground(new java.awt.Color(204, 255, 153));
+        btnDangxuat1.setText("Đăng xuất");
+        btnDangxuat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangxuat1ActionPerformed(evt);
+            }
+        });
+
+        lbUsername.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbUsername.setForeground(new java.awt.Color(0, 153, 0));
+
+        lbRole.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbRole.setForeground(new java.awt.Color(0, 153, 0));
+
+        lbDay.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lbDay.setForeground(new java.awt.Color(0, 102, 0));
+        lbDay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnTrangchu1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDangxuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(371, 371, 371)
+                .addComponent(lbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDangxuat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txt_Find)))
+                    .addComponent(btnTrangchu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        panelChuyen.setBackground(new java.awt.Color(204, 255, 204));
+        panelChuyen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0)));
+
+        btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
+        btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnSanpham.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\sản phẩm.png")); // NOI18N
+        btnSanpham.setText("Sản phẩm");
+        btnSanpham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSanphamActionPerformed(evt);
+            }
+        });
+
+        btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
+        btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnNhanvien.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\nhân viên.png")); // NOI18N
+        btnNhanvien.setText("Nhân viên");
+        btnNhanvien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhanvienActionPerformed(evt);
+            }
+        });
+
+        btnKhachhang.setBackground(new java.awt.Color(204, 255, 153));
+        btnKhachhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnKhachhang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\khách hàng.png")); // NOI18N
+        btnKhachhang.setText("Khách hàng");
+        btnKhachhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhachhangActionPerformed(evt);
+            }
+        });
+
+        btnThongke.setBackground(new java.awt.Color(204, 255, 153));
+        btnThongke.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnThongke.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\thống kê.png")); // NOI18N
+        btnThongke.setText("Thống kê");
+        btnThongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongkeActionPerformed(evt);
+            }
+        });
+
+        btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
+        btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnTaikhoan.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\tài khoản.png")); // NOI18N
+        btnTaikhoan.setText("Tài khoản");
+        btnTaikhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaikhoanActionPerformed(evt);
+            }
+        });
+
+        btnKhuyenmai.setBackground(new java.awt.Color(204, 255, 153));
+        btnKhuyenmai.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnKhuyenmai.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\khuyến mãi1.png")); // NOI18N
+        btnKhuyenmai.setText("Khuyến mãi");
+        btnKhuyenmai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhuyenmaiActionPerformed(evt);
+            }
+        });
+
+        btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
+        btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnBanhang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\bán hàng.png")); // NOI18N
+        btnBanhang.setText("Bán hàng");
+        btnBanhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBanhangActionPerformed(evt);
+            }
+        });
+
+        btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
+        btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnNhaphang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\nhập hàng.png")); // NOI18N
+        btnNhaphang.setText("Nhập hàng");
+        btnNhaphang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhaphangActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelChuyenLayout = new javax.swing.GroupLayout(panelChuyen);
+        panelChuyen.setLayout(panelChuyenLayout);
+        panelChuyenLayout.setHorizontalGroup(
+            panelChuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChuyenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelChuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNhaphang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBanhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSanpham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKhachhang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThongke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTaikhoan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKhuyenmai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
+        );
+        panelChuyenLayout.setVerticalGroup(
+            panelChuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChuyenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBanhang, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNhaphang, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSanpham, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnKhuyenmai, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnKhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThongke, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -493,26 +519,29 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -532,7 +561,7 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
         try {
-            new ThemPNGUI().setVisible(true);
+            new ThemPNGUI(taikhoan.getMaTK()).setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -584,8 +613,9 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Chưa chọn sản phẩm muốn sửa!");
         else{
             pn = PhieunhapBUS.getDSPhieuNhap().get(vitri);
+            String matk = taikhoan.getMaTK();
             try {
-                new SuaPNGUI(pn).setVisible(true);
+                new SuaPNGUI(pn, matk).setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -633,10 +663,6 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             }
         tbl_DSPN.setModel(model);
     }//GEN-LAST:event_btnTimkiemActionPerformed
-
-    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnLammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLammoiActionPerformed
         PhieunhapBUS bus = new PhieunhapBUS();
@@ -716,121 +742,123 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
             tbl_CTPN.setModel(model);              
     }//GEN-LAST:event_tbl_DSPNMouseClicked
 
-    private void btnBanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanhangActionPerformed
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        new MainformGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnTrangchu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangchu1ActionPerformed
+        // TODO add your handling code here:
+        new MainformGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnTrangchu1ActionPerformed
+
+    private void btnDangxuat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuat1ActionPerformed
+        // TODO add your handling code here:
+        new DangnhapGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDangxuat1ActionPerformed
+
+    private void btnSanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanphamActionPerformed
         try {
-            new HoadonGUI().setVisible(true);
+            // TODO add your handling code here:
+            new SanPhamGUI(taikhoan.getMaTK()).setVisible(true);
         } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DSTaikhoanGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnSanphamActionPerformed
+
+    private void btnNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanvienActionPerformed
+        // TODO add your handling code here:
+        new NhanvienGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnNhanvienActionPerformed
+
+    private void btnKhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachhangActionPerformed
+        // TODO add your handling code here:
+        new KhachHangGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnKhachhangActionPerformed
+
+    private void btnThongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongkeActionPerformed
+        // TODO add your handling code here:
+        new ThongKeGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnThongkeActionPerformed
+
+    private void btnTaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaikhoanActionPerformed
+        // TODO add your handling code here:
+        new DSTaikhoanGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnTaikhoanActionPerformed
+
+    private void btnKhuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmaiActionPerformed
+        // TODO add your handling code here:
+        new KhuyenmaiGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnKhuyenmaiActionPerformed
+
+    private void btnBanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanhangActionPerformed
+        // TODO add your handling code here:
+        new HoadonGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBanhangActionPerformed
 
     private void btnNhaphangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhaphangActionPerformed
         try {
-            new PhieuNhapGUI().setVisible(true);
+            // TODO add your handling code here:
+            new PhieuNhapGUI(taikhoan.getMaTK()).setVisible(true);
         } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DSTaikhoanGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnNhaphangActionPerformed
-
-    private void btnSanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanphamActionPerformed
-        try {
-            new SanPhamGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSanphamActionPerformed
-
-    private void btnKhuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenmaiActionPerformed
-        try {
-            new KhuyenmaiGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnKhuyenmaiActionPerformed
-
-    private void btnNhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanvienActionPerformed
-        try {
-            new NhanvienGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNhanvienActionPerformed
-
-    private void btnKhachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachhangActionPerformed
-        try {
-            new KhachHangGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnKhachhangActionPerformed
-
-    private void btnThongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongkeActionPerformed
-        try {
-            new ThongKeChiGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThongkeActionPerformed
-
-    private void btnTaikhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaikhoanActionPerformed
-        try {
-            new DSTaikhoanGUI().setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTaikhoanActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and dipnlay the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new PhieuNhapGUI().setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PhieuNhapGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and dipnlay the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    new PhieuNhapGUI("AD001").setVisible(true);
+//                } catch (Exception ex) {
+//                    Logger.getLogger(PhieuNhapGUI.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBanhang;
-    private javax.swing.JButton btnDangxuat;
+    private javax.swing.JButton btnDangxuat1;
     private javax.swing.JButton btnKhachhang;
     private javax.swing.JButton btnKhuyenmai;
     private javax.swing.JButton btnLammoi;
@@ -843,19 +871,21 @@ public class PhieuNhapGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnThongke;
     private javax.swing.JButton btnTimkiem;
-    private javax.swing.JButton btnTrangchu;
+    private javax.swing.JButton btnTrangchu1;
     private javax.swing.JButton btnXoa;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbDay;
+    private javax.swing.JLabel lbRole;
+    private javax.swing.JLabel lbUsername;
+    private javax.swing.JPanel panelChuyen;
     private javax.swing.JTable tbl_CTPN;
     private javax.swing.JTable tbl_DSPN;
     private javax.swing.JTextField txt_Find;

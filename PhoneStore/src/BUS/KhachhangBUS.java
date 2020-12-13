@@ -8,6 +8,7 @@ package BUS;
 import DAO.KhachhangDAO;
 import DTO.KhachhangDTO;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -388,4 +389,7 @@ public class KhachhangBUS {
         }
     }
     
+    public List<KhachhangDTO> getAllKhachHang() {
+        return khachHangDAO.getAllKhachHang();
+    }
 }

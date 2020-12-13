@@ -6,6 +6,7 @@
 package DAO;
 import DTO.KhuyenmaiDTO;
 import DAO.JDBCConnection;
+import DTO.Khuyenmai1DTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -206,5 +208,62 @@ public class KhuyenmaiDAO {
             System.out.println(ex);
         }
         return arr;
+    }
+    
+    public List<Khuyenmai1DTO> getAllKhuyenmai() {
+        List<Khuyenmai1DTO> khuyenmais = new ArrayList<>();
+        
+        Connection connection = JDBCConnection.getConnection();
+        
+        String sql = "SELECT * FROM KHUYENMAI";
+        
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                Khuyenmai1DTO khuyenmai = new Khuyenmai1DTO();
+                
+                khuyenmai.setMaKM(rs.getString("MAKM"));
+                khuyenmai.setTenKM(rs.getString("TENKM"));
+                khuyenmai.setNgayBD(rs.getString("NGAYBD"));
+                khuyenmai.setNgayKT(rs.getString("NGAYKT"));
+                
+                khuyenmais.add(khuyenmai);
+            }
+        } catch (SQLException e) {
+        }
+        
+        return khuyenmais;
+    }
+    
+    public Khuyenmai1DTO getKhuyenmaiByMaKM(String maKM) {
+        
+        Connection connection = JDBCConnection.getConnection();
+        
+        String sql = "SELECT * FROM KHUYENMAI WHERE MAKM = ?";
+        
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, maKM);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                Khuyenmai1DTO khuyenmai = new Khuyenmai1DTO();
+                
+                khuyenmai.setMaKM(rs.getString("MAKM"));
+                khuyenmai.setTenKM(rs.getString("TENKM"));
+                khuyenmai.setNgayBD(rs.getString("NGAYBD"));
+                khuyenmai.setNgayKT(rs.getString("NGAYKT"));              
+                
+                
+                return khuyenmai;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 }

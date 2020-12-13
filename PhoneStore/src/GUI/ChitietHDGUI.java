@@ -9,8 +9,10 @@ import BUS.ChitiethoadonBUS;
 import BUS.HoadonBUS;
 import DTO.HoadonDTO;
 import BUS.Sanpham1BUS;
+import BUS.TaikhoanBUS;
 import DTO.ChitiethoadonDTO;
 import DTO.SanPhamDTO;
+import DTO.TaikhoanDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -26,11 +28,15 @@ public class ChitietHDGUI extends javax.swing.JFrame {
     HoadonBUS hoadonBUS;
     Sanpham1BUS sanphamBUS;
     DefaultTableModel defaultTableModel;
+    TaikhoanDTO taikhoan;
+    TaikhoanBUS taikhoanBUS;
     
-    public ChitietHDGUI(String maHD) {
+    public ChitietHDGUI(String maHD, String username) throws Exception {
         hoadonBUS = new HoadonBUS();
         hoadon = hoadonBUS.getHoadonByMaHoadon(maHD);
         initComponents();
+        taikhoanBUS = new TaikhoanBUS();
+        taikhoan = taikhoanBUS.getTaiKhoanByMaTK(username);
         
         defaultTableModel = new DefaultTableModel(){
             @Override
@@ -373,7 +379,7 @@ public class ChitietHDGUI extends javax.swing.JFrame {
 
     }
     
-    private void loadDataTable(String maHD){
+    private void loadDataTable(String maHD) throws Exception{
         DefaultTableModel model = (DefaultTableModel) tblSanpham.getModel();
         SanPhamDTO sanpham = new SanPhamDTO();
         sanphamBUS = new Sanpham1BUS();
@@ -402,7 +408,7 @@ public class ChitietHDGUI extends javax.swing.JFrame {
 
     private void btnThoat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoat3ActionPerformed
         // TODO add your handling code here:
-        new HoadonGUI().setVisible(true);
+        new HoadonGUI(taikhoan.getMaTK()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnThoat3ActionPerformed
 

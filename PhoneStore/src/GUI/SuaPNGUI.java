@@ -14,9 +14,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import BUS.PhieunhapBUS;
 import BUS.SanphamBUS;
+import BUS.TaikhoanBUS;
 import DTO.ChitietphieunhapDTO;
 import DTO.PhieunhapDTO;
 import DTO.SanPhamDTO;
+import DTO.TaikhoanDTO;
 import static java.lang.Integer.parseInt;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class SuaPNGUI extends javax.swing.JFrame {
     ChitietphieunhapBUS chitietBUS = new ChitietphieunhapBUS();
     ArrayList<ChitietphieunhapDTO> dsct = new ArrayList<>();
     static ImageIcon icon = new ImageIcon("src/img/icon/sửa.png");
+    TaikhoanDTO taikhoan;
+    TaikhoanBUS taikhoanBUS;
 
     public static PhieunhapDTO getPn() {
         return pn;
@@ -50,9 +54,12 @@ public class SuaPNGUI extends javax.swing.JFrame {
         txt_MaSP.setText(txt);
     }
     
-    public SuaPNGUI(PhieunhapDTO pn) throws Exception {
+    public SuaPNGUI(PhieunhapDTO pn, String username) throws Exception {
         initComponents();
         SuaPNGUI.pn = pn;
+        
+        taikhoanBUS = new TaikhoanBUS();
+        taikhoan = taikhoanBUS.getTaiKhoanByMaTK(username);
         
         Vector header = new Vector();
         header.add("Mã Phiếu Nhập");
@@ -577,7 +584,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
 
     private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnActionPerformed
         try {
-            new PhieuNhapGUI().setVisible(true);
+            new PhieuNhapGUI(taikhoan.getMaTK()).setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -723,42 +730,42 @@ public class SuaPNGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and dipnlay the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new SuaPNGUI(pn).setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SuaPNGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and dipnlay the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    new SuaPNGUI(pn).setVisible(true);
+//                } catch (Exception ex) {
+//                    Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCT;
