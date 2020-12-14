@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import BUS.PhieunhapBUS;
 import BUS.SanphamBUS;
 import BUS.TaikhoanBUS;
+import BUS.initDefaultBUS;
 import DTO.ChitietphieunhapDTO;
 import DTO.PhieunhapDTO;
 import DTO.SanPhamDTO;
@@ -26,7 +27,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -255,7 +255,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_MaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -369,7 +369,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnXoaCT)
@@ -386,7 +386,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnFindSP))
                             .addComponent(sp_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 130, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -403,13 +403,13 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sp_SoLuong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConfirm)
-                    .addComponent(btnXoaCT))
-                .addContainerGap())
+                    .addComponent(btnXoaCT)
+                    .addComponent(btnConfirm))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -425,7 +425,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnThem)
-                        .addGap(322, 322, 322)
+                        .addGap(323, 323, 323)
                         .addComponent(btnTrolai, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
@@ -436,11 +436,15 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTrolai, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(btnTrolai)
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnThem)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -453,7 +457,7 @@ public class ThemPNGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -462,43 +466,74 @@ public class ThemPNGUI extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         PhieunhapBUS bus = new PhieunhapBUS();
         PhieunhapDTO pn = new PhieunhapDTO();
-                       
-        {            
-            pn.setMaPN(txt_MaPN.getText());
-            pn.setTongTien(parseInt(txt_Tongtien.getText()));
-            pn.setMaNCC(txt_MaNCC.getText());
-            pn.setMaNV(txt_MaNV.getText());
-
-            txt_Tongtien.setText("0");
-            txt_MaNV.setText("Chọn Mã Nhân Viên");
-            txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
-                   
-            try {
-                bus.them(pn);
-            } catch (Exception ex) {
-                Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            String KeyString = "";
-
-            try {
-                KeyString = bus.taoMaPN();
-            } catch (Exception ex) {
-                Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            txt_MaPN.setText(KeyString);
-            txt_MaSP.setText("Chọn Mã Sản Phẩm");
-            sp_SoLuong.setValue(0); 
-        }
+        initDefaultBUS initChooseID = new initDefaultBUS();
         
-        ChitietphieunhapBUS chitietBUS = new ChitietphieunhapBUS();
-        for(ChitietphieunhapDTO ctpn : dsct){
-            try {
-                chitietBUS.them(ctpn);
-            } catch (Exception ex) {
-                Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        if(dsct.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập chi tiết!");
+        }
+        else{
+        try {
+            if(txt_MaNCC.getText().equals(initChooseID.getTxtMaNCC())){
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn Mã Nhà Cung Cấp!");
             }
+            else
+                if(txt_MaNV.getText().equals(initChooseID.getTxtMaNV())){
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn Mã Nhân Viên!");
+                }
+                else
+                {
+                    pn.setMaPN(txt_MaPN.getText());
+                    pn.setTongTien(parseInt(txt_Tongtien.getText()));
+                    pn.setMaNCC(txt_MaNCC.getText());
+                    pn.setMaNV(txt_MaNV.getText());
+                    
+                    txt_Tongtien.setText("0");
+                    
+                    try {
+                        bus.them(pn);
+                    } catch (Exception ex) {
+                        Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    String KeyString = "";
+                    
+                    try {
+                        KeyString = bus.taoMaPN();
+                    } catch (Exception ex) {
+                        Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    txt_MaPN.setText(KeyString);
+                    
+                    try {
+                        txt_MaNV.setText(initChooseID.getTxtMaNV());
+                        txt_MaNCC.setText(initChooseID.getTxtMaNCC());
+                        txt_MaSP.setText(initChooseID.getTxtMaSP());
+                    } catch (Exception ex) {
+                        Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                                        
+                    ChitietphieunhapBUS chitietBUS = new ChitietphieunhapBUS();
+                    for(ChitietphieunhapDTO ctpn : dsct){
+                        try {
+                            chitietBUS.them(ctpn);
+                        } catch (Exception ex) {
+                            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                    Vector header = new Vector();
+                    header.add("Mã Sản Phẩm");
+                    header.add("Tên Sản Phẩm");
+                    header.add("Số Lượng");
+                    header.add("Đơn Giá");
+                    
+                    model = new DefaultTableModel(header,0);
+                    tbl_DSSP.setModel(model);
+                }
+        } catch (Exception ex) {
+            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -515,17 +550,25 @@ public class ThemPNGUI extends javax.swing.JFrame {
 
         ChitietphieunhapDTO chitiet = new ChitietphieunhapDTO();
         SanphamBUS spBUS = new SanphamBUS();
+        boolean TonTai = false;
+        initDefaultBUS initChooseID = new initDefaultBUS(); 
         
-            chitiet.setMaPN(txt_MaPN.getText());
-            chitiet.setMaSP(txt_MaSP.getText());
-            
         try {
-            sp_SoLuong.commitEdit();
-        } catch (ParseException ex) {
-            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            chitiet.setSoLuong((Integer)sp_SoLuong.getValue());
-            
+            if(txt_MaSP.getText().equals(initChooseID.getTxtMaSP())){
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn Mã Sản Phẩm!");
+            }
+            else
+            {
+                chitiet.setMaPN(txt_MaPN.getText());
+                chitiet.setMaSP(txt_MaSP.getText());
+                
+                try {
+                    sp_SoLuong.commitEdit();
+                } catch (ParseException ex) {
+                    Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                chitiet.setSoLuong((Integer)sp_SoLuong.getValue());
+                
                 model = (DefaultTableModel) tbl_DSSP.getModel();
                 SanPhamDTO sp = new SanPhamDTO();
                 try {
@@ -533,23 +576,39 @@ public class ThemPNGUI extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                    Vector row = new Vector();
-                    row.add(sp.getMaSP());
-                    row.add(sp.getTenSP());
-                    row.add(chitiet.getSoLuong());
-                    row.add(sp.getDonGia());
-                    model.addRow(row);
-
+                
+                Vector row = new Vector();
+                row.add(sp.getMaSP());
+                row.add(sp.getTenSP());
+                row.add(chitiet.getSoLuong());
+                row.add(sp.getDonGia());
+                model.addRow(row);
+                
                 tbl_DSSP.setModel(model);
 
                 chitiet.setDonGia((int) sp.getDonGia());
                 chitiet.setThanhTien(chitiet.getDonGia()*chitiet.getSoLuong());
-                dsct.add(chitiet);
+                
+                for(ChitietphieunhapDTO ct : dsct){
+                    if(ct.getMaSP().equals(chitiet.getMaSP())){
+                        ct.setSoLuong(ct.getSoLuong() + chitiet.getSoLuong());
+                        ct.setThanhTien(ct.getDonGia()*ct.getSoLuong());
+                        TonTai = true;
+                    }
+                }
+                
+                if(!TonTai){
+                    dsct.add(chitiet);
+                }
                 
                 int TongTien = parseInt(txt_Tongtien.getText());
                 TongTien += chitiet.getThanhTien();
-                txt_Tongtien.setText(""+TongTien);                              
+                txt_Tongtien.setText(""+TongTien);
+                sp_SoLuong.setValue(1); 
+            }                              
+        } catch (Exception ex) {
+            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void btnXoaCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCTActionPerformed

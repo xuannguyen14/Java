@@ -61,6 +61,7 @@ public class ThongKeGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -162,6 +163,7 @@ public class ThongKeGUI extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         rbtnSP.setBackground(new java.awt.Color(204, 253, 204));
+        buttonGroup1.add(rbtnSP);
         rbtnSP.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rbtnSP.setText("Sản phẩm");
         rbtnSP.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +173,7 @@ public class ThongKeGUI extends javax.swing.JFrame {
         });
 
         rbtnQuy.setBackground(new java.awt.Color(204, 253, 204));
+        buttonGroup1.add(rbtnQuy);
         rbtnQuy.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rbtnQuy.setText("Quý");
         rbtnQuy.addActionListener(new java.awt.event.ActionListener() {
@@ -430,7 +433,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnSanpham.setBackground(new java.awt.Color(204, 255, 153));
         btnSanpham.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnSanpham.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\sản phẩm.png")); // NOI18N
         btnSanpham.setText("Sản phẩm");
         btnSanpham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -440,7 +442,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnNhanvien.setBackground(new java.awt.Color(204, 255, 153));
         btnNhanvien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnNhanvien.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\nhân viên.png")); // NOI18N
         btnNhanvien.setText("Nhân viên");
         btnNhanvien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,7 +451,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnKhachhang.setBackground(new java.awt.Color(204, 255, 153));
         btnKhachhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhachhang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\khách hàng.png")); // NOI18N
         btnKhachhang.setText("Khách hàng");
         btnKhachhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -460,7 +460,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnThongke.setBackground(new java.awt.Color(204, 255, 153));
         btnThongke.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnThongke.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\thống kê.png")); // NOI18N
         btnThongke.setText("Thống kê");
         btnThongke.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,7 +469,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnTaikhoan.setBackground(new java.awt.Color(204, 255, 153));
         btnTaikhoan.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnTaikhoan.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\tài khoản.png")); // NOI18N
         btnTaikhoan.setText("Tài khoản");
         btnTaikhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -480,7 +478,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnKhuyenmai.setBackground(new java.awt.Color(204, 255, 153));
         btnKhuyenmai.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnKhuyenmai.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\khuyến mãi1.png")); // NOI18N
         btnKhuyenmai.setText("Khuyến mãi");
         btnKhuyenmai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -490,7 +487,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnBanhang.setBackground(new java.awt.Color(204, 255, 153));
         btnBanhang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnBanhang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\bán hàng.png")); // NOI18N
         btnBanhang.setText("Bán hàng");
         btnBanhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -500,7 +496,6 @@ public class ThongKeGUI extends javax.swing.JFrame {
 
         btnNhaphang.setBackground(new java.awt.Color(204, 255, 153));
         btnNhaphang.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnNhaphang.setIcon(new javax.swing.ImageIcon("D:\\Đồ án Java\\icon\\nhập hàng.png")); // NOI18N
         btnNhaphang.setText("Nhập hàng");
         btnNhaphang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -817,6 +812,7 @@ public class ThongKeGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnThongke;
     private javax.swing.JButton btnTrangchu;
+    private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dateFrom;
     private com.toedter.calendar.JDateChooser dateTo;
     private javax.swing.JLabel jLabel1;

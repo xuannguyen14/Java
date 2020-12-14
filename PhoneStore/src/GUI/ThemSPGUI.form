@@ -205,7 +205,7 @@
             <Component class="javax.swing.JTextField" name="txt_MaLoai">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n Lo&#x1ea1;i S&#x1ea3;n Ph&#x1ea9;m"/>
+                <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n M&#xe3; Lo&#x1ea1;i S&#x1ea3;n Ph&#x1ea9;m"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_MaLoaiKeyPressed"/>
@@ -217,7 +217,7 @@
             <Component class="javax.swing.JTextField" name="txt_MaNSX">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n Nh&#xe0; S&#x1ea3;n Xu&#x1ea5;t"/>
+                <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n M&#xe3; Nh&#xe0; S&#x1ea3;n Xu&#x1ea5;t"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_MaNSXKeyPressed"/>

@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import BUS.PhieunhapBUS;
 import BUS.SanphamBUS;
 import BUS.TaikhoanBUS;
+import BUS.initDefaultBUS;
 import DTO.ChitietphieunhapDTO;
 import DTO.PhieunhapDTO;
 import DTO.SanPhamDTO;
@@ -23,7 +24,6 @@ import static java.lang.Integer.parseInt;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 
 /**
  *
@@ -346,6 +346,7 @@ public class SuaPNGUI extends javax.swing.JFrame {
         });
 
         sp_SoLuong.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sp_SoLuong.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
         sp_SoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 sp_SoLuongKeyPressed(evt);
@@ -576,9 +577,8 @@ public class SuaPNGUI extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            txt_MaNV.setText("Chọn Mã Nhân Viên");
-            txt_MaNCC.setText("Chọn Mã Nhà Cung Cấp");
-            txt_MaSP.setText("Chọn Mã Sản Phẩm");            
+            txt_MaNV.setText(pnt.getMaNV());
+            txt_MaNCC.setText(pnt.getMaNCC());            
             }       
     }//GEN-LAST:event_btn_EditActionPerformed
 
@@ -625,18 +625,25 @@ public class SuaPNGUI extends javax.swing.JFrame {
 
     private void btnAddCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCTActionPerformed
         ChitietphieunhapDTO chitiet = new ChitietphieunhapDTO();
-        SanphamBUS spBUS = new SanphamBUS();       
+        SanphamBUS spBUS = new SanphamBUS();
+        initDefaultBUS initChooseID = new initDefaultBUS();
         
-        chitiet.setMaPN(pn.getMaPN());
-        chitiet.setMaSP(txt_MaSP.getText());
-            
         try {
-            sp_SoLuong.commitEdit();
-        } catch (ParseException ex) {
-            Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            chitiet.setSoLuong((Integer)sp_SoLuong.getValue());
-            
+            if(txt_MaSP.getText().equals(initChooseID.getTxtMaSP())){
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn Mã Sản Phẩm!");
+            }
+            else{                
+                chitiet.setMaPN(pn.getMaPN());
+                chitiet.setMaSP(txt_MaSP.getText());
+                boolean TonTai = false;
+                
+                try {
+                    sp_SoLuong.commitEdit();
+                } catch (ParseException ex) {
+                    Logger.getLogger(ThemPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                chitiet.setSoLuong((Integer)sp_SoLuong.getValue());
+                
                 model = (DefaultTableModel) tbl_CTPN.getModel();
                 SanPhamDTO sp = new SanPhamDTO();
                 try {
@@ -648,32 +655,55 @@ public class SuaPNGUI extends javax.swing.JFrame {
                 chitiet.setDonGia((int) sp.getDonGia());
                 chitiet.setThanhTien(chitiet.getDonGia()*chitiet.getSoLuong());
                 
-                    Vector row = new Vector();
-                    row.add(chitiet.getMaPN());
-                    row.add(chitiet.getMaSP());
-                    row.add(chitiet.getSoLuong());
-                    row.add(chitiet.getDonGia());
-                    row.add(chitiet.getThanhTien());
-                    model.addRow(row);
-
+                Vector row = new Vector();
+                row.add(chitiet.getMaPN());
+                row.add(chitiet.getMaSP());
+                row.add(chitiet.getSoLuong());
+                row.add(chitiet.getDonGia());
+                row.add(chitiet.getThanhTien());
+                model.addRow(row);
+                
                 tbl_CTPN.setModel(model);
+                
+                for(ChitietphieunhapDTO ct : ChitietphieunhapBUS.getDSCTPhieuNhap()){
+                    if(ct.getMaPN().equals(chitiet.getMaPN()) && ct.getMaSP().equals(chitiet.getMaSP())){
+                        ct.setSoLuong(ct.getSoLuong() + chitiet.getSoLuong());
+                        ct.setThanhTien(ct.getDonGia()*ct.getSoLuong());
+                        TonTai = true;
+                        try {
+                            chitietBUS.sua(ct);
+                        } catch (Exception ex) {
+                            Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
                 dsct.add(chitiet);
                 
-        try {
-            chitietBUS.them(chitiet);
-        } catch (Exception ex) {
-            Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                if(!TonTai){                    
+                    try {
+                        chitietBUS.them(chitiet);
+                    } 
+                    catch (Exception ex) {
+                        Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                 
                 int TongTien = parseInt(txt_Tongtien.getText());
                 TongTien += chitiet.getThanhTien();
                 txt_Tongtien.setText(""+TongTien);
+                txt_MaSP.setText(chitiet.getMaSP());
+                sp_SoLuong.setValue(1); 
                 
                 btn_EditActionPerformed(evt);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddCTActionPerformed
 
     private void btnDeleteCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCTActionPerformed
         model = (DefaultTableModel) tbl_CTPN.getModel();
+        boolean TonTai = false;
         
         int vitri = tbl_CTPN.getSelectedRow();
 
@@ -686,12 +716,37 @@ public class SuaPNGUI extends javax.swing.JFrame {
             dsct.remove(vitri);
             int Tong = parseInt(txt_Tongtien.getText()) - ctpn.getThanhTien();
             txt_Tongtien.setText("" + Tong);
+            
+            for(ChitietphieunhapDTO ct : ChitietphieunhapBUS.getDSCTPhieuNhap()){
+                if(ct.getMaPN().equals(ctpn.getMaPN()) && ct.getMaSP().equals(ctpn.getMaSP())){
+                    ct.setSoLuong(ct.getSoLuong() - ctpn.getSoLuong());
+                    ct.setThanhTien(ct.getDonGia()*ct.getSoLuong());
+                    TonTai = true;
+                    if(ct.getSoLuong() == 0){
+                        try {
+                            chitietBUS.xoa(ct);
+                        } catch (Exception ex) {
+                            Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else{
+                        try {
+                            chitietBUS.sua(ct);
+                        } catch (Exception ex) {
+                            Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }
+            
+            if(!TonTai){
                 try { 
                     chitietBUS.xoa(ctpn);
                 } catch (Exception ex) {
                     Logger.getLogger(SuaPNGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+            }
+            
             tbl_CTPN.setModel(model);
             
             btn_EditActionPerformed(evt);

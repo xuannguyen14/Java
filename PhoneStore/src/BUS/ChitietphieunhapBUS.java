@@ -39,7 +39,7 @@ public class ChitietphieunhapBUS {
         ChitietphieunhapDAO Data = new ChitietphieunhapDAO();
         Data.them(ctpn);
         Data.capnhapSLSanPham(ctpn);
-//        DSCTPhieuNhap = Data.docDSCTPN();
+        DSCTPhieuNhap = Data.docDSCTPN();
     }
     
     public void xoa (int vitri) throws Exception{

@@ -65,6 +65,7 @@ public class SanphamBUS {
         DSSanPham = Data.docDSSP();
         
         key = key.trim();
+        key = key.replaceAll("\\s+"," ");
         key = key.toLowerCase();
         
         for(SanPhamDTO sp : DSSanPham){
@@ -203,6 +204,10 @@ public class SanphamBUS {
         SanPhamDAO Data = new SanPhamDAO();
         DSSanPham = Data.docDSSP();
         
+        if(DSSanPham.isEmpty()){
+            return "sp001";
+        }
+        
         String MaSPCuoi = DSSanPham.get(DSSanPham.size()-1).getMaSP();
         
         String KeyString = "";
@@ -235,6 +240,21 @@ public class SanphamBUS {
     public boolean validString(String Ten){
         for(int i = 0; i < Ten.length(); i++){
             if(Ten.charAt(i) == (int)Ten.charAt(i)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    public boolean validName(String name) throws Exception{
+        SanPhamDAO Data = new SanPhamDAO();
+        DSSanPham = Data.docDSSP();
+        
+        name = name.trim();
+        
+        for(SanPhamDTO sp : DSSanPham){
+            if(sp.getTenSP().equals(name)){
                 return false;
             }
         }

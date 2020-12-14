@@ -78,6 +78,10 @@ public class PhieunhapBUS {
         PhieunhapDAO Data = new PhieunhapDAO();
         DSPhieuNhap = Data.docDSPN();
         
+        if(DSPhieuNhap.isEmpty()){
+            return "pn001";
+        }
+        
         String MaPNCuoi = DSPhieuNhap.get(DSPhieuNhap.size()-1).getMaPN();
         
         String KeyString = "";
