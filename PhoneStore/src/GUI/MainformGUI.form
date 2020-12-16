@@ -181,9 +181,6 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[950, 660]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -218,7 +215,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
@@ -229,26 +226,39 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                                  <Component id="btnDoiMK" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                                  <Component id="btnDangxuat" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="btnTaikhoan" min="-2" pref="247" max="-2" attributes="0"/>
                                       <Component id="btnKhuyenmai" min="-2" pref="247" max="-2" attributes="0"/>
                                       <Component id="btnNhaphang" min="-2" pref="247" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="btnQLNCC" min="-2" pref="179" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="btnNhanvien" pref="241" max="32767" attributes="0"/>
-                                      <Component id="btnThongke" pref="241" max="32767" attributes="0"/>
-                                      <Component id="btnSanpham" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="btnNhanvien" pref="241" max="32767" attributes="0"/>
+                                              <Component id="btnThongke" pref="241" max="32767" attributes="0"/>
+                                              <Component id="btnSanpham" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                          <Component id="btnQLNSX" min="-2" pref="182" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
+                                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="btnDoiMK" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnDangxuat" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="89" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
@@ -257,14 +267,16 @@
                   </Group>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lbUsername" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="lbRole" min="-2" pref="80" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lbUsername" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lbDay" min="-2" pref="196" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lbRole" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -274,34 +286,39 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lbDay" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="lbUsername" max="32767" attributes="0"/>
+                      <Component id="lbUsername" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbRole" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace pref="82" max="32767" attributes="0"/>
+                  <EmptySpace pref="99" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnQLBanhang" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="btnNhaphang" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="btnSanpham" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="btnQLBanhang" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnNhaphang" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnSanpham" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnKhachhang" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="btnKhuyenmai" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="btnNhanvien" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="btnKhuyenmai" alignment="3" max="32767" attributes="0"/>
+                      <Component id="btnNhanvien" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnKhachhang" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnTaikhoan" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btnThongke" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnTaikhoan" alignment="3" min="-2" pref="97" max="-2" attributes="0"/>
-                      <Component id="btnThongke" alignment="3" min="-2" pref="97" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnQLNCC" pref="58" max="32767" attributes="0"/>
+                      <Component id="btnQLNSX" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnDoiMK" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="btnDangxuat" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -560,7 +577,7 @@
         <Component class="javax.swing.JLabel" name="lbRole">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="3"/>
+              <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="99" red="0" type="rgb"/>
@@ -604,6 +621,54 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnQLNCC">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="66" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; nh&#xe0; cung c&#x1ea5;p"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="0" green="66" red="0" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLNCCActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnQLNSX">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="66" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; nh&#xe0; s&#x1ea3;n xu&#x1ea5;t"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="0" green="66" red="0" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLNSXActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

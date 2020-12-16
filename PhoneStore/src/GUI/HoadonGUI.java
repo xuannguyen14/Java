@@ -61,6 +61,7 @@ public class HoadonGUI extends javax.swing.JFrame {
         
         setTableData(hoadonBUS.getAllHoadon());
         
+        lbMore.setComponentPopupMenu(jPopupMenuMore);
         show(taikhoan.getRole());
     }
 
@@ -93,6 +94,9 @@ public class HoadonGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPopupMenuMore = new javax.swing.JPopupMenu();
+        menuItemQLNCC = new javax.swing.JMenuItem();
+        menuItemQLNSX = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -114,6 +118,7 @@ public class HoadonGUI extends javax.swing.JFrame {
         lbUsername = new javax.swing.JLabel();
         lbRole = new javax.swing.JLabel();
         lbDay = new javax.swing.JLabel();
+        lbMore = new javax.swing.JLabel();
         panelChuyen1 = new javax.swing.JPanel();
         btnSanpham = new javax.swing.JButton();
         btnNhanvien = new javax.swing.JButton();
@@ -136,6 +141,24 @@ public class HoadonGUI extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        menuItemQLNCC.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNCC.setText("Quản lý nhà cung cấp");
+        menuItemQLNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNCCActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNCC);
+
+        menuItemQLNSX.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNSX.setText("Quản lý nhà sản xuất");
+        menuItemQLNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNSXActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNSX);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý hóa đơn");
@@ -345,6 +368,11 @@ public class HoadonGUI extends javax.swing.JFrame {
         lbDay.setForeground(new java.awt.Color(0, 102, 0));
         lbDay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lbMore.setBackground(new java.awt.Color(204, 255, 153));
+        lbMore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMore.setText("More...");
+        lbMore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -354,7 +382,9 @@ public class HoadonGUI extends javax.swing.JFrame {
                 .addComponent(btnTrangchu, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(334, 334, 334)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbMore, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(280, 280, 280)
                 .addComponent(lbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,11 +397,15 @@ public class HoadonGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDangxuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTrangchu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbMore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnDangxuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -724,6 +758,18 @@ public class HoadonGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnNhaphangActionPerformed
 
+    private void menuItemQLNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNCCActionPerformed
+        // TODO add your handling code here:
+        new NhaCungCapGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNCCActionPerformed
+
+    private void menuItemQLNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNSXActionPerformed
+        // TODO add your handling code here:
+        new NhaSanXuatGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNSXActionPerformed
+
 
 //    public static void main(String args[]) {
 //        new HoadonGUI("TK001").setVisible(true);
@@ -753,12 +799,16 @@ public class HoadonGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu jPopupMenuMore;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbDay;
+    private javax.swing.JLabel lbMore;
     private javax.swing.JLabel lbRole;
     private javax.swing.JLabel lbUsername;
+    private javax.swing.JMenuItem menuItemQLNCC;
+    private javax.swing.JMenuItem menuItemQLNSX;
     private javax.swing.JPanel panelChuyen1;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTextField txtFind;

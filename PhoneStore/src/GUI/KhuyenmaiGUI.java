@@ -36,6 +36,7 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
         lbUsername1.setText(username);
         lbRole1.setText(taikhoan.getRole());
         show(taikhoan.getRole());
+        lbMore.setComponentPopupMenu(jPopupMenuMore);
     }
 
     private void show(String role){
@@ -58,6 +59,9 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenuMore = new javax.swing.JPopupMenu();
+        menuItemQLNCC = new javax.swing.JMenuItem();
+        menuItemQLNSX = new javax.swing.JMenuItem();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JTable();
@@ -83,6 +87,7 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
         lbUsername1 = new javax.swing.JLabel();
         lbRole1 = new javax.swing.JLabel();
         lbDay1 = new javax.swing.JLabel();
+        lbMore = new javax.swing.JLabel();
         btnThoat = new javax.swing.JButton();
         panelChuyen = new javax.swing.JPanel();
         btnSanpham = new javax.swing.JButton();
@@ -93,6 +98,24 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
         btnKhuyenmai = new javax.swing.JButton();
         btnBanhang = new javax.swing.JButton();
         btnNhaphang = new javax.swing.JButton();
+
+        menuItemQLNCC.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNCC.setText("Quản lý nhà cung cấp");
+        menuItemQLNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNCCActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNCC);
+
+        menuItemQLNSX.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNSX.setText("Quản lý nhà sản xuất");
+        menuItemQLNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNSXActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNSX);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -372,6 +395,11 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
         lbDay1.setForeground(new java.awt.Color(0, 102, 0));
         lbDay1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lbMore.setBackground(new java.awt.Color(204, 255, 153));
+        lbMore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMore.setText("More...");
+        lbMore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -381,7 +409,9 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
                 .addComponent(btnTrangchu2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangxuat2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(326, 326, 326)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbMore, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(272, 272, 272)
                 .addComponent(lbUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbRole1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,15 +424,16 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDangxuat2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(lbDay1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnTrangchu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbUsername1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lbRole1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbRole1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDangxuat2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbDay1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lbMore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -712,6 +743,18 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnNhaphangActionPerformed
 
+    private void menuItemQLNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNCCActionPerformed
+        // TODO add your handling code here:
+        new NhaCungCapGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNCCActionPerformed
+
+    private void menuItemQLNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNSXActionPerformed
+        // TODO add your handling code here:
+        new NhaSanXuatGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNSXActionPerformed
+
     public void showAll(){
         String[] col={"Mã khuyến mãi","Tên khuyến mãi","Ngày bắt đầu","Ngày kết thúc"};
         DefaultTableModel dtm=new DefaultTableModel(col,0);
@@ -794,11 +837,15 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPopupMenu jPopupMenuMore;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDay1;
+    private javax.swing.JLabel lbMore;
     private javax.swing.JLabel lbRole1;
     private javax.swing.JLabel lbUsername1;
     private javax.swing.JTable list;
+    private javax.swing.JMenuItem menuItemQLNCC;
+    private javax.swing.JMenuItem menuItemQLNSX;
     private javax.swing.JPanel panelChuyen;
     private javax.swing.JButton refresh;
     private javax.swing.JTextField value;

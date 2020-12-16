@@ -16,7 +16,7 @@ public class PhieunhapDTO {
     Date NgayNhap;
     String MaNCC;
     String MaNV;
-    int TongTien;
+    float TongTien;
 
     public String getMaPN() {
         return MaPN;
@@ -50,11 +50,11 @@ public class PhieunhapDTO {
         this.MaNV = MaNV;
     }
 
-    public int getTongTien() {
+    public float getTongTien() {
         return TongTien;
     }
 
-    public void setTongTien(int TongTien) {
+    public void setTongTien(float TongTien) {
         this.TongTien = TongTien;
     }    
 }

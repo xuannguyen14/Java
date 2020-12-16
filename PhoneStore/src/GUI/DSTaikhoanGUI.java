@@ -63,7 +63,7 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
             }
         });
         
-        
+        lbMore.setComponentPopupMenu(jPopupMenuMore);
         show(taikhoan.getRole());
     }
 
@@ -96,12 +96,16 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenuMore = new javax.swing.JPopupMenu();
+        menuItemQLNCC = new javax.swing.JMenuItem();
+        menuItemQLNSX = new javax.swing.JMenuItem();
         jPanel4 = new javax.swing.JPanel();
         btnTrangchu = new javax.swing.JButton();
         btnDangxuat = new javax.swing.JButton();
         lbUsername = new javax.swing.JLabel();
         lbRole = new javax.swing.JLabel();
         lbDay = new javax.swing.JLabel();
+        lbMore = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelChuyen = new javax.swing.JPanel();
@@ -135,6 +139,24 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnTrolai = new javax.swing.JButton();
 
+        menuItemQLNCC.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNCC.setText("Quản lý nhà cung cấp");
+        menuItemQLNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNCCActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNCC);
+
+        menuItemQLNSX.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNSX.setText("Quản lý nhà sản xuất");
+        menuItemQLNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNSXActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNSX);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -167,6 +189,11 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         lbDay.setForeground(new java.awt.Color(0, 102, 0));
         lbDay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lbMore.setBackground(new java.awt.Color(204, 255, 153));
+        lbMore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMore.setText("More...");
+        lbMore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -176,11 +203,13 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
                 .addComponent(btnTrangchu, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(370, 370, 370)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbMore, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(316, 316, 316)
                 .addComponent(lbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -189,11 +218,16 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDangxuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTrangchu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDangxuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lbDay, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lbMore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -842,6 +876,18 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnTrangchuActionPerformed
 
+    private void menuItemQLNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNCCActionPerformed
+        // TODO add your handling code here:
+        new NhaCungCapGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNCCActionPerformed
+
+    private void menuItemQLNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNSXActionPerformed
+        // TODO add your handling code here:
+        new NhaSanXuatGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNSXActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -879,10 +925,14 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPopupMenu jPopupMenuMore;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbDay;
+    private javax.swing.JLabel lbMore;
     private javax.swing.JLabel lbRole;
     private javax.swing.JLabel lbUsername;
+    private javax.swing.JMenuItem menuItemQLNCC;
+    private javax.swing.JMenuItem menuItemQLNSX;
     private javax.swing.JPanel panelChuyen;
     private javax.swing.JRadioButton rbtAdmin;
     private javax.swing.JRadioButton rbtUser;

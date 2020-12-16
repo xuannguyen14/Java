@@ -63,6 +63,8 @@ public class SanPhamGUI extends javax.swing.JFrame {
         txt_Find.requestFocus();
         
         show(taikhoan.getRole());
+        
+        lbMore.setComponentPopupMenu(jPopupMenuMore);
     }
 
     private void show(String role){
@@ -73,6 +75,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
             btnTaikhoan.setEnabled(false);
             btnThongke.setEnabled(false);
             btnSanpham.setEnabled(false);
+            
         }
     }
     
@@ -88,6 +91,9 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jPopupMenuMore = new javax.swing.JPopupMenu();
+        menuItemQLNCC = new javax.swing.JMenuItem();
+        menuItemQLNSX = new javax.swing.JMenuItem();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -102,6 +108,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         lbUsername = new javax.swing.JLabel();
         lbRole2 = new javax.swing.JLabel();
         lbDay2 = new javax.swing.JLabel();
+        lbMore = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -117,6 +124,24 @@ public class SanPhamGUI extends javax.swing.JFrame {
         btnBanhang = new javax.swing.JButton();
         btnNhaphang = new javax.swing.JButton();
 
+        menuItemQLNCC.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNCC.setText("Quản lý nhà cung cấp");
+        menuItemQLNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNCCActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNCC);
+
+        menuItemQLNSX.setBackground(new java.awt.Color(255, 255, 255));
+        menuItemQLNSX.setText("Quản lý nhà sản xuất");
+        menuItemQLNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemQLNSXActionPerformed(evt);
+            }
+        });
+        jPopupMenuMore.add(menuItemQLNSX);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -124,7 +149,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("SVN-Segoe Print", 1, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ SẢN PHẨM");
@@ -231,16 +256,23 @@ public class SanPhamGUI extends javax.swing.JFrame {
         lbDay2.setForeground(new java.awt.Color(0, 102, 0));
         lbDay2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lbMore.setBackground(new java.awt.Color(204, 255, 153));
+        lbMore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMore.setText("More...");
+        lbMore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnTrangchu1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTrangchu1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDangxuat1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(275, 275, 275)
+                .addComponent(btnDangxuat1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbMore, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(289, 289, 289)
                 .addComponent(lbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbRole2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,11 +285,13 @@ public class SanPhamGUI extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDangxuat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDay2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbDay2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(btnTrangchu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbRole2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDangxuat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbMore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbRole2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -710,6 +744,18 @@ public class SanPhamGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnNhaphangActionPerformed
 
+    private void menuItemQLNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNCCActionPerformed
+        // TODO add your handling code here:
+        new NhaCungCapGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNCCActionPerformed
+
+    private void menuItemQLNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemQLNSXActionPerformed
+        // TODO add your handling code here:
+        new NhaSanXuatGUI(taikhoan.getMaTK()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuItemQLNSXActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -742,7 +788,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new SanPhamGUI("AD001").setVisible(true);
+                    new SanPhamGUI("TK001").setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(SanPhamGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -772,11 +818,15 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPopupMenu jPopupMenuMore;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDay2;
+    private javax.swing.JLabel lbMore;
     private javax.swing.JLabel lbRole2;
     private javax.swing.JLabel lbUsername;
     private javax.swing.JLabel linkAdvancedSearch;
+    private javax.swing.JMenuItem menuItemQLNCC;
+    private javax.swing.JMenuItem menuItemQLNSX;
     private javax.swing.JPanel panelChuyen;
     private javax.swing.JTable tbl_DSSP;
     private javax.swing.JTextField txt_Find;
