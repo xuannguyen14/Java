@@ -136,6 +136,9 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         rbtAdmin = new javax.swing.JRadioButton();
         rbtUser = new javax.swing.JRadioButton();
+        lbCheckMaTK = new javax.swing.JLabel();
+        lbCheckRole = new javax.swing.JLabel();
+        lbCheckMK = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnTrolai = new javax.swing.JButton();
 
@@ -490,6 +493,11 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Mật khẩu:");
 
+        txtMaTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaTKActionPerformed(evt);
+            }
+        });
         txtMaTK.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMaTKKeyPressed(evt);
@@ -518,6 +526,12 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         rbtUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtUser.setText("User");
 
+        lbCheckMaTK.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbCheckRole.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbCheckMK.setForeground(new java.awt.Color(255, 51, 0));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -530,12 +544,15 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCheckMaTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(rbtAdmin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbtUser))
                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(txtMaTK))
+                    .addComponent(txtMaTK)
+                    .addComponent(lbCheckRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbCheckMK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(54, 54, 54))
         );
         jPanel5Layout.setVerticalGroup(
@@ -545,16 +562,22 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbCheckMaTK, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbCheckMK, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(rbtAdmin)
                     .addComponent(rbtUser))
-                .addGap(45, 45, 45))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbCheckRole, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -781,27 +804,45 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
-        DefaultTableModel model = (DefaultTableModel) tblTaikhoan.getModel();
-        taikhoanBUS = new TaikhoanBUS();
-        TaikhoanDTO taikhoan = new TaikhoanDTO();
-        taikhoan.setMaTK(txtMaTK.getText());
-        taikhoan.setPassword(txtPassword.getText());
-        String role = "user";
-        if(rbtAdmin.isSelected()){
-            role = "admin";
+        if("".equals(txtMaTK.getText()) || "".equals(txtPassword.getText()) || (rbtAdmin.isSelected() == false && rbtUser.isSelected() == false)){
+            if("".equals(txtMaTK.getText()) ){
+                lbCheckMaTK.setText("Vui lòng nhập mã tài khoản!");
+            }
+            if("".equals(txtPassword.getText()) ){
+                lbCheckMK.setText("Vui lòng nhập mật khẩu!");
+            }
+            if(rbtAdmin.isSelected() == false && rbtUser.isSelected() == false){
+                lbCheckRole.setText("Vui lòng chọn vai trò!");
+            }
         }
-        if(rbtUser.isSelected()){
-            role = "user";
-        }
-        taikhoan.setRole(role);
-        model.addRow(new Object[]{taikhoan.getMaTK(), taikhoan.getPassword(), taikhoan.getRole()});
+        else{
+            DefaultTableModel model = (DefaultTableModel) tblTaikhoan.getModel();
+            taikhoanBUS = new TaikhoanBUS();
+            TaikhoanDTO taikhoan = new TaikhoanDTO();
+            taikhoan.setMaTK(txtMaTK.getText());
+            taikhoan.setPassword(txtPassword.getText());
+            String role = "user";
+            if(rbtAdmin.isSelected()){
+                role = "admin";
+            }
+            if(rbtUser.isSelected()){
+                role = "user";
+            }
+            taikhoan.setRole(role);
+            model.addRow(new Object[]{taikhoan.getMaTK(), taikhoan.getPassword(), taikhoan.getRole()});
 
-        taikhoanBUS.addTaikhoan(taikhoan);
-    
+            taikhoanBUS.addTaikhoan(taikhoan);
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
+        if("".equals(txtPassword.getText()) ){
+                lbCheckMK.setText("Vui lòng nhập mật khẩu!");
+            }
+        else{
+            lbCheckMK.setText("");
+        }
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void tblTaikhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTaikhoanMouseClicked
@@ -888,13 +929,23 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuItemQLNSXActionPerformed
 
+    private void txtMaTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaTKActionPerformed
+        // TODO add your handling code here:
+        if("".equals(txtMaTK.getText()) ){
+                lbCheckMaTK.setText("Vui lòng nhập mã tài khoản!");
+        }
+        else{
+            lbCheckMaTK.setText("");
+        }
+    }//GEN-LAST:event_txtMaTKActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        new DSTaikhoanGUI("AD001").setVisible(true);
-//
-//    }
+    public static void main(String args[]) {
+        new DSTaikhoanGUI("AD001").setVisible(true);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBanhang;
@@ -927,6 +978,9 @@ public class DSTaikhoanGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu jPopupMenuMore;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbCheckMK;
+    private javax.swing.JLabel lbCheckMaTK;
+    private javax.swing.JLabel lbCheckRole;
     private javax.swing.JLabel lbDay;
     private javax.swing.JLabel lbMore;
     private javax.swing.JLabel lbRole;

@@ -25,6 +25,8 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -174,6 +176,9 @@ public class ThemHDGUI extends javax.swing.JFrame {
         txtNgayxuat = new javax.swing.JTextField();
         comboMaNV = new javax.swing.JComboBox<>();
         comboMaKH = new javax.swing.JComboBox<>();
+        lbCheckMaHD = new javax.swing.JLabel();
+        lbCheckMaKH = new javax.swing.JLabel();
+        lbCheckmaNV = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -194,6 +199,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
         txtThanhtien = new javax.swing.JTextField();
         txtSoluong = new javax.swing.JTextField();
         btnChonmua = new javax.swing.JButton();
+        lbCheckSL = new javax.swing.JLabel();
+        lbCheckSP = new javax.swing.JLabel();
 
         jMenuItemXoa.setText("Xóa");
         jMenuItemXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -281,13 +288,15 @@ public class ThemHDGUI extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(413, 413, 413)
+                .addComponent(btnThem)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnThem)
-                        .addGap(339, 339, 339)
                         .addComponent(btnThoat3)))
                 .addContainerGap())
         );
@@ -295,11 +304,11 @@ public class ThemHDGUI extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
-                    .addComponent(btnThoat3))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnThem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThoat3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -317,9 +326,21 @@ public class ThemHDGUI extends javax.swing.JFrame {
 
         jLabel32.setText("Mã nhân viên: ");
 
+        txtMaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaHDActionPerformed(evt);
+            }
+        });
+
         txtMaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaKHActionPerformed(evt);
+            }
+        });
+
+        txtMaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaNVActionPerformed(evt);
             }
         });
 
@@ -344,6 +365,14 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
 
+        lbCheckMaHD.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbCheckMaKH.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbCheckmaNV.setForeground(new java.awt.Color(255, 51, 0));
+        lbCheckmaNV.setMaximumSize(new java.awt.Dimension(0, 0));
+        lbCheckmaNV.setMinimumSize(new java.awt.Dimension(0, 0));
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -353,20 +382,24 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel30))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(txtNgayxuat)))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31)
                             .addComponent(jLabel29))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbCheckMaHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtMaHD, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(txtMaKH))))
+                            .addComponent(txtMaKH)
+                            .addComponent(lbCheckMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel30))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbCheckmaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                .addComponent(txtNgayxuat)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(comboMaKH, 0, 75, Short.MAX_VALUE)
@@ -380,21 +413,27 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
                     .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(lbCheckMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
+                .addComponent(lbCheckMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
                     .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
+                .addComponent(lbCheckmaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(txtNgayxuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel16.setBackground(new java.awt.Color(204, 255, 153));
@@ -456,7 +495,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel36)
                     .addComponent(txtTientra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -475,8 +514,8 @@ public class ThemHDGUI extends javax.swing.JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -531,6 +570,10 @@ public class ThemHDGUI extends javax.swing.JFrame {
             }
         });
 
+        lbCheckSL.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbCheckSP.setForeground(new java.awt.Color(255, 51, 0));
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -539,31 +582,36 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addComponent(jLabel25)
+                        .addGap(18, 18, 18)
                         .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel25)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(comboboxMaSp, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbCheckSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboboxMaSp, 0, 145, Short.MAX_VALUE))))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lbCheckSL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSoluong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
                         .addComponent(jLabel22)
                         .addGap(29, 29, 29)
                         .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnChonmua)
-                        .addGap(104, 104, 104))))
+                        .addGap(103, 103, 103))))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,14 +626,25 @@ public class ThemHDGUI extends javax.swing.JFrame {
                         .addComponent(txtSoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel22)
                         .addComponent(txtDongia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24)
-                    .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChonmua))
-                .addGap(54, 54, 54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCheckSP, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCheckSL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel24))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtThanhtien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChonmua)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTienKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))))
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -607,11 +666,11 @@ public class ThemHDGUI extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -625,6 +684,12 @@ public class ThemHDGUI extends javax.swing.JFrame {
 
     private void txtMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaKHActionPerformed
         // TODO add your handling code here:
+        if("".equals(txtMaKH.getText()) ){
+                lbCheckMaKH.setText("Vui lòng nhập mã khách hàng!");
+            }
+        else{
+            lbCheckMaKH.setText("");
+        }
     }//GEN-LAST:event_txtMaKHActionPerformed
 
     private void txtTongtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongtienActionPerformed
@@ -634,10 +699,15 @@ public class ThemHDGUI extends javax.swing.JFrame {
     // cách không cho combobox chọn trước: chọn cho edit -> thêm chữ chọn sản phẩm -> tắt cho edit
     private void comboboxMaSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxMaSpActionPerformed
         // TODO add your handling code here:
+        
         SanPhamDTO sanpham = new SanPhamDTO();
         sanpham = sanphamBUS.getSanphamBYMaSP(String.valueOf(comboboxMaSp.getSelectedItem()));
-        txtDongia.setText(String.valueOf(sanpham.getDonGia())); // lấy đơn giá của sản phẩm dc chọn
-        
+        if(sanpham.getSoLuong() != 0){
+            txtDongia.setText(String.valueOf(sanpham.getDonGia())); // lấy đơn giá của sản phẩm dc chọn
+        }
+        else{
+            lbCheckSP.setText("Hết hàng!!! Chon sản phẩm khác!!!");
+        }
 
     }//GEN-LAST:event_comboboxMaSpActionPerformed
 
@@ -647,27 +717,41 @@ public class ThemHDGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNgayxuatActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
-        hoadon = new HoadonDTO();
-        hoadonBUS = new HoadonBUS();
-        chitiethoadonBUS = new ChitiethoadonBUS();
         
-        hoadon.setMaHD(txtMaHD.getText());
-        hoadon.setNgayxuat(txtNgayxuat.getText());
-        hoadon.setMaKH(txtMaKH.getText());
-        hoadon.setMaNV(txtMaNV.getText());
-        hoadon.setTongtien(tongtien);
-        hoadon.setTongKM(tongkm);
-        hoadon.setTientra(tientra);
         
-        hoadonBUS.insertHoadon(hoadon);
-        
-        for(ChitiethoadonDTO CTHD : chitietHDs){
-            chitiethoadonBUS.addChitietHoadon(CTHD); 
+        if("".equals(txtMaHD.getText()) || "".equals(txtMaKH.getText()) || "".equals(txtMaNV.getText())){
+            if("".equals(txtMaHD.getText()) ){
+                lbCheckMaHD.setText("Vui lòng nhập mã hóa đơn!");
+            }
+            if("".equals(txtMaKH.getText()) ){
+                lbCheckMaKH.setText("Vui lòng nhập mã khách hàng!");
+            }
+            if("".equals(txtMaNV.getText()) ){
+                lbCheckmaNV.setText("Vui lòng nhập mã nhân viên!");
+            }
         }
         
-        new HoadonGUI(taikhoan.getMaTK()).setVisible(true);
-        this.dispose();
+        else{
+            hoadon = new HoadonDTO();
+            hoadonBUS = new HoadonBUS();
+            chitiethoadonBUS = new ChitiethoadonBUS();
+            hoadon.setMaHD(txtMaHD.getText());
+            hoadon.setNgayxuat(txtNgayxuat.getText());
+            hoadon.setMaKH(txtMaKH.getText());
+            hoadon.setMaNV(txtMaNV.getText());
+            hoadon.setTongtien(tongtien);
+            hoadon.setTongKM(tongkm);
+            hoadon.setTientra(tientra);
+            
+            hoadonBUS.insertHoadon(hoadon);
+
+            for(ChitiethoadonDTO CTHD : chitietHDs){
+                chitiethoadonBUS.addChitietHoadon(CTHD); 
+            }
+
+            new HoadonGUI(taikhoan.getMaTK()).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private float layTileKM(String maSP){
@@ -735,13 +819,19 @@ public class ThemHDGUI extends javax.swing.JFrame {
     
     private void txtSoluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongActionPerformed
         // TODO add your handling code here:
-        float tienKM = layTileKM(String.valueOf(comboboxMaSp.getSelectedItem())) * Float.parseFloat(txtSoluong.getText());
+        if("".equals(txtSoluong.getText()) ){
+                lbCheckSL.setText("Vui lòng nhập số lượng!");
+        }
+        else{
+            lbCheckMaHD.setText("");
         
-        txtTienKm.setText(String.valueOf(tienKM));
-        
-        //thành tiền = đơn giá * số lượng - tiền khuyến mãi
-        txtThanhtien.setText(String.valueOf(Float.parseFloat(txtDongia.getText()) * Float.parseFloat(txtSoluong.getText()) - tienKM));
-        
+            float tienKM = layTileKM(String.valueOf(comboboxMaSp.getSelectedItem())) * Float.parseFloat(txtSoluong.getText());
+
+            txtTienKm.setText(String.valueOf(tienKM));
+
+            //thành tiền = đơn giá * số lượng - tiền khuyến mãi
+            txtThanhtien.setText(String.valueOf(Float.parseFloat(txtDongia.getText()) * Float.parseFloat(txtSoluong.getText()) - tienKM));
+        }
     }//GEN-LAST:event_txtSoluongActionPerformed
 
     private void txtThanhtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhtienActionPerformed
@@ -750,7 +840,15 @@ public class ThemHDGUI extends javax.swing.JFrame {
 
     private void btnChonmuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonmuaActionPerformed
         // TODO add your handling code here:
-
+        if("".equals(txtSoluong.getText()) || comboboxMaSp.getSelectedIndex() == 0){
+            if("".equals(txtSoluong.getText()) ){
+                lbCheckSL.setText("Vui lòng nhập số lượng!");
+            }
+            if(comboboxMaSp.getSelectedIndex() == 0){
+                lbCheckSP.setText("Vui lòng chọn mã sản phẩm!");
+            }
+        }
+        else{
         tinhTien();
         
         loadDataTable(String.valueOf(comboboxMaSp.getSelectedItem()));
@@ -758,6 +856,7 @@ public class ThemHDGUI extends javax.swing.JFrame {
         suaSoluong(String.valueOf(comboboxMaSp.getSelectedItem()), 1);
         
         themChitiet();
+        }
 
     }//GEN-LAST:event_btnChonmuaActionPerformed
 
@@ -797,16 +896,40 @@ public class ThemHDGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTienKmActionPerformed
 
+    private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
+        // TODO add your handling code here:
+        if("".equals(txtMaHD.getText()) ){
+                lbCheckMaHD.setText("Vui lòng nhập mã hóa đơn!");
+        }
+        else{
+            lbCheckMaHD.setText("");
+        }
+    }//GEN-LAST:event_txtMaHDActionPerformed
+
+    private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed
+        // TODO add your handling code here:
+        if("".equals(txtMaNV.getText()) ){
+                lbCheckmaNV.setText("Vui lòng nhập mã nhân viên!");
+            }
+        else{
+            lbCheckmaNV.setText("");
+        }
+    }//GEN-LAST:event_txtMaNVActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String[] args) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ThemHDGUI().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new ThemHDGUI("AD001").setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ThemHDGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonmua;
@@ -838,6 +961,11 @@ public class ThemHDGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPopupMenu jPopupMenuDSHH;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lbCheckMaHD;
+    private javax.swing.JLabel lbCheckMaKH;
+    private javax.swing.JLabel lbCheckSL;
+    private javax.swing.JLabel lbCheckSP;
+    private javax.swing.JLabel lbCheckmaNV;
     private javax.swing.JTable tblSanpham;
     private javax.swing.JTextField txtDongia;
     private javax.swing.JTextField txtMaHD;
