@@ -132,7 +132,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         topPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         titleLabel.setBackground(new java.awt.Color(204, 255, 153));
-        titleLabel.setFont(new java.awt.Font("SVN-Segoe Print", 1, 30)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(0, 153, 0));
         titleLabel.setText("QUẢN LÝ KHÁCH HÀNG");
 
@@ -147,7 +147,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         searchPanel.setBackground(new java.awt.Color(255, 255, 255));
