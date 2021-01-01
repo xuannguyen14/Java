@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/SanPhamGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/ThongKeGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/HoadonGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/DAO/HoadonDAO.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/NhanvienGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/ThemHDGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/DSTaikhoanGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/KhachHangGUI.java</file>
             <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/MainformGUI.java</file>
+            <file>file:/C:/Users/pc/Documents/GitHub/Java/PhoneStore/src/GUI/KhuyenmaiGUI.java</file>
         </group>
     </open-files>
 </project-private>

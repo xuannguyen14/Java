@@ -46,7 +46,6 @@ public class HoadonDAO {
                 hoadons.add(hoadon);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         
         return hoadons;
@@ -77,7 +76,6 @@ public class HoadonDAO {
                 return hoadon;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         
         return null;
@@ -108,7 +106,6 @@ public class HoadonDAO {
                 hoadons.add(hoadon);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         
         return hoadons;
@@ -139,7 +136,6 @@ public class HoadonDAO {
                 hoadons.add(hoadon);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         
         return hoadons;
@@ -163,7 +159,6 @@ public class HoadonDAO {
             int rs = preparedStatement.executeUpdate();
             System.out.println(rs);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         
     }
@@ -180,7 +175,6 @@ public class HoadonDAO {
             int rs = preparedStatement.executeUpdate();
             System.out.println(rs);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
     public List<HoadonDTO> getHoadonByDate(String tuNgay, String denNgay){
@@ -209,7 +203,6 @@ public class HoadonDAO {
                 hoadons.add(hoadon);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         
         return hoadons;

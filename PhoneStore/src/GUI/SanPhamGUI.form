@@ -243,6 +243,9 @@
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
@@ -333,10 +336,8 @@
                           <Component id="btnTrangchu1" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnDangxuat1" alignment="0" max="32767" attributes="0"/>
                           <Component id="lbMore" max="32767" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="lbUsername" max="32767" attributes="0"/>
-                              <Component id="lbRole2" min="-2" pref="27" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lbUsername" max="32767" attributes="0"/>
+                          <Component id="lbRole2" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

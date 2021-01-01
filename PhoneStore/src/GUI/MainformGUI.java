@@ -549,10 +549,10 @@ public class MainformGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String[] args) {
-//        new MainformGUI("AD001").setVisible(true);
-//        
-//    }
+    public static void main(String[] args) {
+        new MainformGUI("AD001").setVisible(true);
+        
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

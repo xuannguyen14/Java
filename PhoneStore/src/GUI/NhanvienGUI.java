@@ -9,6 +9,7 @@ import BUS.NhanvienBUS;
 import BUS.TaikhoanBUS;
 import DTO.NhanvienDTO;
 import DTO.TaikhoanDTO;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +31,7 @@ public class NhanvienGUI extends javax.swing.JFrame {
     
     public NhanvienGUI(String username) {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
         showAll();
         
         lbDay.setText(java.time.LocalDate.now() + " " + java.time.LocalTime.now());

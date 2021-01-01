@@ -1710,11 +1710,8 @@ public class ThongKeGUI extends javax.swing.JFrame {
         hoadons = hoadonBUS.getHoadonByDate(tuNgay, denNgay);
         double tongDT = 0;
         for(HoadonDTO hoadon : hoadons){
-//            defaultTableModel.addRow(new Object[]{hoadon.getMaHD(), hoadon.getNgayxuat(), hoadon.getMaKH(),
-//                hoadon.getMaNV(),hoadon.getTongtien(), hoadon.getTongKM(), hoadon.getTientra()});
             loadTableData(hoadon);
-
-        tongDT += hoadon.getTientra();
+            tongDT += hoadon.getTientra();
         }
         txtTongthu.setText(String.valueOf(tongDT));
     }//GEN-LAST:event_btnThongke1ActionPerformed

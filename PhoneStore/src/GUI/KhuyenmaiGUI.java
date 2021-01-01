@@ -9,6 +9,7 @@ import BUS.TaikhoanBUS;
 import DTO.KhuyenmaiDTO;
 import DAO.JDBCConnection;
 import DTO.TaikhoanDTO;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -27,6 +28,7 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
     
     public KhuyenmaiGUI(String username) {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
         showAll();
         
         lbDay1.setText(java.time.LocalDate.now() + " " + java.time.LocalTime.now());
@@ -437,6 +439,7 @@ public class KhuyenmaiGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btnThoat.setBackground(new java.awt.Color(204, 255, 153));
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -10,6 +10,7 @@ import BUS.KhachhangBUS;
 import BUS.TaikhoanBUS;
 import BUS.VNCharacterUtils;
 import DTO.TaikhoanDTO;
+import java.awt.Color;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +42,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         suaKhachHangGUI = new SuaKhachHangGUI();
         chiTietKhachHangGUI = new ChiTietKhachHangGUI();
         initComponents();
+        this.getContentPane().setBackground(Color.white);
         loadData();
         
         lbDay.setText(String.valueOf(java.time.LocalDateTime.now()));
